@@ -1,0 +1,15 @@
+H:\project\server\Bl\obj\Debug\net6.0\Bl.csproj.AssemblyReference.cache
+H:\project\server\Bl\obj\Debug\net6.0\Bl.GeneratedMSBuildEditorConfig.editorconfig
+H:\project\server\Bl\obj\Debug\net6.0\Bl.AssemblyInfoInputs.cache
+H:\project\server\Bl\obj\Debug\net6.0\Bl.AssemblyInfo.cs
+H:\project\server\Bl\obj\Debug\net6.0\Bl.csproj.CoreCompileInputs.cache
+H:\project\server\Bl\bin\Debug\net6.0\Bl.deps.json
+H:\project\server\Bl\bin\Debug\net6.0\Bl.dll
+H:\project\server\Bl\bin\Debug\net6.0\ref\Bl.dll
+H:\project\server\Bl\bin\Debug\net6.0\Bl.pdb
+H:\project\server\Bl\bin\Debug\net6.0\Dal.dll
+H:\project\server\Bl\bin\Debug\net6.0\Dal.pdb
+H:\project\server\Bl\obj\Debug\net6.0\Bl.csproj.CopyComplete
+H:\project\server\Bl\obj\Debug\net6.0\Bl.dll
+H:\project\server\Bl\obj\Debug\net6.0\ref\Bl.dll
+H:\project\server\Bl\obj\Debug\net6.0\Bl.pdb
