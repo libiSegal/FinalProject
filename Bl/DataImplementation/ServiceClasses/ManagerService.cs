@@ -41,6 +41,7 @@ namespace BL
         }
         #endregion
 
+        #region Get function
         public async Task<ManagerDTO> GetObject(string id)
         {
             try
@@ -55,6 +56,9 @@ namespace BL
             catch (Exception ex) { throw new Exception(ex.Message); }
 
         }
+        #endregion
+
+        #region Delete function
         public async Task<bool> DeleteObject(string id)
         {
             try
@@ -71,7 +75,9 @@ namespace BL
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
+        #endregion
 
+        #region Update function
         public async Task<bool> UpdateObject(ManagerDTO managerDTO, string id)
         {
             try
@@ -88,22 +94,31 @@ namespace BL
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
+        #endregion
+
+        #region Mapping functions
         public async Task<ManagerDTO> MapManager_ManagerDTO(Manager manager)
         {
-           ManagerDTO managerDTO = new MapperConfiguration(cfg => cfg.CreateMap<Manager, ManagerDTO>())
-               .CreateMapper().Map<ManagerDTO>(manager);
-            managerDTO.Items = await _washAbleServise.GetAll(managerDTO.ID);
-            managerDTO.LaundriesDTO = await _laundryService.GetAll(managerDTO.ID);
-            managerDTO.UsersDTO = await _userService.GetAllUsers(managerDTO.ID);
-            return managerDTO;
-          
+            try
+            {
+                ManagerDTO managerDTO = new MapperConfiguration(cfg => cfg.AddProfile<ManagerManagementProfile>())
+                                  .CreateMapper().Map<ManagerDTO>(manager);
+                managerDTO.Items = await _washAbleServise.GetAll(managerDTO.ID);
+                managerDTO.LaundriesDTO = await _laundryService.GetAll(managerDTO.ID);
+                managerDTO.UsersDTO = await _userService.GetAllUsers(managerDTO.ID);
+                return managerDTO;
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+
+
         }
         public Manager MapManagerDTO_Manager(ManagerDTO managerDTO)
         {
             return new MapperConfiguration(cfg => cfg.AddProfile<ManagerDTOManagementProfile>())
                   .CreateMapper().Map<Manager>(managerDTO);
-          
-             
+
+
         }
+        #endregion
     }
 }

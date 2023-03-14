@@ -10,12 +10,6 @@ namespace BL
 {
     public class UserManagementProfile : Profile
     {
-        /*public UserManagementProfile()
-        {
-            CreateMap<User, UserDTO>()
-                .ForMember(dest => dest.Items,
-                opt => opt.MapFrom(src => washAbleAction.GetAll(src.Id)));
-        }*/
         public UserManagementProfile()
         {
             CreateMap<User, UserDTO>()

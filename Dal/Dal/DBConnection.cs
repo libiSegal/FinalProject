@@ -19,7 +19,7 @@ namespace Dal
         {
             //mongodb+srv://estiZukerman:<password>@finalproject.ildtd7i.mongodb.net/?retryWrites=true&w=majority
             //mongodb://localhost:27017/dbtest?readPreference=primary
-            Client = new MongoClient("mongodb://localhost:27017/dbtest?readPreference=primary");
+            Client = new MongoClient("mongodb+srv://estiZukerman:0556752330@finalproject.ildtd7i.mongodb.net/?retryWrites=true&w=majority");
             DataBaseName = "laundrySystem";
             _db = Client.GetDatabase(DataBaseName);
             UsersCollection = _db.GetCollection<User>(UsersCollectionName);

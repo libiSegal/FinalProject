@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,12 @@ namespace BL
         public int LaundryWeight { get; set; }
         public List<Dictionary<string, string>> Programs { get; set; }
 
-      
+        public WashingMachineDTO()
+        {
+            Company = "XXX";
+            Model = "XXX";
+            Programs = new();
+        }
         public WashingMachineDTO(string company, string model, List<Dictionary<string, string>> programs)
         {
             Company = company;
