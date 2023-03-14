@@ -5,6 +5,7 @@ using Dal;
 namespace Bl
 {
     public class ManagerManagementProfile : Profile
+        //kdsfksjedhfjhsn
     {
         public ManagerManagementProfile()
         {
