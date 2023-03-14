@@ -53,7 +53,7 @@ namespace Dal
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
         #endregion
-
+        #region Create function
         public async Task<string> CreateAsync(User dataObject)
         {
             try
@@ -82,6 +82,7 @@ namespace Dal
             catch (ExistsDataObjectExceotion ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
+        #endregion
         public async Task<bool> DeleteAsync(string id)
         {
             try
