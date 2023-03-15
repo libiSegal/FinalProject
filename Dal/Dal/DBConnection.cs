@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 
 namespace Dal
 {
@@ -25,7 +24,6 @@ namespace Dal
             LaundryCollection = mongoDatabase.GetCollection<Laundry>(laundrySystemDatabaseSettings.Value.LaundryCollectionName);
 
         }
-        //
 
     }
 }
