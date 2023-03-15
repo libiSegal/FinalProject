@@ -1,7 +1,5 @@
 ﻿
 using Dal;
-
-
 namespace BL
 {
     public class UserDTO : IDataObject

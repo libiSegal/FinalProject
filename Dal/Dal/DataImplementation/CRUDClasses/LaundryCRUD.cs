@@ -91,10 +91,10 @@ namespace Dal
                 var getAllFilter = _filterBuilder.Eq("ManagerId", managerId);
                 var users = await _laundryCollection.Find(getAllFilter).ToListAsync();
 
-                if (users.FirstOrDefault() == null)
+                /*if (users.FirstOrDefault() == null)
                 {
                     throw new NotExistsDataObjectException($"No users matched manager ID - {managerId}");
-                }
+                }*/
                 return users;
             }
             catch (TimeoutException ex) { throw ex; }

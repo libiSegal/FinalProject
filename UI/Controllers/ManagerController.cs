@@ -23,5 +23,22 @@ namespace UI.Controllers
         {
             return await _managerService.GetObject(id);
         }
+
+        [HttpGet("{name}/{password}")]
+        public async Task<ManagerDTO> Get(string name, string password)
+        {
+            return await _managerService.GetObject(name, password);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<bool> Delete(string id)
+        {
+            return await _managerService.DeleteObject(id);
+        }
+        [HttpPut("{id}")]
+        public async Task<bool> Put(string id, ManagerDTO managerDTO)
+        {
+            return await _managerService.UpdateObject(managerDTO, id);
+        }
     }
 }

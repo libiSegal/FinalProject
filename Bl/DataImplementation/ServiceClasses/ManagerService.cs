@@ -58,6 +58,21 @@ namespace BL
         }
         #endregion
 
+        public async Task<ManagerDTO> GetObject(string name, string password)
+        {
+            try
+            {
+                Manager manager = await _managerCRUD.ReadAsync(name, password);
+                return await MapManager_ManagerDTO(manager);
+            }
+            catch (TimeoutException ex) { throw ex; }
+            catch (MongoConnectionException ex) { throw ex; }
+            catch (NullReferenceException ex) { throw ex; }
+            catch (NotExistsDataObjectException ex) { throw ex; }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+
+        }
+
         #region Delete function
         public async Task<bool> DeleteObject(string id)
         {
@@ -98,14 +113,16 @@ namespace BL
 
         #region Mapping functions
         public async Task<ManagerDTO> MapManager_ManagerDTO(Manager manager)
-        {//map
+        {
             try
             {
-                ManagerDTO managerDTO = new MapperConfiguration(cfg => cfg.AddProfile<ManagerManagementProfile>())
-                                  .CreateMapper().Map<ManagerDTO>(manager);
-                managerDTO.Items = await _washAbleServise.GetAll(managerDTO.ID);
-                managerDTO.LaundriesDTO = await _laundryService.GetAll(managerDTO.ID);
-                managerDTO.UsersDTO = await _userService.GetAllUsers(managerDTO.ID);
+                WashingMachineDTO washingMachineDTO = new MapperConfiguration(cfg => cfg.CreateMap<WashingMachine, WashingMachineDTO>()).CreateMapper().Map<WashingMachineDTO>(manager.WashingMachine);
+                CalendarDTO calendarDTO = new MapperConfiguration(cfg => cfg.CreateMap<Calendar, CalendarDTO>()).CreateMapper().Map<CalendarDTO>(manager.Calendar);
+                ManagerDTO managerDTO = new ManagerDTO(manager.Name, manager.Password, washingMachineDTO, calendarDTO);
+                managerDTO.ID = manager.ID;
+                managerDTO.UsersDTO = await _userService.GetAllUsers(manager.ID);
+                managerDTO.Items = await _washAbleServise.GetAll(manager.ID);
+                managerDTO.LaundriesDTO = await _laundryService.GetAll(manager.ID);
                 return managerDTO;
             }
             catch (Exception ex) { throw new Exception(ex.Message); }

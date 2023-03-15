@@ -11,7 +11,7 @@ namespace Dal
         {
             _managersCollection = db.ManagersCollection;
         }
-        public async Task<Manager> ReadAsync(string password, string name = "")
+        public async Task<Manager> ReadAsync(string name, string password )
         {
             try
             {
