@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SREpHxDCxKg7FIhBb0mhzZwazhNPcIiCDBbWxqgzyUs9WWxqnKoiKPAdeoBO2kpm/H9NOI9gpqOVYZrYEmzGoQ==",
+  "dgSpecHash": "4V58zUod0dnqD8mC4oWO3jnVmmskZVBx8ckNVQJooo2bdvCHX8iBGBdZvOmtPPWLdpWAACM0Mo2qPT3JLZXjNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj",
   "expectedPackageFiles": [
@@ -12,8 +12,8 @@
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
-    "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
-    "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
+    "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\mongodb.bson\\2.19.0\\mongodb.bson.2.19.0.nupkg.sha512",

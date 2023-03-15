@@ -101,6 +101,7 @@ namespace BL
                 Manager managerToUpdate = MapManagerDTO_Manager(managerDTO);
                 managerToUpdate.ID = managerFromDB.ID;
                 managerToUpdate.UsersID = await _userService.UpdateUsersList(managerDTO, managerFromDB);
+                
                 return await _managerCRUD.UpdateAsync(managerToUpdate);
             }
             catch (TimeoutException ex) { throw ex; }

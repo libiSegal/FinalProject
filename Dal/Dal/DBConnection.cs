@@ -1,32 +1,31 @@
 ﻿
+using Microsoft.Extensions.Options;
+
 namespace Dal
 {
     internal class DBConnection : IDBConnection
     {
-        private readonly IMongoDatabase _db;
-        public string ManagersCollectionName { get; private set; } = "Manager";
-        public string UsersCollectionName { get; private set; } = "User";//need to read it from file;
-        public string LaundryCollectionName { get; private set; } = "Laundry";
-        public string WashAblesCollectionName { get; private set; } = "WashAble";
-        public string DataBaseName { get; private set; }
-        public MongoClient Client { get; private set; }
-
-        public IMongoCollection<User> UsersCollection { get; private set; }//we will need to add more collection;
+        public IMongoCollection<User> UsersCollection { get; private set; }
         public IMongoCollection<Manager> ManagersCollection { get; private set; }
         public IMongoCollection<Laundry> LaundryCollection { get; private set; }
         public IMongoCollection<WashAble> WashAblesCollection { get; private set; }
-        public DBConnection()//we need to read all the details  from json file
+
+        public DBConnection(IOptions<LaundrySystemDatabaseSettings> laundrySystemDatabaseSettings)
         {
-            //mongodb+srv://estiZukerman:<password>@finalproject.ildtd7i.mongodb.net/?retryWrites=true&w=majority
-            //mongodb://localhost:27017/dbtest?readPreference=primary
-            Client = new MongoClient("mongodb+srv://estiZukerman:0556752330@finalproject.ildtd7i.mongodb.net/?retryWrites=true&w=majority");
-            DataBaseName = "laundrySystem";
-            _db = Client.GetDatabase(DataBaseName);
-            UsersCollection = _db.GetCollection<User>(UsersCollectionName);
-            ManagersCollection = _db.GetCollection<Manager>(ManagersCollectionName);
-            LaundryCollection = _db.GetCollection<Laundry>(LaundryCollectionName);
-            WashAblesCollection = _db.GetCollection<WashAble>(WashAblesCollectionName);
+            var mongoClient = new MongoClient(laundrySystemDatabaseSettings.Value.ConnectionString);
+
+            var mongoDatabase = mongoClient.GetDatabase(laundrySystemDatabaseSettings.Value.DatabaseName);
+
+            ManagersCollection = mongoDatabase.GetCollection<Manager>(laundrySystemDatabaseSettings.Value.ManagersCollectionName);
+
+            UsersCollection = mongoDatabase.GetCollection<User>(laundrySystemDatabaseSettings.Value.UsersCollectionName);
+
+            WashAblesCollection = mongoDatabase.GetCollection<WashAble>(laundrySystemDatabaseSettings.Value.WashAbelsCollectionName);
+
+            LaundryCollection = mongoDatabase.GetCollection<Laundry>(laundrySystemDatabaseSettings.Value.LaundryCollectionName);
+
         }
+        //
 
     }
 }
