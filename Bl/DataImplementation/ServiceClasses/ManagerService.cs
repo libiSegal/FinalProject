@@ -98,7 +98,7 @@ namespace BL
 
         #region Mapping functions
         public async Task<ManagerDTO> MapManager_ManagerDTO(Manager manager)
-        {
+        {//map
             try
             {
                 ManagerDTO managerDTO = new MapperConfiguration(cfg => cfg.AddProfile<ManagerManagementProfile>())
