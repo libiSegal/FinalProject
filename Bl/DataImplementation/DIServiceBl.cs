@@ -1,4 +1,5 @@
-﻿using Dal;
+﻿using Bl;
+using Dal;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace BL
             services.AddSingleton<ILaundryService, LaundryService>();
             services.AddSingleton<IWashAbleService , WashAbleService>();
             services.AddTestDal();
+            services.AddAutoMapper(typeof(ManagerDTOManagementProfile),typeof(ManagerManagementProfile)
+              typeof(UserDTOManagementProfile), typeof(UserManagementProfile));
             return services;
 
         }

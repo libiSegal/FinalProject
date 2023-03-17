@@ -13,13 +13,14 @@ namespace BL
         private readonly ILaundryService _laundryService;
         private readonly IWashAbleService _washAbleServise;
         private readonly IManagerCRUD _managerCRUD;
-
-        public ManagerService(IUserService userService, IWashAbleService washAbleServise, ILaundryService laundryService, IManagerCRUD managerServise)
+        private readonly IMapper _mapper;
+        public ManagerService(IUserService userService, IWashAbleService washAbleServise, ILaundryService laundryService, IManagerCRUD managerServise , IMapper mapper)
         {
             _userService = userService;
             _washAbleServise = washAbleServise;
             _laundryService = laundryService;
             _managerCRUD = managerServise;
+            _mapper = mapper;
         }
         #region Create function
         public async Task<string> CreateObject(ManagerDTO managerDTO)

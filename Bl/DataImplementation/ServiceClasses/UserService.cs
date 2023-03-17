@@ -8,9 +8,10 @@ namespace BL
 {
     public class UserService : IUserService
     {
+        private readonly IMapper _mapper;
         private readonly IUserCRUD _userService;
         private readonly IWashAbleService _washAbleAction;
-        public UserService(IUserCRUD userService, IWashAbleService washAbleAction)
+        public UserService(IUserCRUD userService, IWashAbleService washAbleAction,  IMapper _mapper)
         {
             _userService = userService;
             _washAbleAction = washAbleAction;
