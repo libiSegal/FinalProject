@@ -132,22 +132,21 @@ namespace BL
                 List<string> resultList = new();
                 List<Task<bool>> deleteTasks = new();
                 List<Task<string>> createTasks = new();
+                /* //check if manager delete all users;
+                 if (managerDTO.UsersDTO == null)
+                 {
+                     managerFromDB.UsersID.ForEach(user => deleteTasks.Add(_userService.DeleteAsync(user)));
+                     Task.WhenAll(deleteTasks);
+                     return resultList;
+                 }
 
-               /* //check if manager delete all users;
-                if (managerDTO.UsersDTO == null)
-                {
-                    managerFromDB.UsersID.ForEach(user => deleteTasks.Add(_userService.DeleteAsync(user)));
-                    Task.WhenAll(deleteTasks);
-                    return resultList;
-                }
-
-                //check if the 
-                if (managerFromDB.UsersID == null)
-                {
-                    managerDTO.UsersDTO.ForEach(user => createTasks.Add(_userService.CreateAsync(MapUserDTO_User(user))));
-                    resultList.AddRange(Task.WhenAll(createTasks).Result);
-                    return resultList;
-                }*/
+                 //check if the 
+                 if (managerFromDB.UsersID == null)
+                 {
+                     managerDTO.UsersDTO.ForEach(user => createTasks.Add(_userService.CreateAsync(MapUserDTO_User(user))));
+                     resultList.AddRange(Task.WhenAll(createTasks).Result);
+                     return resultList;
+                 }*/
                 //check if we need to add new users;
                 List<UserDTO> usersToCreate = managerDTO.UsersDTO.FindAll(user => user.ID == "");
                 if (usersToCreate != null)
@@ -165,12 +164,12 @@ namespace BL
                 if (itemsIdToRemove != null)
                 {
                     itemsIdToRemove.ForEach(user => deleteTasks.Add(_userService.DeleteAsync(user)));
-                    //Task.WhenAll(deleteTasks);
+                    Task.WhenAll(deleteTasks);
                 }
                 //check if we need to update one or more items;
                 List<UserDTO> usersForManagerFromDB = await GetAllUsers(managerFromDB.ID);
                 managerDTO.UsersDTO.Except(usersForManagerFromDB).ToList().
-                    ForEach(user => _userService.UpdateAsync(MapUserDTO_User(user)));
+                    ForEach(async user => await UpdateObject(user, user.ID));
                 return resultList;
             }
 

@@ -41,7 +41,7 @@ namespace BL
         }
         #endregion
 
-        #region Get function
+        #region Read by id function
         public async Task<ManagerDTO> GetObject(string id)
         {
             try
@@ -58,6 +58,7 @@ namespace BL
         }
         #endregion
 
+        #region Read by name and password
         public async Task<ManagerDTO> GetObject(string name, string password)
         {
             try
@@ -72,6 +73,7 @@ namespace BL
             catch (Exception ex) { throw new Exception(ex.Message); }
 
         }
+        #endregion
 
         #region Delete function
         public async Task<bool> DeleteObject(string id)
@@ -101,7 +103,8 @@ namespace BL
                 Manager managerToUpdate = MapManagerDTO_Manager(managerDTO);
                 managerToUpdate.ID = managerFromDB.ID;
                 managerToUpdate.UsersID = await _userService.UpdateUsersList(managerDTO, managerFromDB);
-                
+                managerToUpdate.LaundriesID = await _laundryService.UpdateLaudryList(managerDTO, managerFromDB);
+                managerToUpdate.ItemsId = await _washAbleServise.UpdateItemsList(managerDTO, managerFromDB);
                 return await _managerCRUD.UpdateAsync(managerToUpdate);
             }
             catch (TimeoutException ex) { throw ex; }

@@ -4,9 +4,11 @@ namespace BL
 {
     public interface ILaundryService : IDataService<LaundryDTO>
     {
-        Laundry ConvertLaundryDTOToLaundry(LaundryDTO laundryDTO);
-        LaundryDTO ConvertLaundryToLaundryDTO(Laundry laundry);
+
+        Laundry MapLaundryDTO_Laundry(LaundryDTO laundryDTO);
+        LaundryDTO MapLaundry_LaundryDTO(Laundry laundry);
         Task<List<LaundryDTO>> GetAll(string managerId);
-       
+        Task<List<string>> UpdateLaudryList(ManagerDTO managerDTO, Manager managerFromDB);
+
     }
 }
