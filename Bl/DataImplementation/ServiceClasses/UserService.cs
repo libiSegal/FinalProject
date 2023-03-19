@@ -11,10 +11,11 @@ namespace BL
         private readonly IMapper _mapper;
         private readonly IUserCRUD _userService;
         private readonly IWashAbleService _washAbleAction;
-        public UserService(IUserCRUD userService, IWashAbleService washAbleAction,  IMapper _mapper)
+        public UserService(IUserCRUD userService, IWashAbleService washAbleAction,  IMapper mapper)
         {
             _userService = userService;
             _washAbleAction = washAbleAction;
+            _mapper = mapper;
         }
         public Task<string> CreateObject(UserDTO userBl)
         {
@@ -37,7 +38,7 @@ namespace BL
             try
             {
                 User user = await _userService.ReadAsync(password, name);
-                return await MapUser_UserDTO(user);
+                return MapUser_UserDTO(user);
                 /*return new UserDTO();*/
             }
             catch (TimeoutException ex) { throw ex; }
@@ -52,7 +53,7 @@ namespace BL
             try
             {
                 User user = await _userService.ReadAsync(id);
-                return await MapUser_UserDTO(user);
+                return MapUser_UserDTO(user);
                 /*return new UserDTO();*/
             }
             catch (TimeoutException ex) { throw ex; }
@@ -100,7 +101,7 @@ namespace BL
             {
                 List<UserDTO> usersBl = new();
                 List<User> users = await _userService.ReadAllAsync(managerId);
-                users.ForEach(async u => usersBl.Add(await MapUser_UserDTO(u)));
+                users.ForEach(u => usersBl.Add( MapUser_UserDTO(u)));
                 return usersBl;
             }
             catch (TimeoutException ex) { throw ex; }
@@ -111,21 +112,10 @@ namespace BL
 
 
 
-        public async Task<UserDTO> MapUser_UserDTO(User user)
-        {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<User, UserDTO>());
-            var mapper = config.CreateMapper();
-            var a = mapper.Map<UserDTO>(user);
-            a.Items = await _washAbleAction.GetAll(user.ID);
-            return a;
-        }
-        public User MapUserDTO_User(UserDTO userDTO)
-        {
-            var mapper = new MapperConfiguration(cfg => cfg.AddProfile<UserDTOManagementProfile>())
-            .CreateMapper();
-            return mapper.Map<User>(userDTO);
-        }
-
+        public  UserDTO MapUser_UserDTO(User user) => _mapper.Map<UserDTO>(user);
+       
+        public User MapUserDTO_User(UserDTO userDTO) => _mapper.Map<User>(userDTO);
+     
         public async Task<List<string>> UpdateUsersList(ManagerDTO managerDTO, Manager managerFromDB)
         {
             try

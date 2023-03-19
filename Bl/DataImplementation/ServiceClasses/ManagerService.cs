@@ -121,8 +121,8 @@ namespace BL
         {
             try
             {
-                WashingMachineDTO washingMachineDTO = new MapperConfiguration(cfg => cfg.CreateMap<WashingMachine, WashingMachineDTO>()).CreateMapper().Map<WashingMachineDTO>(manager.WashingMachine);
-                CalendarDTO calendarDTO = new MapperConfiguration(cfg => cfg.CreateMap<Calendar, CalendarDTO>()).CreateMapper().Map<CalendarDTO>(manager.Calendar);
+                WashingMachineDTO washingMachineDTO = _mapper.Map< WashingMachine, WashingMachineDTO>(manager.WashingMachine);
+                CalendarDTO calendarDTO = _mapper.Map<Calendar, CalendarDTO>(manager.Calendar);
                 ManagerDTO managerDTO = new ManagerDTO(manager.Name, manager.Password, washingMachineDTO, calendarDTO);
                 managerDTO.ID = manager.ID;
                 managerDTO.UsersDTO = await _userService.GetAllUsers(manager.ID);
@@ -136,8 +136,7 @@ namespace BL
         }
         public Manager MapManagerDTO_Manager(ManagerDTO managerDTO)
         {
-            return new MapperConfiguration(cfg => cfg.AddProfile<ManagerDTOManagementProfile>())
-                  .CreateMapper().Map<Manager>(managerDTO);
+            return _mapper.Map<Manager>(managerDTO);
 
 
         }

@@ -40,6 +40,6 @@ C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\Bl.
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\Bl.csproj.CoreCompileInputs.cache
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\Bl.csproj.CopyComplete
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\Bl.dll
-C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\refint\Bl.dll
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\Bl.pdb
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\ref\Bl.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\bin\Debug\net6.0\ref\Bl.dll

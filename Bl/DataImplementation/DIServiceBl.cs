@@ -1,4 +1,5 @@
-﻿using Bl;
+﻿using AutoMapper;
+using Bl;
 using Dal;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,9 +18,18 @@ namespace BL
             services.AddSingleton<IManagerService, ManagerService>();
             services.AddSingleton<ILaundryService, LaundryService>();
             services.AddSingleton<IWashAbleService , WashAbleService>();
-            services.AddTestDal();
-            services.AddAutoMapper(typeof(ManagerDTOManagementProfile),typeof(ManagerManagementProfile)
-              typeof(UserDTOManagementProfile), typeof(UserManagementProfile));
+
+           services.AddSingleton(provider => new MapperConfiguration(
+                   cfg =>
+                   {
+                       cfg.AddProfile(new UserProfile(provider.GetService<IWashAbleService>()));
+
+                      // cfg.AddProfile(new ManagerProfile(provider.GetServices<IUserService>(), provider.GetServices<IWashAbleService>(), provider.GetServices<ILaundryService>()));
+                       cfg.AddProfile<UserDTOProfile>();
+                       cfg.AddProfile<ManagerDTOProfile>();
+                   }).CreateMapper());
+
+            services.AddTestDal();  
             return services;
 
         }
