@@ -3,6 +3,7 @@ namespace Dal
 {
     public class LaundryCRUD : ILaundryCRUD
     {
+
         private readonly IMongoCollection<Laundry> _laundryCollection;
         private FilterDefinitionBuilder<Laundry> _filterBuilder = Builders<Laundry>.Filter;
 
@@ -10,6 +11,7 @@ namespace Dal
         {
             _laundryCollection = db.LaundryCollection;
         }
+        #region Create function
         public async Task<string> CreateAsync(Laundry dataObject)
         {
             try
@@ -36,6 +38,7 @@ namespace Dal
             catch (ExistsDataObjectExceotion ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
+        #endregion
         public Task<bool> UpdateAsync(Laundry laundry)
         {
             throw new Exception("laundry don't have an update option");

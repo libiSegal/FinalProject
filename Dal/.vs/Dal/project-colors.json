@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a1129b41-df71-4630-ac1a-fdfa75cad2ba": {
+      "ProjectGuid": "a1129b41-df71-4630-ac1a-fdfa75cad2ba",
+      "DisplayName": "Bl",
+      "ColorIndex": 0
+    },
+    "c802a906-781f-489b-a559-53a798202be4": {
+      "ProjectGuid": "c802a906-781f-489b-a559-53a798202be4",
+      "DisplayName": "UI",
+      "ColorIndex": 1
+    },
+    "7864c351-42aa-47b7-9c54-67b38652728e": {
+      "ProjectGuid": "7864c351-42aa-47b7-9c54-67b38652728e",
+      "DisplayName": "Dal",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 3
+}
