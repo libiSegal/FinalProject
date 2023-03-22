@@ -1,3 +1,5 @@
+
+using Bl;
 using BL;
 
 using Microsoft.AspNetCore.Mvc;
@@ -5,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Ui.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -14,9 +16,9 @@ namespace Ui.Controllers
             _userService = userService;
         }
         [HttpPost]
-        public  Task<string> Post(UserDTO user)
+        public Task<string> Post(UserDTO user)
         {
-            return _userService.CreateObject(user);
+            return  _userService.CreateObject(user);
         }
         [HttpGet("{name}/{password}")]
         public Task<UserDTO> Get(string name, string password)

@@ -8,9 +8,11 @@ namespace BL
 {
     public class LaundryService : ILaundryService
     {
-        private readonly ILaundryCRUD _laundryCRUD;
-        public LaundryService(ILaundryCRUD laundryCRUD)
+         readonly IMapper _mapper;
+         readonly ILaundryCRUD _laundryCRUD;
+        public LaundryService(IMapper mapper, ILaundryCRUD laundryCRUD)
         {
+            _mapper = mapper;
             _laundryCRUD = laundryCRUD;
         }
         public Task<string> CreateObject(LaundryDTO laundryDTO)
@@ -77,60 +79,11 @@ namespace BL
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
-        public LaundryDTO MapLaundry_LaundryDTO(Laundry laundry)
-        {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Laundry, Laundry>());
-            var mapper = config.CreateMapper();
-            return mapper.Map<LaundryDTO>(laundry);
-        }
-        public Laundry MapLaundryDTO_Laundry(LaundryDTO laundryDTO)
-        {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<LaundryDTO, Laundry>());
-            var mapper = config.CreateMapper();
-            return mapper.Map<Laundry>(laundryDTO);
-        }
-       /* public async Task<List<string>> UpdateLaudryList(ManagerDTO managerDTO, Manager managerFromDB)
-        {
-            try
-            {
-                List<string> resultList = new();
-                List<Task<bool>> deleteTasks = new();
-                List<Task<string>> createTasks = new();
+        public LaundryDTO MapLaundry_LaundryDTO(Laundry laundry) => _mapper.Map<LaundryDTO>(laundry);
 
-                //check if we need to add new users;
-                List<LaundryDTO> laundriesToCreate = managerDTO.LaundriesDTO.FindAll(laundry => laundry.ID == "");
-                if (laundriesToCreate != null)
-                {
-                    laundriesToCreate.ForEach(laundry => createTasks.Add(_laundryCRUD.CreateAsync(MapLaundryDTO_Laundry(laundry))));
-                }
+        public Laundry MapLaundryDTO_Laundry(LaundryDTO laundryDTO) => _mapper.Map<Laundry>(laundryDTO);
 
-                managerDTO.LaundriesDTO.RemoveAll(laundry => laundry.ID == "");
-                resultList.AddRange(Task.WhenAll(createTasks).Result);
-                managerDTO.LaundriesDTO.ForEach(laundry => resultList.Add(laundry.ID));
-
-                //check if we need to delete an item;
-                List<string> laundriesIdToRemove = managerFromDB.LaundriesID.Except(managerDTO.LaundriesDTO.Select(laundry => laundry.ID).ToList()).ToList();
-
-                if (laundriesIdToRemove != null)
-                {
-                    laundriesIdToRemove.ForEach(user => deleteTasks.Add(_laundryCRUD.DeleteAsync(user)));
-                    //Task.WhenAll(deleteTasks);
-                }
-                //check if we need to update one or more items;
-                List<LaundryDTO> usersForManagerFromDB = await GetAll(managerFromDB.ID);
-                managerDTO.LaundriesDTO.Except(usersForManagerFromDB).ToList().
-                    ForEach(laundry => _laundryCRUD.UpdateAsync(MapLaundryDTO_Laundry(laundry)));
-                return resultList;
-            }
-
-
-            catch (TimeoutException ex) { throw ex; }
-            catch (MongoWriteException ex) { throw ex; }
-            catch (MongoBulkWriteException ex) { throw ex; }
-            catch (NotExistsDataObjectException ex) { throw ex; }
-            catch (Exception ex) { throw new Exception(ex.Message); }
-
-        }*/
+      
 
     }
 }
