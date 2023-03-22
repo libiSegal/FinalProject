@@ -1,20 +1,15 @@
 ﻿using AutoMapper;
 using BL;
 using Dal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Bl
+
+namespace Bl.Profiles;
+
+public class ManagerProfile : Profile
 {
-    public class ManagerProfile : Profile
+    public ManagerProfile()
     {
-        public ManagerProfile()
-        {
-            CreateMap<Manager, ManagerDTO>();
-            CreateMap<User, UserDTO>();
-        }
+        CreateMap<Manager, ManagerDTO>();
+        CreateMap<User, UserDTO>();
     }
 }

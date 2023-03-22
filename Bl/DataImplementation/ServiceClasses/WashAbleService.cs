@@ -81,9 +81,19 @@ namespace BL
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
 
-        public WashAbleDTO MapWashAble_washAbleDTO(WashAble washAble) => _mapper.Map<WashAbleDTO>(washAble);
+        public WashAbleDTO MapWashAble_washAbleDTO(WashAble washAble) //=> _mapper.Map<WashAbleDTO>(washAble);
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<WashAble, WashAbleDTO>());
+            var mapper = config.CreateMapper();
+            return mapper.Map<WashAbleDTO>(washAble);
+        }
 
         public WashAble MapWashAbleDTO_washAble(WashAbleDTO washAbleDTO) => _mapper.Map<WashAble>(washAbleDTO);
+/*        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<WashAbleDTO, WashAble>());
+            var mapper = config.CreateMapper();
+            return mapper.Map<WashAble>(washAbleDTO);
+        }*/
       
 
         public List<WashAbleDTO> GetWashAblesItems(List<string> washAbleIDs)

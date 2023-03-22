@@ -99,7 +99,7 @@ namespace Dal
         {
             try
             {
-                var getAllFilter = _filterBuilder.Eq("ManagerId", new ObjectId(managerId));
+                var getAllFilter = _filterBuilder.Eq("ManagerId", managerId);
                 var users = await _laundryCollection.Find(getAllFilter).ToListAsync();
                 return users;
             }

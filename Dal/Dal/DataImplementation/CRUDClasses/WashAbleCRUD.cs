@@ -64,7 +64,7 @@ namespace Dal
         {
             try
             {
-                var getAllFilter = _filterBuilder.Eq("UserId",new ObjectId(userId));
+                var getAllFilter = _filterBuilder.Eq("UserID",userId);
                 var items = await _washAblesCollection.Find(getAllFilter).ToListAsync();
                 return items;
             }

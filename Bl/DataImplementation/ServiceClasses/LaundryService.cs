@@ -12,7 +12,7 @@ namespace BL
          readonly ILaundryCRUD _laundryCRUD;
         public LaundryService(IMapper mapper, ILaundryCRUD laundryCRUD)
         {
-            _mapper = mapper;
+           _mapper = mapper;
             _laundryCRUD = laundryCRUD;
         }
         public Task<string> CreateObject(LaundryDTO laundryDTO)
@@ -80,8 +80,10 @@ namespace BL
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
         public LaundryDTO MapLaundry_LaundryDTO(Laundry laundry) => _mapper.Map<LaundryDTO>(laundry);
+      
 
         public Laundry MapLaundryDTO_Laundry(LaundryDTO laundryDTO) => _mapper.Map<Laundry>(laundryDTO);
+      
 
       
 

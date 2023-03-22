@@ -18,11 +18,11 @@ namespace BL
             _washAbleService = washAbleService;
             _mapper = mapper;
         }
-        public Task<string> CreateObject(UserDTO userBl)
+        public Task<string> CreateObject(UserDTO userDTO)
         {
             try
             {
-                User user = MapUserDTO_User(userBl);
+                User user = MapUserDTO_User(userDTO);
                 user.ID = "";
                 return _userService.CreateAsync(user);
             }
@@ -78,9 +78,7 @@ namespace BL
         {
             try
             {
-                /* User userFromDB = await _userService.ReadAsync(id);*/
                 User user = MapUserDTO_User(userDTO);
-                /*user.ID = userFromDB.ID;*/
                 return await _userService.UpdateAsync(user);
             }
             catch (TimeoutException ex) { throw ex; }
@@ -94,10 +92,9 @@ namespace BL
         {
             try
             {
-                List<UserDTO> usersBl = new();
+               // List<UserDTO> usersDTO = new();
                 List<User> users = await _userService.ReadAllAsync(managerId);
-                users.ForEach(u => usersBl.Add(MapUser_UserDTO(u)));
-                return usersBl;
+                return _mapper.Map<List<UserDTO>>(users);
             }
             catch (TimeoutException ex) { throw ex; }
             catch (MongoConnectionException ex) { throw ex; }
@@ -107,7 +104,12 @@ namespace BL
 
 
 
-        public UserDTO MapUser_UserDTO(User user) => _mapper.Map<UserDTO>(user);
+        public UserDTO MapUser_UserDTO(User user) 
+        {
+            UserDTO userDTO = _mapper.Map<UserDTO>(user);
+            userDTO.Items = _washAbleService.GetAll(userDTO.ID).Result;
+            return userDTO;
+        }
 
         public User MapUserDTO_User(UserDTO userDTO) => _mapper.Map<User>(userDTO);
 

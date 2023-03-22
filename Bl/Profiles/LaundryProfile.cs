@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bl.Profiles;
-
-public class UserProfile : Profile
+public class LaundryProfile : Profile
 {
-    public UserProfile()
+    public LaundryProfile()
     {
-        CreateMap<User, UserDTO>().ReverseMap();
+        CreateMap<Laundry , LaundryDTO>().ReverseMap();
+
     }
 }
 

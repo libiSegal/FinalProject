@@ -37,13 +37,8 @@ namespace Dal
         {
             try
             {
-                var getAllFilter = _filterBuilder.Eq("ManagerId",new ObjectId(managerId));
+                var getAllFilter = _filterBuilder.Eq("ManagerID", managerId);
                 var users = await _usersCollection.Find(getAllFilter).ToListAsync();
-
-                /*if (users.FirstOrDefault() == null)
-                {
-                    throw new NotExistsDataObjectException($"No users matched manager ID - {managerId}");
-                }*/
                 return users;
             }
             catch (TimeoutException ex) { throw ex; }

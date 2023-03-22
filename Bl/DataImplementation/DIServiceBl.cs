@@ -1,13 +1,7 @@
-﻿using AutoMapper;
-using Bl;
-
+﻿using Bl;
 using Dal;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BL
 {
@@ -19,14 +13,15 @@ namespace BL
             services.AddSingleton<IManagerService, ManagerService>();
             services.AddSingleton<ILaundryService, LaundryService>();
             services.AddSingleton<IWashAbleService , WashAbleService>();
-
-           services.AddSingleton(provider => new MapperConfiguration(
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        /*   services.AddSingleton(provider => new MapperConfiguration(
                    cfg =>
                    {
                        cfg.AddProfile(new UserProfile(provider.GetService<IWashAbleService>()));
                        cfg.AddProfile<ManagerProfile>();
                        cfg.AddProfile<ManagerDTOProfile>();
-                   }).CreateMapper());
+                   }).CreateMapper());*/
+            
             services.AddTestDal();  
             return services;
 

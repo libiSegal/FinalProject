@@ -43,3 +43,18 @@ C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\Bl.
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\Bl.pdb
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\ref\Bl.dll
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Bl\obj\Debug\net6.0\refint\Bl.dll
+H:\FinalProject\Bl\bin\Debug\net6.0\Bl.deps.json
+H:\FinalProject\Bl\bin\Debug\net6.0\Bl.dll
+H:\FinalProject\Bl\bin\Debug\net6.0\Bl.pdb
+H:\FinalProject\Bl\bin\Debug\net6.0\Dal.dll
+H:\FinalProject\Bl\bin\Debug\net6.0\Dal.pdb
+H:\FinalProject\Bl\obj\Debug\net6.0\Bl.csproj.AssemblyReference.cache
+H:\FinalProject\Bl\obj\Debug\net6.0\Bl.GeneratedMSBuildEditorConfig.editorconfig
+H:\FinalProject\Bl\obj\Debug\net6.0\Bl.AssemblyInfoInputs.cache
+H:\FinalProject\Bl\obj\Debug\net6.0\Bl.AssemblyInfo.cs
+H:\FinalProject\Bl\obj\Debug\net6.0\Bl.csproj.CoreCompileInputs.cache
+H:\FinalProject\Bl\obj\Debug\net6.0\Bl.csproj.CopyComplete
+H:\FinalProject\Bl\obj\Debug\net6.0\Bl.dll
+H:\FinalProject\Bl\obj\Debug\net6.0\refint\Bl.dll
+H:\FinalProject\Bl\obj\Debug\net6.0\Bl.pdb
+H:\FinalProject\Bl\obj\Debug\net6.0\ref\Bl.dll

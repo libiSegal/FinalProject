@@ -34,3 +34,15 @@ C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Dal\Dal\obj\Debug\net6.
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Dal\Dal\obj\Debug\net6.0\Dal.pdb
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Dal\Dal\obj\Debug\net6.0\ref\Dal.dll
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\Dal\Dal\obj\Debug\net6.0\refint\Dal.dll
+H:\FinalProject\Dal\Dal\bin\Debug\net6.0\Dal.deps.json
+H:\FinalProject\Dal\Dal\bin\Debug\net6.0\Dal.dll
+H:\FinalProject\Dal\Dal\bin\Debug\net6.0\Dal.pdb
+H:\FinalProject\Dal\Dal\obj\Debug\net6.0\Dal.csproj.AssemblyReference.cache
+H:\FinalProject\Dal\Dal\obj\Debug\net6.0\Dal.GeneratedMSBuildEditorConfig.editorconfig
+H:\FinalProject\Dal\Dal\obj\Debug\net6.0\Dal.AssemblyInfoInputs.cache
+H:\FinalProject\Dal\Dal\obj\Debug\net6.0\Dal.AssemblyInfo.cs
+H:\FinalProject\Dal\Dal\obj\Debug\net6.0\Dal.csproj.CoreCompileInputs.cache
+H:\FinalProject\Dal\Dal\obj\Debug\net6.0\Dal.dll
+H:\FinalProject\Dal\Dal\obj\Debug\net6.0\refint\Dal.dll
+H:\FinalProject\Dal\Dal\obj\Debug\net6.0\Dal.pdb
+H:\FinalProject\Dal\Dal\obj\Debug\net6.0\ref\Dal.dll

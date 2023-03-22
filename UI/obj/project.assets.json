@@ -1283,11 +1283,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\UI\\UI.csproj",
+      "projectUniqueName": "H:\\FinalProject\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\UI\\UI.csproj",
+      "projectPath": "H:\\FinalProject\\UI\\UI.csproj",
       "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\UI\\obj\\",
+      "outputPath": "H:\\FinalProject\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1308,8 +1308,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Bl\\Bl.csproj": {
-              "projectPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Bl\\Bl.csproj"
+            "H:\\FinalProject\\Bl\\Bl.csproj": {
+              "projectPath": "H:\\FinalProject\\Bl\\Bl.csproj"
             }
           }
         }
@@ -1348,7 +1348,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
