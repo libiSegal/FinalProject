@@ -16,34 +16,34 @@ namespace UI.Controllers
         }
 
         [HttpGet("user/{userId}/washable/{id}")]
-        public async Task<WashAbleDTO> Get(string userId,string id)
+        public  Task<WashAbleDTO> Get(string userId,string id)
         {
-            return await _washAbleService.GetObject(id) ;
+            return _washAbleService.GetObject(id) ;
         }
 
         [HttpGet("user/{userId}/washAbles")]
-        public async Task<List<WashAbleDTO>> Get(string userId)
+        public  Task<List<WashAbleDTO>> Get(string userId)
         {
-            return await _washAbleService.GetAll(userId);
+            return _washAbleService.GetAll(userId);
         }
 
-        // POST api/<ValuesController>
         [HttpPost]
-        public async Task<string> Post([FromBody] WashAbleDTO washAbleDTO)
+        public  Task<string> Post([FromBody] WashAbleDTO washAbleDTO)
         {
-          return await  _washAbleService.CreateObject(washAbleDTO);
+          return  _washAbleService.CreateObject(washAbleDTO);
         }
 
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut()]
+        public  Task<bool> Put([FromBody] WashAbleDTO washAbleDTO)
         {
+            return _washAbleService.UpdateObject(washAbleDTO);
         }
 
         // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("user/{userId}/washAble/{id}")]
+        public Task<bool> Delete(string id)
         {
+            return _washAbleService.DeleteObject(id);
         }
     }
 }

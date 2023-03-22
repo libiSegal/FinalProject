@@ -10,9 +10,8 @@ namespace BL
 {
     public interface IWashAbleService : IDataService<WashAbleDTO>
     {
-        /*Task<string> CreateObject(WashAbleDTO objectDTO);*/
-        WashAble ConvertWashAbleDTOToWashAble(WashAbleDTO washAbleDTO);
-        WashAbleDTO ConvertWashAbleToWashAbleDTO(WashAble washAble);
+        WashAble MapWashAbleDTO_WashAble(WashAbleDTO washAbleDTO);
+        WashAbleDTO MapWashAble_WashAbleDTO(WashAble washAble);
         Task<List<WashAbleDTO>> GetAll(string userId);
         List<string> GetWashAblesId(List<WashAbleDTO> washAbles);
     }

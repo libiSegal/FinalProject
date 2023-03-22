@@ -14,9 +14,9 @@ namespace Ui.Controllers
             _userService = userService;
         }
         [HttpPost]
-        public async Task<string> Post(UserDTO user)
+        public  Task<string> Post(UserDTO user)
         {
-            return await _userService.CreateObject(user);
+            return _userService.CreateObject(user);
         }
         [HttpGet("{name}/{password}")]
         public Task<UserDTO> Get(string name, string password)

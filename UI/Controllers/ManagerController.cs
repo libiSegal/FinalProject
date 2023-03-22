@@ -14,31 +14,31 @@ namespace UI.Controllers
             _managerService = managerService;
         }
         [HttpPost]
-        public async Task<string> CreateManager(ManagerDTO managerDTO)
+        public Task<string> CreateManager(ManagerDTO managerDTO)
         {
-            return await _managerService.CreateObject(managerDTO);
+            return  _managerService.CreateObject(managerDTO);
         }
         [HttpGet("{id}")]
-        public async Task<ManagerDTO> Get(string id)
+        public  Task<ManagerDTO> Get(string id)
         {
-            return await _managerService.GetObject(id);
+            return  _managerService.GetObject(id);
         }
 
         [HttpGet("{name}/{password}")]
-        public async Task<ManagerDTO> Get(string name, string password)
+        public  Task<ManagerDTO> Get(string name, string password)
         {
-            return await _managerService.GetObject(name, password);
+            return  _managerService.GetObject(name, password);
         }
 
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(string id)
+        public  Task<bool> Delete(string id)
         {
-            return await _managerService.DeleteObject(id);
+            return  _managerService.DeleteObject(id);
         }
         [HttpPut]
-        public async Task<bool> Put(ManagerDTO managerDTO)
+        public  Task<bool> Put(ManagerDTO managerDTO)
         {
-            return await _managerService.UpdateObject(managerDTO);
+            return  _managerService.UpdateObject(managerDTO);
         }
     }
 }
