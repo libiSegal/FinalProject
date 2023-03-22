@@ -1,7 +1,4 @@
-﻿using Dal;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
+﻿
 namespace Dal
 {
     public class User : IDataBaseObject
@@ -9,39 +6,37 @@ namespace Dal
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string ID { get; set; }
-        private string ManagerId { get; set; }
+
+        //[BsonRepresentation(BsonType.ObjectId)]
+        public virtual string ManagerID { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public List<string> ItemsId { get; set; }
+
         [BsonRepresentation(BsonType.String)]
         public ActionPermission ActionPermissions { get; set; }
        public User() 
         {
             ID = "";
-            ManagerId = "";
+            ManagerID = "";
             Password = "";
             Name = "";
-            ItemsId = new();
         }
         public User(string name, string password)
         {
             ID = "";
             Name = name;
             Password = password;
-            ManagerId = "";
-            ItemsId = new();
+            ManagerID = "";
         }
         public User(string name, string password, string managerId)
         {
             ID = "";
             Name = name;
             Password = password; 
-            ManagerId = managerId;
-            ItemsId = new();
+            ManagerID = managerId;
         }
-        public User(string name, string password, string managerId, List<string> items, ActionPermission actionPermissions) : this(name, password, managerId)
+        public User(string name, string password, string managerId, ActionPermission actionPermissions) : this(name, password, managerId)
         {
-            ItemsId = new(items);
             ActionPermissions = actionPermissions;
         }
     }

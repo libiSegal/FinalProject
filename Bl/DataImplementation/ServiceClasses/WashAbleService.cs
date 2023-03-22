@@ -1,8 +1,8 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using Dal;
 using Dal.Exceptions;
 using MongoDB.Driver;
-
 
 namespace BL
 {
@@ -51,13 +51,11 @@ namespace BL
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
-        public async Task<bool> UpdateObject(WashAbleDTO washAbleBl, string id)
+        public async Task<bool> UpdateObject(WashAbleDTO washAbleDTO)
         {
             try
             {
-                WashAble oldWashAble = await _washAbleCRUD.ReadAsync(id);
-                WashAble washAble = ConvertWashAbleDTOToWashAble(washAbleBl);
-                washAble.ID = oldWashAble.ID;
+                WashAble washAble = ConvertWashAbleDTOToWashAble(washAbleDTO);
                 return await _washAbleCRUD.UpdateAsync(washAble);
             }
             catch (TimeoutException ex) { throw ex; }
@@ -85,7 +83,7 @@ namespace BL
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<WashAble, WashAbleDTO>());
             var mapper = config.CreateMapper();
-            return mapper.Map<WashAbleDTO>(washAble); 
+            return mapper.Map<WashAbleDTO>(washAble);
         }
         public WashAble ConvertWashAbleDTOToWashAble(WashAbleDTO washAbleDTO)
         {
@@ -118,7 +116,7 @@ namespace BL
             });
             return washAbleIds;
         }
-        public async Task<List<string>> UpdateItemsList(UserDTO userDTO, User userFromDB)
+    /*    public async Task<List<string>> UpdateItemsList(UserDTO userDTO, User userFromDB)
         {
             try
             {
@@ -134,7 +132,7 @@ namespace BL
                 userDTO.Items.RemoveAll(item => item.ID == "");
                 resultList.AddRange(Task.WhenAll(createTasks).Result);
                 userDTO.Items.ForEach(item => resultList.Add(item.ID));
-                
+
                 //check if we need to delete a item;
                 List<string> itemsIdToRemove = userFromDB.ItemsId.Except(userDTO.Items.Select(item => item.ID).ToList()).ToList();
                 List<Task<bool>> deleteTasks = new();
@@ -157,7 +155,7 @@ namespace BL
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
 
-        }
+        }*/
     }
 }
 

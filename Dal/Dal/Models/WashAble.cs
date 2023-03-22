@@ -9,6 +9,9 @@ namespace Dal
         [BsonRepresentation(BsonType.ObjectId)]
         public string ID { get; set; }
         public string Name { get; set; }
+
+
+        [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; }
 
         [BsonRepresentation(BsonType.String)]

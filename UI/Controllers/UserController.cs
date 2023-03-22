@@ -26,12 +26,12 @@ namespace Ui.Controllers
         [HttpGet]
         public Task<List<UserDTO>> GetAll(string managerId)
         {
-            return _userService.GetAllUsers(managerId);
+            return _userService.GetAll(managerId);
         }
-        [HttpPut("{id}")]
-        public Task<bool> Put([FromBody] UserDTO user, string id)
+        [HttpPut]
+        public Task<bool> Put([FromBody] UserDTO user)
         {
-            return _userService.UpdateObject(user,id);
+            return _userService.UpdateObject(user);
         }
         [HttpDelete]
         public Task<bool> Delete(string id)

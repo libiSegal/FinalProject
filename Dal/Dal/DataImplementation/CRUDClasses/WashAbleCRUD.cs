@@ -41,8 +41,7 @@ namespace Dal
         {
             try
             {
-                ObjectId objectId = new(id);
-                var getFilter = _filterBuilder.Eq("_id", objectId);
+                var getFilter = _filterBuilder.Eq("_id",new ObjectId(id));
                 var getWashAble = await _washAblesCollection.Find(getFilter).FirstOrDefaultAsync();
 
                 if (getWashAble == null)
@@ -65,7 +64,7 @@ namespace Dal
         {
             try
             {
-                var getAllFilter = _filterBuilder.Eq("UserId", userId);
+                var getAllFilter = _filterBuilder.Eq("UserId",new ObjectId(userId));
                 var items = await _washAblesCollection.Find(getAllFilter).ToListAsync();
                 return items;
             }
@@ -81,8 +80,7 @@ namespace Dal
         {
             try
             {
-                ObjectId objectId = new(item.ID);
-                var updateFilter = _filterBuilder.Eq("_id", objectId);
+                var updateFilter = _filterBuilder.Eq("_id",new ObjectId(item.ID));
                 var updateUser = await _washAblesCollection.Find(updateFilter).FirstOrDefaultAsync();
 
                 if (updateUser == null)
@@ -106,8 +104,7 @@ namespace Dal
         {
             try
             {
-                ObjectId objectId = new(id);
-                var deleteFilter = _filterBuilder.Eq("_id", objectId);
+                var deleteFilter = _filterBuilder.Eq("_id",new ObjectId(id));
                 var deletewashAble = await _washAblesCollection.Find(deleteFilter).FirstOrDefaultAsync();
 
                 if (deletewashAble == null)
@@ -129,7 +126,6 @@ namespace Dal
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
         #endregion
-
 
     }
 }

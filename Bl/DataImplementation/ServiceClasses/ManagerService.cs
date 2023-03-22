@@ -14,7 +14,7 @@ namespace BL
         private readonly IWashAbleService _washAbleServise;
         private readonly IManagerCRUD _managerCRUD;
         private readonly IMapper _mapper;
-        public ManagerService(IUserService userService, IWashAbleService washAbleServise, ILaundryService laundryService, IManagerCRUD managerServise , IMapper mapper)
+        public ManagerService(IUserService userService, IWashAbleService washAbleServise, ILaundryService laundryService, IManagerCRUD managerServise, IMapper mapper)
         {
             _userService = userService;
             _washAbleServise = washAbleServise;
@@ -29,9 +29,6 @@ namespace BL
             {
                 Manager manager = MapManagerDTO_Manager(managerDTO);
                 manager.ID = "";
-                manager.ItemsId = new();
-                manager.LaundriesID = new();
-                manager.UsersID = new();
                 return await _managerCRUD.CreateAsync(manager);
             }
             catch (TimeoutException ex) { throw ex; }
@@ -81,11 +78,11 @@ namespace BL
         {
             try
             {
-                Manager manager = await _managerCRUD.ReadAsync(id);
-                manager.ItemsId.ForEach(item => _washAbleServise.DeleteObject(item));
-                manager.UsersID.ForEach(user => _userService.DeleteObject(user));
-                manager.LaundriesID.ForEach(laundry => _laundryService.DeleteObject(laundry));
-                return await _managerCRUD.DeleteAsync(manager.ID);
+
+                _userService.GetAll(id).Result.ForEach(user => _userService.DeleteObject(user.ID));
+                _washAbleServise.GetAll(id).Result.ForEach(washAble => _washAbleServise.DeleteObject(washAble.ID));
+                _laundryService.GetAll(id).Result.ForEach(laundry => _laundryService.DeleteObject(laundry.ID));
+                return await _managerCRUD.DeleteAsync(id);
             }
             catch (TimeoutException ex) { throw ex; }
             catch (MongoWriteException ex) { throw ex; }
@@ -96,16 +93,13 @@ namespace BL
         #endregion
 
         #region Update function
-        public async Task<bool> UpdateObject(ManagerDTO managerDTO, string id)
+        public async Task<bool> UpdateObject(ManagerDTO managerDTO)
         {
             try
             {
-                Manager managerFromDB = await _managerCRUD.ReadAsync(id);
+                Manager managerFromDB = await _managerCRUD.ReadAsync(managerDTO.ID);
                 Manager managerToUpdate = MapManagerDTO_Manager(managerDTO);
                 managerToUpdate.ID = managerFromDB.ID;
-                managerToUpdate.UsersID = await _userService.UpdateUsersList(managerDTO, managerFromDB);
-                managerToUpdate.LaundriesID = await _laundryService.UpdateLaudryList(managerDTO, managerFromDB);
-                managerToUpdate.ItemsId = await _washAbleServise.UpdateItemsList(managerDTO, managerFromDB);
                 return await _managerCRUD.UpdateAsync(managerToUpdate);
             }
             catch (TimeoutException ex) { throw ex; }
@@ -119,27 +113,15 @@ namespace BL
         #region Mapping functions
         public async Task<ManagerDTO> MapManager_ManagerDTO(Manager manager)
         {
-            try
-            {
-                WashingMachineDTO washingMachineDTO = _mapper.Map< WashingMachine, WashingMachineDTO>(manager.WashingMachine);
-                CalendarDTO calendarDTO = _mapper.Map<Calendar, CalendarDTO>(manager.Calendar);
-                ManagerDTO managerDTO = new ManagerDTO(manager.Name, manager.Password, washingMachineDTO, calendarDTO);
-                managerDTO.ID = manager.ID;
-                managerDTO.UsersDTO = await _userService.GetAllUsers(manager.ID);
-                managerDTO.Items = await _washAbleServise.GetAll(manager.ID);
-                managerDTO.LaundriesDTO = await _laundryService.GetAll(manager.ID);
-                return managerDTO;
-            }
-            catch (Exception ex) { throw new Exception(ex.Message); }
-
-
+            ManagerDTO managerDTO = _mapper.Map<ManagerDTO>(manager);
+            managerDTO.UsersDTO = await _userService.GetAll(manager.ID);
+            managerDTO.Items = await _washAbleServise.GetAll(manager.ID);
+            managerDTO.LaundriesDTO = await _laundryService.GetAll(manager.ID);
+            return managerDTO;
         }
-        public Manager MapManagerDTO_Manager(ManagerDTO managerDTO)
-        {
-            return _mapper.Map<Manager>(managerDTO);
 
+        public Manager MapManagerDTO_Manager(ManagerDTO managerDTO) => _mapper.Map<Manager>(managerDTO);
 
-        }
         #endregion
     }
 }

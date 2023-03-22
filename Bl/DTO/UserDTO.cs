@@ -6,7 +6,7 @@ namespace BL
     {
 
         public string ID { get; set; }
-        private string ManagerID { get; set; }
+        public string ManagerID { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public List<WashAbleDTO> Items { get; set; }

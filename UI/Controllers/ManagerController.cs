@@ -35,10 +35,10 @@ namespace UI.Controllers
         {
             return await _managerService.DeleteObject(id);
         }
-        [HttpPut("{id}")]
-        public async Task<bool> Put(string id, ManagerDTO managerDTO)
+        [HttpPut]
+        public async Task<bool> Put(ManagerDTO managerDTO)
         {
-            return await _managerService.UpdateObject(managerDTO, id);
+            return await _managerService.UpdateObject(managerDTO);
         }
     }
 }

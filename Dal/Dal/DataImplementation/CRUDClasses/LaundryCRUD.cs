@@ -39,6 +39,8 @@ namespace Dal
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
         #endregion
+
+        #region Update function
         public Task<bool> UpdateAsync(Laundry laundry)
         {
             throw new Exception("laundry don't have an update option");
@@ -47,8 +49,7 @@ namespace Dal
         {
             try
             {
-                ObjectId objectId = new(id);
-                var deleteFilter = _filterBuilder.Eq("_id", objectId);
+                var deleteFilter = _filterBuilder.Eq("_id", new ObjectId(id));
                 var deletewashAble = await _laundryCollection.Find(deleteFilter).FirstOrDefaultAsync();
 
                 if (deletewashAble == null)
@@ -69,11 +70,15 @@ namespace Dal
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
-        public async Task<Laundry> ReadAsync(string managerId )
+
+        #endregion
+
+        #region Read function
+        public async Task<Laundry> ReadAsync(string managerId)
         {
             try
             {
-                var getFilter = _filterBuilder.Eq("ManagerId", managerId) ;
+                var getFilter = _filterBuilder.Eq("ManagerId", new ObjectId(managerId));
                 var getUser = await _laundryCollection.Find(getFilter).FirstOrDefaultAsync();
 
                 if (getUser == null)
@@ -87,17 +92,15 @@ namespace Dal
             catch (NullReferenceException) { throw new NullReferenceException(""); }
             catch (NotExistsDataObjectException ex) { throw ex; }
         }
+        #endregion
+
+        #region ReadAll function
         public async Task<List<Laundry>> ReadAllAsync(string managerId)//mangerId is checked on bl;
         {
             try
             {
-                var getAllFilter = _filterBuilder.Eq("ManagerId", managerId);
+                var getAllFilter = _filterBuilder.Eq("ManagerId", new ObjectId(managerId));
                 var users = await _laundryCollection.Find(getAllFilter).ToListAsync();
-
-                /*if (users.FirstOrDefault() == null)
-                {
-                    throw new NotExistsDataObjectException($"No users matched manager ID - {managerId}");
-                }*/
                 return users;
             }
             catch (TimeoutException ex) { throw ex; }
@@ -106,7 +109,7 @@ namespace Dal
             catch (ObjectDisposedException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
-
+        #endregion
 
     }
 

@@ -10,11 +10,11 @@ namespace BL
     {
         private readonly IMapper _mapper;
         private readonly IUserCRUD _userService;
-        private readonly IWashAbleService _washAbleAction;
-        public UserService(IUserCRUD userService, IWashAbleService washAbleAction,  IMapper mapper)
+        private readonly IWashAbleService _washAbleService;
+        public UserService(IUserCRUD userService, IWashAbleService washAbleService,  IMapper mapper)
         {
             _userService = userService;
-            _washAbleAction = washAbleAction;
+            _washAbleService = washAbleService;
             _mapper = mapper;
         }
         public Task<string> CreateObject(UserDTO userBl)
@@ -23,7 +23,6 @@ namespace BL
             {
                 User user = MapUserDTO_User(userBl);
                 user.ID = "";
-                user.ItemsId = new();
                 return _userService.CreateAsync(user);
             }
             catch (TimeoutException ex) { throw ex; }
@@ -39,7 +38,6 @@ namespace BL
             {
                 User user = await _userService.ReadAsync(password, name);
                 return MapUser_UserDTO(user);
-                /*return new UserDTO();*/
             }
             catch (TimeoutException ex) { throw ex; }
             catch (MongoConnectionException ex) { throw ex; }
@@ -54,7 +52,6 @@ namespace BL
             {
                 User user = await _userService.ReadAsync(id);
                 return MapUser_UserDTO(user);
-                /*return new UserDTO();*/
             }
             catch (TimeoutException ex) { throw ex; }
             catch (MongoConnectionException ex) { throw ex; }
@@ -67,9 +64,8 @@ namespace BL
         {
             try
             {
-                User user = await _userService.ReadAsync(id);
-                user.ItemsId.ForEach(item => _washAbleAction.DeleteObject(item));
-                return await _userService.DeleteAsync(user.ID);
+                 _washAbleService.GetAll(id).Result.ForEach(item => _washAbleService.DeleteObject(item.ID));
+                return await _userService.DeleteAsync(id);
             }
             catch (TimeoutException ex) { throw ex; }
             catch (MongoWriteException ex) { throw ex; }
@@ -77,15 +73,13 @@ namespace BL
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
-        public async Task<bool> UpdateObject(UserDTO userDTO, string id)
+        public async Task<bool> UpdateObject(UserDTO userDTO)
         {
             try
             {
-                User userFromDB = await _userService.ReadAsync(id);
+               /* User userFromDB = await _userService.ReadAsync(id);*/
                 User user = MapUserDTO_User(userDTO);
-                user.ID = userFromDB.ID;
-                user.ItemsId = await _washAbleAction.UpdateItemsList(userDTO, userFromDB);
-                //  _washAbleAction.GetWashAblesId(await _washAbleAction.GetAllWashAbles(user.Id)) ;
+                /*user.ID = userFromDB.ID;*/
                 return await _userService.UpdateAsync(user);
             }
             catch (TimeoutException ex) { throw ex; }
@@ -95,7 +89,7 @@ namespace BL
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
 
-        public async Task<List<UserDTO>> GetAllUsers(string managerId)
+        public async Task<List<UserDTO>> GetAll(string managerId)
         {
             try
             {
@@ -114,30 +108,21 @@ namespace BL
 
         public  UserDTO MapUser_UserDTO(User user) => _mapper.Map<UserDTO>(user);
        
-        public User MapUserDTO_User(UserDTO userDTO) => _mapper.Map<User>(userDTO);
+        public User MapUserDTO_User(UserDTO userDTO)// => _mapper.Map<User>(userDTO);
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, User>());
+            var mapper = config.CreateMapper();
+            return mapper.Map<User>(userDTO);
+        }
      
-        public async Task<List<string>> UpdateUsersList(ManagerDTO managerDTO, Manager managerFromDB)
+   /*     public async Task<List<string>> UpdateUsersList(ManagerDTO managerDTO, Manager managerFromDB)
         {
             try
             {
                 List<string> resultList = new();
                 List<Task<bool>> deleteTasks = new();
                 List<Task<string>> createTasks = new();
-                /* //check if manager delete all users;
-                 if (managerDTO.UsersDTO == null)
-                 {
-                     managerFromDB.UsersID.ForEach(user => deleteTasks.Add(_userService.DeleteAsync(user)));
-                     Task.WhenAll(deleteTasks);
-                     return resultList;
-                 }
-
-                 //check if the 
-                 if (managerFromDB.UsersID == null)
-                 {
-                     managerDTO.UsersDTO.ForEach(user => createTasks.Add(_userService.CreateAsync(MapUserDTO_User(user))));
-                     resultList.AddRange(Task.WhenAll(createTasks).Result);
-                     return resultList;
-                 }*/
+               
                 //check if we need to add new users;
                 List<UserDTO> usersToCreate = managerDTO.UsersDTO.FindAll(user => user.ID == "");
                 if (usersToCreate != null)
@@ -171,7 +156,7 @@ namespace BL
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
 
-        }
+        }*/
 
     }
 }

@@ -51,7 +51,7 @@ namespace BL
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
-        public async Task<bool> UpdateObject(LaundryDTO laundryDTO, string id)
+        public async Task<bool> UpdateObject(LaundryDTO laundryDTO)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace BL
             var mapper = config.CreateMapper();
             return mapper.Map<Laundry>(laundryDTO);
         }
-        public async Task<List<string>> UpdateLaudryList(ManagerDTO managerDTO, Manager managerFromDB)
+       /* public async Task<List<string>> UpdateLaudryList(ManagerDTO managerDTO, Manager managerFromDB)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace BL
                 resultList.AddRange(Task.WhenAll(createTasks).Result);
                 managerDTO.LaundriesDTO.ForEach(laundry => resultList.Add(laundry.ID));
 
-                //check if we need to delete a item;
+                //check if we need to delete an item;
                 List<string> laundriesIdToRemove = managerFromDB.LaundriesID.Except(managerDTO.LaundriesDTO.Select(laundry => laundry.ID).ToList()).ToList();
 
                 if (laundriesIdToRemove != null)
@@ -130,7 +130,7 @@ namespace BL
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
 
-        }
+        }*/
 
     }
 }

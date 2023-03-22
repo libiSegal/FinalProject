@@ -8,7 +8,7 @@ namespace BL
         Laundry MapLaundryDTO_Laundry(LaundryDTO laundryDTO);
         LaundryDTO MapLaundry_LaundryDTO(Laundry laundry);
         Task<List<LaundryDTO>> GetAll(string managerId);
-        Task<List<string>> UpdateLaudryList(ManagerDTO managerDTO, Manager managerFromDB);
+        //Task<List<string>> UpdateLaudryList(ManagerDTO managerDTO, Manager managerFromDB);
 
     }
 }

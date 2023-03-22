@@ -23,12 +23,9 @@ namespace BL
                    cfg =>
                    {
                        cfg.AddProfile(new UserProfile(provider.GetService<IWashAbleService>()));
-
-                      // cfg.AddProfile(new ManagerProfile(provider.GetServices<IUserService>(), provider.GetServices<IWashAbleService>(), provider.GetServices<ILaundryService>()));
-                       cfg.AddProfile<UserDTOProfile>();
+                       cfg.AddProfile<ManagerProfile>();
                        cfg.AddProfile<ManagerDTOProfile>();
                    }).CreateMapper());
-
             services.AddTestDal();  
             return services;
 

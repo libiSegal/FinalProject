@@ -11,6 +11,6 @@ namespace BL
         Task<string> CreateObject(T objectDTO);
         Task<T> GetObject(string id);
         Task<bool> DeleteObject(string id);
-        Task<bool> UpdateObject(T objectBl, string id);
+        Task<bool> UpdateObject(T objectBl);
     }
 }

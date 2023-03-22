@@ -37,7 +37,7 @@ namespace Dal
         {
             try
             {
-                var getAllFilter = _filterBuilder.Eq("ManagerId", managerId);
+                var getAllFilter = _filterBuilder.Eq("ManagerId",new ObjectId(managerId));
                 var users = await _usersCollection.Find(getAllFilter).ToListAsync();
 
                 /*if (users.FirstOrDefault() == null)
@@ -53,6 +53,7 @@ namespace Dal
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
         #endregion
+
         #region Create function
         public async Task<string> CreateAsync(User dataObject)
         {
@@ -83,12 +84,13 @@ namespace Dal
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
         #endregion
+
+        #region Delete function
         public async Task<bool> DeleteAsync(string id)
         {
             try
             {
-                ObjectId objectId = new(id);
-                var deleteFilter = _filterBuilder.Eq("_id", objectId);
+                var deleteFilter = _filterBuilder.Eq("_id", new ObjectId(id));
                 var deleteUser = await _usersCollection.FindAsync(deleteFilter);
 
                 if (deleteUser.FirstOrDefault() == null)
@@ -109,13 +111,14 @@ namespace Dal
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
- 
+        #endregion
+
+        #region Update function
         public async Task<bool> UpdateAsync(User user)
         {
             try
             {
-                ObjectId objectId = new(user.ID);
-                var updateFilter = _filterBuilder.Eq("_id", objectId);
+                var updateFilter = _filterBuilder.Eq("_id", new ObjectId(user.ID));
                 var updateUser = await _usersCollection.Find(updateFilter).FirstOrDefaultAsync();
 
                 if (updateUser == null)
@@ -132,7 +135,9 @@ namespace Dal
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
+        #endregion
 
+        #region Read function
         public async Task<User> ReadAsync(string id)
         {
 
@@ -153,6 +158,7 @@ namespace Dal
             catch (NotExistsDataObjectException ex) { throw ex; }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
+        #endregion
     }
-    }
+}
 
