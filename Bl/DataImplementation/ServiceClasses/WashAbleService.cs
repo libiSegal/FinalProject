@@ -1,127 +1,138 @@
 ﻿
-using AutoMapper;
-using Dal;
-using Dal.Exceptions;
-using MongoDB.Driver;
+namespace BL.DataImplementation.ServiceClasses;
 
-namespace BL
+public class WashAbleService : IWashAbleService
 {
-    public class WashAbleService : IWashAbleService
+    readonly IWashAbleCRUD _washAbleCRUD;
+    readonly IMapper _mapper;
+    public WashAbleService( IMapper mapper , IWashAbleCRUD washAbleCRUD )
     {
-        readonly IWashAbleCRUD _washAbleCRUD;
-        readonly IMapper _mapper;
-        public WashAbleService( IMapper mapper,IWashAbleCRUD washAbleCRUD )
+        _mapper = mapper;
+        _washAbleCRUD = washAbleCRUD;
+    }
+    #region Create function
+    public Task<string> CreateObject(WashAbleDTO washAbleDTO)
+    {
+        try
         {
-            _mapper = mapper;
-            _washAbleCRUD = washAbleCRUD;
+            WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
+            washAble.ID = "";
+            return _washAbleCRUD.CreateAsync(washAble);
         }
-        public Task<string> CreateObject(WashAbleDTO washAbleDTO)
-        {
-            try
-            {
-                WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
-                return _washAbleCRUD.CreateAsync(washAble);
-            }
-            catch (TimeoutException ex) { throw ex; }
-            catch (MongoWriteException ex) { throw ex; }
-            catch (MongoBulkWriteException ex) { throw ex; }
-            catch (ExistsDataObjectExceotion ex) { throw ex; }
-            catch (Exception ex) { throw new Exception(ex.Message); }
-        }
-        public async Task<WashAbleDTO> GetObject(string id)
-        {//id = barcode.data.id
-            try
-            {
-                WashAble washAble = await _washAbleCRUD.ReadAsync(id);
-                return MapWashAble_washAbleDTO(washAble);
-            }
-            catch (TimeoutException ex) { throw ex; }
-            catch (MongoConnectionException ex) { throw ex; }
-            catch (NullReferenceException ex) { throw ex; }
-            catch (NotExistsDataObjectException ex) { throw ex; }
-            catch (Exception ex) { throw new Exception(ex.Message); }
-        }
-        public Task<bool> DeleteObject(string id)
-        {
-            try
-            {
-                return _washAbleCRUD.DeleteAsync(id);
-            }
-            catch (TimeoutException ex) { throw ex; }
-            catch (MongoWriteException ex) { throw ex; }
-            catch (MongoBulkWriteException ex) { throw ex; }
-            catch (NotExistsDataObjectException ex) { throw ex; }
-            catch (Exception ex) { throw new Exception(ex.Message); }
-        }
-        public async Task<bool> UpdateObject(WashAbleDTO washAbleDTO)
-        {
-            try
-            {
-                WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
-                return await _washAbleCRUD.UpdateAsync(washAble);
-            }
-            catch (TimeoutException ex) { throw ex; }
-            catch (MongoWriteException ex) { throw ex; }
-            catch (MongoBulkWriteException ex) { throw ex; }
-            catch (NotExistsDataObjectException ex) { throw ex; }
-            catch (Exception ex) { throw new Exception(ex.Message); }
-        }
-        public async Task<List<WashAbleDTO>> GetAll(string userId)
-        {
-            try
-            {
-                List<WashAbleDTO> washAblesBl = new();
-                List<WashAble> washAbles = await _washAbleCRUD.ReadAllAsync(userId);
-                washAbles.ForEach(w => washAblesBl.Add(MapWashAble_washAbleDTO(w)));
-                return washAblesBl;
-            }
-            catch (TimeoutException ex) { throw ex; }
-            catch (MongoConnectionException ex) { throw ex; }
-            catch (NotExistsDataObjectException ex) { throw ex; }
-            catch (Exception ex) { throw new Exception(ex.Message); }
-        }
+        catch (TimeoutException ex) { throw ex; }
+        catch (MongoWriteException ex) { throw ex; }
+        catch (MongoBulkWriteException ex) { throw ex; }
+        catch (ExistsDataObjectExceotion ex) { throw ex; }
+        catch (Exception ex) { throw new Exception(ex.Message); }
+    }
+    #endregion
 
-        public WashAbleDTO MapWashAble_washAbleDTO(WashAble washAble) //=> _mapper.Map<WashAbleDTO>(washAble);
+    #region Get function
+    public async Task<WashAbleDTO> GetObject(string id)
+    {//id = barcode.data.id
+        try
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<WashAble, WashAbleDTO>());
-            var mapper = config.CreateMapper();
-            return mapper.Map<WashAbleDTO>(washAble);
+            WashAble washAble = await _washAbleCRUD.ReadAsync(id);
+            return MapWashAble_washAbleDTO(washAble);
         }
+        catch (TimeoutException ex) { throw ex; }
+        catch (MongoConnectionException ex) { throw ex; }
+        catch (NullReferenceException ex) { throw ex; }
+        catch (NotExistsDataObjectException ex) { throw ex; }
+        catch (Exception ex) { throw new Exception(ex.Message); }
+    }
+    #endregion
 
-        public WashAble MapWashAbleDTO_washAble(WashAbleDTO washAbleDTO) => _mapper.Map<WashAble>(washAbleDTO);
+    #region Delete function
+    public Task<bool> DeleteObject(string id)
+    {
+        try
+        {
+            return _washAbleCRUD.DeleteAsync(id);
+        }
+        catch (TimeoutException ex) { throw ex; }
+        catch (MongoWriteException ex) { throw ex; }
+        catch (MongoBulkWriteException ex) { throw ex; }
+        catch (NotExistsDataObjectException ex) { throw ex; }
+        catch (Exception ex) { throw new Exception(ex.Message); }
+    }
+    #endregion
+
+    #region Update function
+    public async Task<bool> UpdateObject(WashAbleDTO washAbleDTO)
+    {
+        try
+        {
+            WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
+            return await _washAbleCRUD.UpdateAsync(washAble);
+        }
+        catch (TimeoutException ex) { throw ex; }
+        catch (MongoWriteException ex) { throw ex; }
+        catch (MongoBulkWriteException ex) { throw ex; }
+        catch (NotExistsDataObjectException ex) { throw ex; }
+        catch (Exception ex) { throw new Exception(ex.Message); }
+    }
+    #endregion
+
+    #region GetAll function
+    public async Task<List<WashAbleDTO>> GetAll(string userId)
+    {
+        try
+        {
+            List<WashAbleDTO> washAblesBl = new();
+            List<WashAble> washAbles = await _washAbleCRUD.ReadAllAsync(userId);
+            washAbles.ForEach(w => washAblesBl.Add(MapWashAble_washAbleDTO(w)));
+            return washAblesBl;
+        }
+        catch (TimeoutException ex) { throw ex; }
+        catch (MongoConnectionException ex) { throw ex; }
+        catch (NotExistsDataObjectException ex) { throw ex; }
+        catch (Exception ex) { throw new Exception(ex.Message); }
+    }
+    #endregion
+
+
+
+    public WashAbleDTO MapWashAble_washAbleDTO(WashAble washAble) => _mapper.Map<WashAbleDTO>(washAble);
+  /*  {
+        var config = new MapperConfiguration(cfg => cfg.CreateMap<WashAble, WashAbleDTO>());
+        var mapper = config.CreateMapper();
+        return mapper.Map<WashAbleDTO>(washAble);
+    }*/
+
+    public WashAble MapWashAbleDTO_washAble(WashAbleDTO washAbleDTO) => _mapper.Map<WashAble>(washAbleDTO);
 /*        {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<WashAbleDTO, WashAble>());
-            var mapper = config.CreateMapper();
-            return mapper.Map<WashAble>(washAbleDTO);
-        }*/
-      
+        var config = new MapperConfiguration(cfg => cfg.CreateMap<WashAbleDTO, WashAble>());
+        var mapper = config.CreateMapper();
+        return mapper.Map<WashAble>(washAbleDTO);
+    }*/
+  
 
-        public List<WashAbleDTO> GetWashAblesItems(List<string> washAbleIDs)
+    public List<WashAbleDTO> GetWashAblesItems(List<string> washAbleIDs)
+    {
+        try
         {
-            try
+            List<WashAbleDTO> washAbles = new();
+            washAbleIDs.ForEach(async washAble =>
             {
-                List<WashAbleDTO> washAbles = new();
-                washAbleIDs.ForEach(async washAble =>
-                {
-                    washAbles.Add(await GetObject(washAble));
-                });
-                return washAbles;//exit
-            }
-            catch (AggregateException ex) { throw new Exception(ex.Message); }
-
-        }
-
-        public List<string> GetWashAblesId(List<WashAbleDTO> washAbles)
-        {
-            List<string> washAbleIds = new();
-            washAbles.ForEach(washable =>
-            {
-                washAbleIds.Add(washable.ID);
+                washAbles.Add(await GetObject(washAble));
             });
-            return washAbleIds;
+            return washAbles;//exit
         }
+        catch (AggregateException ex) { throw new Exception(ex.Message); }
 
     }
+
+    public List<string> GetWashAblesId(List<WashAbleDTO> washAbles)
+    {
+        List<string> washAbleIds = new();
+        washAbles.ForEach(washable =>
+        {
+            washAbleIds.Add(washable.ID);
+        });
+        return washAbleIds;
+    }
+
 }
 
 

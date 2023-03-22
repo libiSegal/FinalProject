@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using BL;
-using Dal;
-
+﻿
 namespace Bl.Profiles;
 
 public class WashAbleProfile : Profile

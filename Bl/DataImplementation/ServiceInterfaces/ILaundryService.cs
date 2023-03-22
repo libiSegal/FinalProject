@@ -1,12 +1,10 @@
-﻿using Dal;
+﻿
+namespace BL.DataImplementation.ServiceInterfaces;
 
-namespace BL
+public interface ILaundryService : IDataService<LaundryDTO>
 {
-    public interface ILaundryService : IDataService<LaundryDTO>
-    {
-        Task<List<LaundryDTO>> GetAll(string managerId);
-        public Laundry MapLaundryDTO_Laundry(LaundryDTO laundryDTO);
-        public LaundryDTO MapLaundry_LaundryDTO(Laundry laundry);
+    Task<List<LaundryDTO>> GetAll(string managerId);
+    public Laundry MapLaundryDTO_Laundry(LaundryDTO laundryDTO);
+    public LaundryDTO MapLaundry_LaundryDTO(Laundry laundry);
 
-    }
 }
