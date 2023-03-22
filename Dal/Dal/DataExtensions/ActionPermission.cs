@@ -1,9 +1,8 @@
 ﻿
-namespace Dal
+namespace Dal.DataExtensions;
+
+[Flags]
+public enum ActionPermission
 {
-    [Flags]
-    public enum ActionPermission
-    {
-        a,b,c
-    }
+    a,b,c
 }

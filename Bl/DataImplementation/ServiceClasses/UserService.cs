@@ -37,7 +37,7 @@ namespace BL
         {
             try
             {
-                User user = await _userService.ReadAsync(password, name);
+                User user = await _userService.ReadAsync(name, password);
                 return MapUser_UserDTO(user);
             }
             catch (TimeoutException ex) { throw ex; }

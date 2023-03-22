@@ -1,8 +1,2 @@
 ﻿
-namespace Dal
-{
-    public enum Colors
-    {
-        colourful,
-    }
-}
+namespace Dal.DataExtensions; public enum Colors { colourful, }

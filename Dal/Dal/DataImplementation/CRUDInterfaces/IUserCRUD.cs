@@ -1,10 +1,9 @@
 ﻿
-namespace Dal
+namespace Dal.DataImplementation.CRUDInterfaces;
+
+public interface IUserCRUD : IDataCRUD<User>
 {
-    public interface IUserCRUD : IDataCRUD<User>
-    {
-        Task<User> ReadAsync(string password, string Name);
-        Task<List<User>> ReadAllAsync(string managerId);
-        
-    }
+    Task<User> ReadAsync(string name, string password);
+    Task<List<User>> ReadAllAsync(string managerId);
+    
 }

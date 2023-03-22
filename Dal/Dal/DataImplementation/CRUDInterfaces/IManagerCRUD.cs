@@ -1,8 +1,6 @@
 ﻿
-namespace Dal
+namespace Dal.DataImplementation.CRUDInterfaces;
+public interface IManagerCRUD : IDataCRUD<Manager>
 {
-    public interface IManagerCRUD : IDataCRUD<Manager>
-    {
-        Task<Manager> ReadAsync(string password, string Name);
-    }
+    Task<Manager> ReadAsync(string name, string password);
 }

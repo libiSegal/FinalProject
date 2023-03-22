@@ -1,8 +1,8 @@
 ﻿
-namespace Dal
+namespace Dal.DataExtensions;
+
+public enum Category
 {
-    public enum Category
-    {
-        daily,
-    }
+    daily,
 }
+

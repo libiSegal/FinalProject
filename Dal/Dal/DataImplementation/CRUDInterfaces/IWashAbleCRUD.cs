@@ -1,8 +1,7 @@
 ﻿
-namespace Dal
+namespace Dal.DataImplementation.CRUDInterfaces;
+
+public interface IWashAbleCRUD : IDataCRUD<WashAble>
 {
-    public interface IWashAbleCRUD : IDataCRUD<WashAble>
-    {
-        Task<List<WashAble>> ReadAllAsync(string userId);
-    }
+    Task<List<WashAble>> ReadAllAsync(string userId);
 }

@@ -1,11 +1,10 @@
 ﻿
-namespace Dal
+namespace Dal.DataApi;
+
+public interface IDataCRUD<T>where T : IDataBaseObject
 {
-    public interface IDataCRUD<T>where T : IDataBaseObject
-    {
-        Task<string> CreateAsync(T dataObject);
-        Task<bool> UpdateAsync(T dataObject);
-        Task<T> ReadAsync(string id);
-        Task<bool> DeleteAsync(string id);
-    }
+    Task<string> CreateAsync(T dataObject);
+    Task<bool> UpdateAsync(T dataObject);
+    Task<T> ReadAsync(string id);
+    Task<bool> DeleteAsync(string id);
 }

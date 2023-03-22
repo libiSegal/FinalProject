@@ -1,5 +1,5 @@
 ﻿
-namespace Dal;
+namespace Dal.Models;
 
 public class WashingMachine
 {

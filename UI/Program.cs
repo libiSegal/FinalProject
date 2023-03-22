@@ -1,5 +1,5 @@
 using BL;
-using Dal;
+using Dal.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

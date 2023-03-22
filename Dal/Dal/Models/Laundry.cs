@@ -1,6 +1,5 @@
 ﻿
-namespace Dal;
-
+namespace Dal.Models;
 public class Laundry : IDataBaseObject//It doesn't have a set because history can't be update laundry is not!!! a embedded duocument ;
 {
     [BsonId]
