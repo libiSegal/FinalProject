@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "H:\\FinalProject\\UI\\UI.csproj": {}
+    "C:\\Users\\User\\source\\repos\\FinalProject\\UI\\UI.csproj": {}
   },
   "projects": {
-    "H:\\FinalProject\\Bl\\Bl.csproj": {
+    "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\Bl.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\FinalProject\\Bl\\Bl.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\Bl.csproj",
         "projectName": "Bl",
-        "projectPath": "H:\\FinalProject\\Bl\\Bl.csproj",
-        "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
-        "outputPath": "H:\\FinalProject\\Bl\\obj\\",
+        "projectPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\Bl.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\צוקרמן אסתר\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "H:\\FinalProject\\Dal\\Dal\\Dal.csproj": {
-                "projectPath": "H:\\FinalProject\\Dal\\Dal\\Dal.csproj"
+              "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj"
               }
             }
           }
@@ -56,6 +57,10 @@
               "target": "Package",
               "version": "[12.0.0, )"
             },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.19.0, )"
@@ -77,24 +82,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "H:\\FinalProject\\Dal\\Dal\\Dal.csproj": {
+    "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\FinalProject\\Dal\\Dal\\Dal.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
         "projectName": "Dal",
-        "projectPath": "H:\\FinalProject\\Dal\\Dal\\Dal.csproj",
-        "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
-        "outputPath": "H:\\FinalProject\\Dal\\Dal\\obj\\",
+        "projectPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\צוקרמן אסתר\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -103,6 +108,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -121,6 +127,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -150,24 +164,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "H:\\FinalProject\\UI\\UI.csproj": {
+    "C:\\Users\\User\\source\\repos\\FinalProject\\UI\\UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\FinalProject\\UI\\UI.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\FinalProject\\UI\\UI.csproj",
         "projectName": "UI",
-        "projectPath": "H:\\FinalProject\\UI\\UI.csproj",
-        "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
-        "outputPath": "H:\\FinalProject\\UI\\obj\\",
+        "projectPath": "C:\\Users\\User\\source\\repos\\FinalProject\\UI\\UI.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\FinalProject\\UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\צוקרמן אסתר\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -176,14 +190,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "H:\\FinalProject\\Bl\\Bl.csproj": {
-                "projectPath": "H:\\FinalProject\\Bl\\Bl.csproj"
+              "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\Bl.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\Bl.csproj"
               }
             }
           }
@@ -222,7 +237,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

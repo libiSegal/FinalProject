@@ -195,3 +195,7 @@ H:\FinalProject\UI\obj\Debug\net6.0\refint\UI.dll
 H:\FinalProject\UI\obj\Debug\net6.0\UI.pdb
 H:\FinalProject\UI\obj\Debug\net6.0\UI.genruntimeconfig.cache
 H:\FinalProject\UI\obj\Debug\net6.0\ref\UI.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll

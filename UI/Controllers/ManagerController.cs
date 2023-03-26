@@ -1,4 +1,6 @@
 ﻿using BL;
+using BL.DataImplementation.ServiceInterfaces;
+using BL.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

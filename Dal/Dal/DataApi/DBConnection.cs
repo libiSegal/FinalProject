@@ -9,19 +9,19 @@ namespace Dal.DataApi
         public IMongoCollection<Laundry> LaundryCollection { get; private set; }
         public IMongoCollection<WashAble> WashAblesCollection { get; private set; }
 
-        public DBConnection(IOptions<LaundrySystemDatabaseSettings> laundrySystemDatabaseSettings)
+        public DBConnection(LaundrySystemDatabaseSettings laundrySystemDatabaseSettings)
         {
-            var mongoClient = new MongoClient(laundrySystemDatabaseSettings.Value.ConnectionString);
+            var mongoClient = new MongoClient(laundrySystemDatabaseSettings.ConnectionString);
 
-            var mongoDatabase = mongoClient.GetDatabase(laundrySystemDatabaseSettings.Value.DatabaseName);
+            var mongoDatabase = mongoClient.GetDatabase(laundrySystemDatabaseSettings.DatabaseName);
 
-            ManagersCollection = mongoDatabase.GetCollection<Manager>(laundrySystemDatabaseSettings.Value.ManagersCollectionName);
+            ManagersCollection = mongoDatabase.GetCollection<Manager>(laundrySystemDatabaseSettings.ManagersCollectionName);
 
-            UsersCollection = mongoDatabase.GetCollection<User>(laundrySystemDatabaseSettings.Value.UsersCollectionName);
+            UsersCollection = mongoDatabase.GetCollection<User>(laundrySystemDatabaseSettings.UsersCollectionName);
 
-            WashAblesCollection = mongoDatabase.GetCollection<WashAble>(laundrySystemDatabaseSettings.Value.WashAbelsCollectionName);
+            WashAblesCollection = mongoDatabase.GetCollection<WashAble>(laundrySystemDatabaseSettings.WashAbelsCollectionName);
 
-            LaundryCollection = mongoDatabase.GetCollection<Laundry>(laundrySystemDatabaseSettings.Value.LaundryCollectionName);
+            LaundryCollection = mongoDatabase.GetCollection<Laundry>(laundrySystemDatabaseSettings.LaundryCollectionName);
 
         }
 
