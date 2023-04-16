@@ -19,7 +19,7 @@ namespace Ui.Controllers
         [HttpPost]
         public Task<string> Post(UserDTO user)
         {
-            return  _userService.CreateObject(user);
+            return _userService.CreateObject(user);
         }
         [HttpGet("{name}/{password}")]
         public Task<UserDTO> Get(string name, string password)
@@ -36,7 +36,7 @@ namespace Ui.Controllers
         {
             return _userService.UpdateObject(user);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public Task<bool> Delete(string id)
         {
             return _userService.DeleteObject(id);

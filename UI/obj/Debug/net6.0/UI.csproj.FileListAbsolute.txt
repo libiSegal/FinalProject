@@ -199,3 +199,5 @@ C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions
 C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
 C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
