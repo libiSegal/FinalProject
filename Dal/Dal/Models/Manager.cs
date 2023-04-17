@@ -12,9 +12,16 @@ public class Manager : User
     public override string ManagerID { get; set; }
     public Manager() : base()
     {
-        WashingMachine = new("XXX" , "XXX" , new());
+        WashingMachine = new("XXX", "XXX",1, new());
         Calendar = new();
         ManagerID = "";
+    }
+    public Manager(string name, string password, WashingMachine washingMachine) : base(name, password)
+    {
+        ManagerID = "";
+        Calendar = new();
+        WashingMachine = washingMachine;
+        ActionPermissions = ActionPermission.a | ActionPermission.b;
     }
     public Manager(string name, string password, WashingMachine washingMachine, Calendar calendar) :base(name, password)
     {

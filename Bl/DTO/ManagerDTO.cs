@@ -13,7 +13,16 @@ public class ManagerDTO : UserDTO
         UsersDTO = new();
         CalendarDTO = new();
         LaundriesDTO = new();
-        WashingMachineDTO = new("XXX" ,"XXX" , new List<Dictionary<string, string>>()); 
+        WashingMachineDTO = new("XXX", "XXX",1, new List<Dictionary<string, string>>());
+    }
+
+    public ManagerDTO(string name, string password, WashingMachineDTO washingMachine) : base(name, password, "")
+    {
+        CalendarDTO = new();
+        WashingMachineDTO = washingMachine;
+        UsersDTO = new();
+        LaundriesDTO = new();
+        ActionPermissions = ActionPermission.a | ActionPermission.b;
     }
     public ManagerDTO(string name, string password, WashingMachineDTO washingMachine, CalendarDTO calendar):base(name, password, "")
     {                                 

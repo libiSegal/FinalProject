@@ -6,5 +6,7 @@ public class ManagerProfile : Profile
     {
         CreateMap<Manager, ManagerDTO>();
         CreateMap<User, UserDTO>();
+        CreateMap<Calendar, CalendarDTO>();
+        CreateMap<WashingMachine, WashingMachineDTO>();
     }
 }

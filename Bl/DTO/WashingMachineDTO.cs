@@ -15,10 +15,11 @@ public class WashingMachineDTO
         Model = "XXX";
         Programs = new();
     }
-    public WashingMachineDTO(string company, string model, List<Dictionary<string, string>> programs)
+    public WashingMachineDTO(string company, string model, int laundryWeight, List<Dictionary<string, string>> programs)
     {
         Company = company;
         Model = model;
+        LaundryWeight = laundryWeight;
         Programs = new(programs);
     }
 }
