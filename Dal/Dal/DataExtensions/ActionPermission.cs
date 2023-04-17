@@ -4,5 +4,8 @@ namespace Dal.DataExtensions;
 [Flags]
 public enum ActionPermission
 {
-    a,b,c
+    add,
+    remove,
+    update,
+
 }

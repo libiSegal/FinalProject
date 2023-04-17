@@ -11,6 +11,14 @@ public class WashingMachine
     {
         Company = "XXX";
         Model = "XXX";
+        LaundryWeight = 1;
+        Programs = new();
+    }
+    public WashingMachine(string company, string model, int laundryWeight)
+    {
+        Company = company;
+        Model = model;
+        LaundryWeight = laundryWeight;
         Programs = new();
     }
     public WashingMachine( string company ,string model ,int laundryWeight, List<Dictionary<string, string>> programs)

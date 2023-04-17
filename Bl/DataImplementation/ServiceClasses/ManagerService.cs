@@ -19,9 +19,11 @@ public class ManagerService : IManagerService
     #region Create function
     public async Task<string> CreateObject(ManagerDTO managerDTO)
     {
+        //It is necessary to make sure that mapping work
         try
         {
             Manager manager = MapManagerDTO_Manager(managerDTO);
+            manager.WashingMachine = new(managerDTO.WashingMachineDTO.Company, managerDTO.WashingMachineDTO.Model, managerDTO.WashingMachineDTO.LaundryWeight);
             manager.ID = "";
             return await _managerCRUD.CreateAsync(manager);
         }

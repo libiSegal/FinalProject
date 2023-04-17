@@ -13,7 +13,7 @@ public class ManagerDTO : UserDTO
         UsersDTO = new();
         CalendarDTO = new();
         LaundriesDTO = new();
-        WashingMachineDTO = new("XXX", "XXX",1, new List<Dictionary<string, string>>());
+        WashingMachineDTO = new();
     }
 
     public ManagerDTO(string name, string password, WashingMachineDTO washingMachine) : base(name, password, "")

@@ -12,7 +12,15 @@ public class WashingMachineDTO
     public WashingMachineDTO()
     {
         Company = "XXX";
+        LaundryWeight = 1;
         Model = "XXX";
+        Programs = new();
+    }
+    public WashingMachineDTO(string company, string model, int laundryWeight)
+    {
+        Company = company;
+        Model = model;
+        LaundryWeight = laundryWeight;
         Programs = new();
     }
     public WashingMachineDTO(string company, string model, int laundryWeight, List<Dictionary<string, string>> programs)

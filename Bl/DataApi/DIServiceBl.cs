@@ -16,7 +16,6 @@ public static class DIServiceBl
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.AddTestDal(configuration);
         return services;
-
     }
 }
 

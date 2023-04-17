@@ -12,7 +12,7 @@ public class Manager : User
     public override string ManagerID { get; set; }
     public Manager() : base()
     {
-        WashingMachine = new("XXX", "XXX",1, new());
+        WashingMachine = new();
         Calendar = new();
         ManagerID = "";
     }
