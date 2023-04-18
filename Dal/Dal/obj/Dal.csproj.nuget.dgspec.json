@@ -1,20 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {}
+    "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
+    "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
+        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
         "projectName": "Dal",
-        "projectPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
+        "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
         "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\צוקרמן אסתר\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -80,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
