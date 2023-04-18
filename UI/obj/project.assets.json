@@ -1285,21 +1285,19 @@
   },
   "packageFolders": {
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\UI\\UI.csproj",
+      "projectUniqueName": "H:\\FinalProject\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\UI\\UI.csproj",
+      "projectPath": "H:\\FinalProject\\UI\\UI.csproj",
       "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\UI\\obj\\",
+      "outputPath": "H:\\FinalProject\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\צוקרמן אסתר\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1317,8 +1315,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj": {
-              "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj"
+            "H:\\FinalProject\\Bl\\Bl.csproj": {
+              "projectPath": "H:\\FinalProject\\Bl\\Bl.csproj"
             }
           }
         }
@@ -1356,7 +1354,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

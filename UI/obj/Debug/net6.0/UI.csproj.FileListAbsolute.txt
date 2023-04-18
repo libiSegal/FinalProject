@@ -180,11 +180,6 @@ H:\FinalProject\UI\obj\Debug\net6.0\UI.AssemblyInfo.cs
 H:\FinalProject\UI\obj\Debug\net6.0\UI.csproj.CoreCompileInputs.cache
 H:\FinalProject\UI\obj\Debug\net6.0\UI.MvcApplicationPartsAssemblyInfo.cs
 H:\FinalProject\UI\obj\Debug\net6.0\UI.MvcApplicationPartsAssemblyInfo.cache
-H:\FinalProject\UI\obj\Debug\net6.0\staticwebassets\msbuild.UI.Microsoft.AspNetCore.StaticWebAssets.props
-H:\FinalProject\UI\obj\Debug\net6.0\staticwebassets\msbuild.build.UI.props
-H:\FinalProject\UI\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.UI.props
-H:\FinalProject\UI\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.UI.props
-H:\FinalProject\UI\obj\Debug\net6.0\staticwebassets.pack.json
 H:\FinalProject\UI\obj\Debug\net6.0\staticwebassets.build.json
 H:\FinalProject\UI\obj\Debug\net6.0\staticwebassets.development.json
 H:\FinalProject\UI\obj\Debug\net6.0\scopedcss\bundle\UI.styles.css
@@ -201,3 +196,5 @@ C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\ref\UI.dll
+H:\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+H:\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll

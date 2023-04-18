@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hv4JddhV5hwQijQhxqHSWIY8PcA8GxqKFUO36aCGmwHxUqYXgeTa+PGANE1PdKZ42HWHr+bcRkMP+UzZPJM5OQ==",
+  "dgSpecHash": "MN1LUS0MbMbZgdcDe+ADeXS0xM6y1sZvY/EK86CfHbHCbmPY2Gwz2RJcKGutd+66CCtq5q0BV1q0CiHlqSa7lA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj",
+  "projectFilePath": "H:\\FinalProject\\Bl\\Bl.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
