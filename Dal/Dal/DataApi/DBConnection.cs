@@ -4,6 +4,7 @@ namespace Dal.DataApi
 {
     internal class DBConnection : IDBConnection
     {
+        
         public IMongoCollection<User> UsersCollection { get; private set; }
         public IMongoCollection<Manager> ManagersCollection { get; private set; }
         public IMongoCollection<Laundry> LaundryCollection { get; private set; }

@@ -27,9 +27,9 @@ public class WashAbleDTO : IDataObject
         NecessityLevel = NecessityLevel.standard;
         PrevWash = new();
     }
-    public WashAbleDTO(Status status)//need to delete thus ctor
+    public WashAbleDTO(NecessityLevel necessityLevel)//need to delete this ctor
     {
-        Status = status;
+       NecessityLevel = necessityLevel;
     }
     public WashAbleDTO(string name, string userId, Colors color, Status status,NecessityLevel necessityLevel, Category category, int maxDeg, int maxSqueezing)
     {

@@ -81,7 +81,9 @@ public class WashAbleService : IWashAbleService
         {
             List<WashAbleDTO> washAblesBl = new();
             List<WashAble> washAbles = await _washAbleCRUD.ReadAllAsync(userId);
-            washAbles.ForEach(w => washAblesBl.Add(MapWashAble_washAbleDTO(w)));
+            //washAbles.ForEach(w => washAblesBl.Add(MapWashAble_washAbleDTO(w)));
+            washAblesBl = _mapper.Map<List<WashAble> , List<WashAbleDTO>>(washAbles);
+          //  washAblesBl = MapWashAble_washAbleDTO()
             return washAblesBl;
         }
         catch (TimeoutException ex) { throw ex; }

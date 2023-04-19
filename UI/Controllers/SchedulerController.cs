@@ -16,7 +16,7 @@ namespace UI.Controllers
         public List<WashAbleDTO> Get()
         {
             SchedulerService schedulerService = new SchedulerService();
-            return schedulerService.GetDirtyWashables(schedulerService.fill());
+            return schedulerService.fill();
         }
 
         // GET api/<SchedulerController>/5

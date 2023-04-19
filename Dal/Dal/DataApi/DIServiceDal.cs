@@ -10,6 +10,7 @@ public static class DIServiceDal
         services.AddSingleton<ILaundryCRUD, LaundryCRUD>();
         services.AddSingleton<IWashAbleCRUD, WashAbleCRUD>();
 
+
         var dbSettings = new LaundrySystemDatabaseSettings();
         configuration.GetSection("LaundrySystemDatabase").Bind(dbSettings);
         services.AddSingleton(dbSettings);

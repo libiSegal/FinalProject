@@ -26,6 +26,12 @@ public class WashAble : IDataBaseObject
     [BsonRepresentation(BsonType.String)]
     public Category Category { get; set; }
     public List<DateTime>? PrevWash { get; set; }
+    public WashAble()
+    {
+        ID = "";
+        Name = "";
+        UserID = "";
+    }
 
     public WashAble(string name,string userId, Colors color, Status status ,NecessityLevel necessityLevel,Category category, int maxDeg, int maxSqueezing)
     {

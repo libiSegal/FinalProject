@@ -1,6 +1,6 @@
 ﻿namespace Dal.Models
 {
-    public class LaundrySystemDatabaseSettings
+    public class LaundrySystemDatabaseSettings 
     {
         public string ConnectionString { get; set; } = null!;
 
