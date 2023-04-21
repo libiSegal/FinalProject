@@ -102,7 +102,7 @@ public class UserService : IUserService
         try
         {
             List<User> users = await _userService.ReadAllAsync(managerId);
-            return _mapper.Map<List<UserDTO>>(users);
+            return users.Select(u => MapUser_UserDTO(u)).ToList();
         }
         catch (TimeoutException ex) { throw ex; }
         catch (MongoConnectionException ex) { throw ex; }

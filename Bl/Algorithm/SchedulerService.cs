@@ -3,33 +3,40 @@ namespace Bl.Algorithm;
 
 public class SchedulerService
 {
+    public List<WashablesCollection> ListOfWashablesCollections { get; set; }
+     
     public SchedulerService()
     {
-
+        ListOfWashablesCollections = new();
+        ListOfWashablesCollections[0] = new
     }
-    //allWashAbles = managerDTO.Items
+    //sort to clean and dirty
     public List<WashAbleDTO> GetDirtyWashables(List<WashAbleDTO> allWashAbles) => allWashAbles.FindAll(w => w.Status == Status.dirty);
 
+
+    //return a list of all washables 
     public List<WashAbleDTO> AllWashAbles(ManagerDTO manager)
     {
-        List<WashAbleDTO> washes = new();
-        washes.AddRange(manager.Items);
+       List<WashAbleDTO> allWashAbles = manager.Items;
+       allWashAbles.AddRange(manager.UsersDTO.SelectMany(lst => lst.Items.Select(w => w)).ToList());
+       return allWashAbles;
     }
- 
+
+    //sort to machines
+    public List<WashablesCollection> SortToCollections(List<WashAbleDTO> dirtyWashabels)
+    {
+
+
+    }
+
+
+
 
 
     WashablesCollection washablesCollection = new("dark");
-    
+
     public List<WashAbleDTO> fill()
     {
-        //List<WashAbleDTO> washAbleDTOs = new();
-        //washAbleDTOs.Add(new(Status.washing));
-        //washAbleDTOs.Add(new(Status.clean));
-        //washAbleDTOs.Add(new(Status.clean));
-        //washAbleDTOs.Add(new(Status.dirty));
-        //washAbleDTOs.Add(new(Status.dirty));
-        //washAbleDTOs.Add(new(Status.washing));
-        //return washAbleDTOs;
         washablesCollection.AddWashableToCollection(new WashAbleDTO(NecessityLevel.necessary));
         washablesCollection.AddWashableToCollection(new WashAbleDTO(NecessityLevel.critical));
         washablesCollection.AddWashableToCollection(new WashAbleDTO(NecessityLevel.standard));

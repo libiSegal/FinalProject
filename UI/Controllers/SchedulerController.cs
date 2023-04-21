@@ -2,6 +2,7 @@
 using Bl;
 using BL.DTO;
 using Bl.Algorithm;
+using BL.DataImplementation.ServiceInterfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,6 +12,11 @@ namespace UI.Controllers
     [ApiController]
     public class SchedulerController : ControllerBase
     {
+        private readonly IManagerService _managerService;
+        public SchedulerController(IManagerService managerService)
+        {
+            _managerService = managerService;
+        }
         // GET: api/<SchedulerController>
         [HttpGet]
         public List<WashAbleDTO> Get()
@@ -21,10 +27,14 @@ namespace UI.Controllers
 
         // GET api/<SchedulerController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public  List<WashAbleDTO> Get(string id)
         {
-            return "value";
+            ManagerDTO m =  _managerService.GetObject(id).Result;
+            SchedulerService s = new();
+            return s.AllWashAbles(m);
+
         }
+    
 
         // POST api/<SchedulerController>
         [HttpPost]

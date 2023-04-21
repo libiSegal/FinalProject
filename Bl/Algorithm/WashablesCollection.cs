@@ -6,7 +6,6 @@ public class WashablesCollection
 
     public string Name { get; set; }
     public string Type { get; set; }
-
     List<WashAbleDTO>[] WashAblesSortedByNecessary { get; set; } 
     public WashablesCollection(string type)
     {

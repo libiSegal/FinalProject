@@ -12,6 +12,7 @@
           "Microsoft.Extensions.Configuration.Binder": "7.0.4",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "Microsoft.Extensions.Options": "7.0.1",
+          "MongoDB.Bson": "2.19.1",
           "MongoDB.Driver": "2.19.0"
         },
         "runtime": {
@@ -116,21 +117,21 @@
           "System.Security.Principal.Windows": "5.0.0"
         }
       },
-      "MongoDB.Bson/2.19.0": {
+      "MongoDB.Bson/2.19.1": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/MongoDB.Bson.dll": {
-            "assemblyVersion": "2.19.0.0",
-            "fileVersion": "2.19.0.0"
+            "assemblyVersion": "2.19.1.0",
+            "fileVersion": "2.19.1.0"
           }
         }
       },
       "MongoDB.Driver/2.19.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "2.0.0",
-          "MongoDB.Bson": "2.19.0",
+          "MongoDB.Bson": "2.19.1",
           "MongoDB.Driver.Core": "2.19.0",
           "MongoDB.Libmongocrypt": "1.7.0"
         },
@@ -146,7 +147,7 @@
           "AWSSDK.SecurityToken": "3.7.100.14",
           "DnsClient": "1.6.1",
           "Microsoft.Extensions.Logging.Abstractions": "2.0.0",
-          "MongoDB.Bson": "2.19.0",
+          "MongoDB.Bson": "2.19.1",
           "MongoDB.Libmongocrypt": "1.7.0",
           "SharpCompress": "0.30.1",
           "Snappier": "1.0.0",
@@ -303,12 +304,12 @@
       "path": "microsoft.win32.registry/5.0.0",
       "hashPath": "microsoft.win32.registry.5.0.0.nupkg.sha512"
     },
-    "MongoDB.Bson/2.19.0": {
+    "MongoDB.Bson/2.19.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pGp9F2PWU3Dj54PiXKibuaQ5rphWkfp8/Nsy5jLp2dWZGRGlr3r/Lfwnr0PvfihFfxieUcJZ2z3VeO8RctXcvA==",
-      "path": "mongodb.bson/2.19.0",
-      "hashPath": "mongodb.bson.2.19.0.nupkg.sha512"
+      "sha512": "sha512-4FSR3eAbJEYMmvQ1pNFImUpFGtGHT+kEw/Yw/KZjxC9iFMj1XcZC08wMbezgRga2F9tNNFG2vDqh9zt01GinMA==",
+      "path": "mongodb.bson/2.19.1",
+      "hashPath": "mongodb.bson.2.19.1.nupkg.sha512"
     },
     "MongoDB.Driver/2.19.0": {
       "type": "package",

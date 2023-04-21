@@ -1,6 +1,4 @@
 ﻿
-
-
 namespace Dal.Models;
 public class Manager : User
 {

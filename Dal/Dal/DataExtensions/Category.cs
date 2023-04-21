@@ -8,6 +8,7 @@ public enum Category
     delicate,
     normal,
     individual,
+    towel,
     other,
 }
 
