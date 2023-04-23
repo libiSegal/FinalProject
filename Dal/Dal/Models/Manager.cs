@@ -2,7 +2,7 @@
 namespace Dal.Models;
 public class Manager : User
 {
-    
+    public List<string> WashAblesCollectionTypes { get; set; }
     public WashingMachine WashingMachine { get; set; }
     public Calendar Calendar { get; set; }
 
@@ -10,6 +10,7 @@ public class Manager : User
     public override string ManagerID { get; set; }
     public Manager() : base()
     {
+        WashAblesCollectionTypes = new();
         WashingMachine = new();
         Calendar = new();
         ManagerID = "";
@@ -18,6 +19,7 @@ public class Manager : User
     {
         ManagerID = "";
         Calendar = new();
+        WashAblesCollectionTypes = new();
         WashingMachine = washingMachine;
         ActionPermissions = ActionPermission.a | ActionPermission.b;
     }
@@ -26,6 +28,7 @@ public class Manager : User
         ManagerID = "";
         Calendar = calendar;
         WashingMachine = washingMachine;
+        WashAblesCollectionTypes = new();
         ActionPermissions = ActionPermission.a | ActionPermission.b ; 
     }
 

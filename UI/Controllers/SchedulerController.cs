@@ -27,11 +27,11 @@ namespace UI.Controllers
 
         // GET api/<SchedulerController>/5
         [HttpGet("{id}")]
-        public  List<WashAbleDTO> Get(string id)
+        public Dictionary<string, List<WashAbleDTO>> Get(string id)
         {
             ManagerDTO m =  _managerService.GetObject(id).Result;
             SchedulerService s = new();
-            return s.AllWashAbles(m);
+            return s.Scheduler(m);
 
         }
     
