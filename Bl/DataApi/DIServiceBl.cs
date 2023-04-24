@@ -9,6 +9,7 @@ public static class DIServiceBl
 {
     public static IServiceCollection AddTestBl(this IServiceCollection services, IConfiguration configuration)
     {
+
         services.AddSingleton<IUserService, UserService>();
         services.AddSingleton<IManagerService, ManagerService>();
         services.AddSingleton<ILaundryService, LaundryService>();

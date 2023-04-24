@@ -4,11 +4,11 @@ namespace Dal.DataExtensions;
 public enum Category
 {
     daily,
-    delicate,
     festive,
-    individual,
-    normal,
+    superFestive,
     towel,
-   
+    general,
+    pajamas,
+
 }
 

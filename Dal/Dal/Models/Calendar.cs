@@ -1,5 +1,5 @@
 ﻿
-namespace Dal.Models;
+/*namespace Dal.Models;
 
 public class Calendar 
 {
@@ -8,6 +8,6 @@ public class Calendar
     {
         Machines = new List<Dictionary<DateTime, List<WashAble>>>();
     }
-}
+}*/
 
 

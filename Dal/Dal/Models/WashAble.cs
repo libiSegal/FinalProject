@@ -15,6 +15,9 @@ public class WashAble : IDataBaseObject
     public Status Status { get; set; }
     [BsonRepresentation(BsonType.String)]
     public NecessityLevel NecessityLevel { get; set; }
+
+    [BsonRepresentation(BsonType.String)]
+    public Category Category { get; set; }
     public int MaxDeg { get; set; }
     public int MinDeg { get; set; }
     public int MaxSqueezing { get; set; }
@@ -29,19 +32,20 @@ public class WashAble : IDataBaseObject
         CollectionType = "";
     }
 
-    public WashAble(string name,string userId,  Status status ,NecessityLevel necessityLevel, int maxDeg, int maxSqueezing , string collectionType)
+    public WashAble(string name,string userId,  Status status ,NecessityLevel necessityLevel, Category category, int maxDeg, int maxSqueezing , string collectionType)
     {
         ID = "";
         Name = name;
         UserID = userId;
         Status = status;
         NecessityLevel = necessityLevel;
+        Category = category;
         MaxDeg = maxDeg;
         MaxSqueezing = maxSqueezing;
         CollectionType = collectionType;
     }
-    public WashAble( string name, string userId,  Status status ,NecessityLevel necessityLevel,  int maxDeg,  int maxSqueezing,int minDeg, int minSqueezing , string collectionType):
-        this(name,userId, status,necessityLevel,  maxDeg, maxSqueezing , collectionType)
+    public WashAble( string name, string userId,  Status status ,NecessityLevel necessityLevel, Category category, int maxDeg,  int maxSqueezing,int minDeg, int minSqueezing , string collectionType):
+        this(name,userId, status,necessityLevel, category,  maxDeg, maxSqueezing , collectionType)
     {     
         MinDeg = minDeg;
         MinSqueezing = minSqueezing;

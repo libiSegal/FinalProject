@@ -9,8 +9,10 @@ public class WashAblesCollection
 
     public WashAblesCollection(string type)
     {
+        int size = Enum.GetNames(typeof(NecessityLevel)).Length;
         Type = type;
-        WashAblesSortedByNecessary = new List<WashAbleDTO>[3] {new List<WashAbleDTO>(), new List<WashAbleDTO>(), new List<WashAbleDTO>()};
+        WashAblesSortedByNecessary = new List<WashAbleDTO>[size];
+        WashAblesSortedByNecessary = Enumerable.Range(0, size).Select((i) => new List<WashAbleDTO>()).ToArray();
     }
  
 
@@ -18,14 +20,9 @@ public class WashAblesCollection
 
     public void AddWashableToCollection(WashAbleDTO washAbleDTO) => WashAblesSortedByNecessary[(int)washAbleDTO.NecessityLevel].Add(washAbleDTO);
 
-/*    {
-       int index = (int)washAbleDTO.NecessityLevel;
-        if (WashAblesSortedByNecessary[index] == null)
-        {
-            WashAblesSortedByNecessary[index] = new();
-        }
-        
-    }*/
+ 
+
+
 
 }
 

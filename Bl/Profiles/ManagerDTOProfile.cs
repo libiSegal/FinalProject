@@ -7,7 +7,7 @@ public class ManagerDTOProfile : Profile
     {
         CreateMap<ManagerDTO, Manager>();  
         CreateMap<UserDTO, User>();
-        CreateMap<CalendarDTO, Calendar>().ReverseMap();
+    //    CreateMap<CalendarDTO, Calendar>().ReverseMap();
         CreateMap<WashingMachineDTO, WashingMachine>().ReverseMap();
 
 

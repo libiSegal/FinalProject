@@ -9,6 +9,7 @@ public class WashAbleDTO : IDataObject
     public string  CollectionType { get; set; }
     public Status Status { get; set; }
     public NecessityLevel NecessityLevel { get; set; }
+    public Category Category { get; set; }
     public int MaxDeg { get; set; }
     public int MinDeg { get; set; }
     public int MaxSqueezing { get; set; }
@@ -29,27 +30,28 @@ public class WashAbleDTO : IDataObject
     {
        NecessityLevel = necessityLevel;
     }
-    public WashAbleDTO(string name, string userId,  Status status,NecessityLevel necessityLevel, int maxDeg, int maxSqueezing, string collectionType)
+    public WashAbleDTO(string name, string userId,  Status status,NecessityLevel necessityLevel, Category category, int maxDeg, int maxSqueezing, string collectionType)
     {
         ID = "";
         Name = name;
         UserId = userId;
         Status = status;
         NecessityLevel = necessityLevel;
+        Category = category;
         MaxDeg = maxDeg;
         MaxSqueezing = maxSqueezing;
         PrevWash = new();
         CollectionType = collectionType;
     }
-    public WashAbleDTO(string name, string userId,  Status status, NecessityLevel necessityLevel,  int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) 
-        :this(name, userId, status,necessityLevel, maxDeg, maxSqueezing, collectionType)
+    public WashAbleDTO(string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) 
+        :this(name, userId, status,necessityLevel, category, maxDeg, maxSqueezing, collectionType)
     {
         MinDeg = minDeg;
         MinSqueezing = minSqueezing;
     }
 
-    public WashAbleDTO(string id,string name, string userId,  Status status, NecessityLevel necessityLevel,  int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) :
-        this(name, userId,status,necessityLevel,  maxDeg, maxSqueezing, collectionType)
+    public WashAbleDTO(string id,string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) :
+        this(name, userId,status,necessityLevel, category,  maxDeg, maxSqueezing, collectionType)
     {
         ID = id;
         MinDeg = minDeg;
