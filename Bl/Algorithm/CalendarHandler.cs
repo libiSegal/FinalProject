@@ -16,16 +16,22 @@ namespace Bl.Algorithm
 
         public Dictionary<WashAbleDTO, DateTime> GetNecessaryWasAbles(Dictionary<DateTime, Dictionary<string, List<Category>>> calendar, List<WashAbleDTO> allWashAbles)
         {
-            calendar = DatesLessThan24Hours(calendar);
-            Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> superCalendar = FindWashAbleToWash(calendar, allWashAbles);
-            return FinallyDict(superCalendar);
+            Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> conciseCalendar;
+
+            calendar = GetWashAbleAcordingSoonDates(calendar);
+
+            conciseCalendar = FindWashAbleToWash(calendar, allWashAbles);
+
+            return FinallyDict(conciseCalendar);
 
         }
-        public Dictionary<DateTime, Dictionary<string, List<Category>>> DatesLessThan24Hours(Dictionary<DateTime, Dictionary<string, List<Category>>> datesDict)
+
+        public Dictionary<DateTime, Dictionary<string, List<Category>>> GetWashAbleAcordingSoonDates(Dictionary<DateTime, Dictionary<string, List<Category>>> datesDict)
 
              => datesDict.Where(k => (k.Key - DateTime.Now).TotalHours < 24 && (k.Key - DateTime.Now).TotalHours >= 0).ToDictionary(k => k.Key, v => v.Value);
 
-        public Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> FindWashAbleToWash(Dictionary<DateTime, Dictionary<string, List<Category>>> specificDateDict, List<WashAbleDTO> allWashAbles)
+        public Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> FindWashAbleToWash(Dictionary<DateTime, Dictionary<string, List<Category>>> specificDateDict,List<WashAbleDTO> allWashAbles)
+            
         {
             Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> usersWithWashAble = new();
 
