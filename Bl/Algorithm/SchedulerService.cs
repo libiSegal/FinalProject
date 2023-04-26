@@ -4,20 +4,25 @@ using System.Diagnostics;
 
 namespace Bl.Algorithm;
 
-public static class SchedulerService
+public class SchedulerService : ISchedulerService
 {
-    public static List<WashAblesCollection> ListOfWashablesCollections { get; set; } = new();
-
-
-    public static Dictionary<string, List<WashAbleDTO>> Scheduler(ManagerDTO manager)
+    public List<WashAblesCollection> ListOfWashablesCollections { get; set; } = new();
+    ICalendarHandler _calendarHandler;
+    public SchedulerService(ICalendarHandler calendarHandler)
+    {
+        _calendarHandler = calendarHandler;
+    }
+    public Dictionary<string, List<WashAbleDTO>> Scheduler(ManagerDTO manager)
     {
         List<WashAbleDTO> allWashAbles = AllWashAbles(manager.Items, manager.UsersDTO);
+        Dictionary<WashAbleDTO, DateTime> necessaryWashAbles = _calendarHandler.GetNecessaryWasAbles(manager.Calendar, allWashAbles);
+        //allWashAbles = AllWashAbles(manager.Items, manager.UsersDTO);
 
         allWashAbles = GetDirtyWashables(allWashAbles);
 
         SortToCollections(allWashAbles);
 
-        WeightingCollection();
+        WeightingCollection(necessaryWashAbles);
 
         SortByTotalPointsWeight();
 
@@ -25,7 +30,7 @@ public static class SchedulerService
     }
 
     //return a list of all washables 
-    public static List<WashAbleDTO> AllWashAbles(List<WashAbleDTO> managerItems, List<UserDTO> users)
+    public List<WashAbleDTO> AllWashAbles(List<WashAbleDTO> managerItems, List<UserDTO> users)
     {
         List<WashAbleDTO> allWashAbles = managerItems;
         allWashAbles.AddRange(users.SelectMany(lst => lst.Items.Select(w => w)).ToList());
@@ -33,10 +38,10 @@ public static class SchedulerService
     }
 
     //sort to clean and dirty
-    public static List<WashAbleDTO> GetDirtyWashables(List<WashAbleDTO> allWashAbles) => allWashAbles.FindAll(w => w.Status == Status.dirty);
+    public List<WashAbleDTO> GetDirtyWashables(List<WashAbleDTO> allWashAbles) => allWashAbles.FindAll(w => w.Status == Status.dirty);
 
     //sort to collections 
-    public static void SortToCollections(List<WashAbleDTO> dirtyWashabels)
+    public void SortToCollections(List<WashAbleDTO> dirtyWashabels)
     {
         Dictionary<string, WashAblesCollection> dictionaryCollectionsTypes = new();
         dirtyWashabels.ForEach(item =>
@@ -47,13 +52,14 @@ public static class SchedulerService
             }
             dictionaryCollectionsTypes[item.CollectionType].AddWashableToCollection(item);
         });
-        ListOfWashablesCollections =  dictionaryCollectionsTypes.Values.ToList();
+        ListOfWashablesCollections = dictionaryCollectionsTypes.Values.ToList();
 
     }
 
     //calculte the weight for each collection;
-    public static void WeightingCollection()
+    public void WeightingCollection(Dictionary<WashAbleDTO, DateTime> necessaryDatesDict)
     {
+        //Dictionary<WashAbleDTO, DateTime> necessaryDatesDict = new();
         double criticalPoints = 0, necessaryPoints = 0, standardPoints = 0, totalPoints = 0;
         double criticalPercent = 0, necesseryPercent = 0, standardPercent = 0;
 
@@ -67,25 +73,35 @@ public static class SchedulerService
 
         totalPoints += criticalPoints + necessaryPoints + standardPoints;
 
-        criticalPercent = (criticalPoints / totalPoints) * 100;  
+        criticalPercent = (criticalPoints / totalPoints) * 100;
         necesseryPercent = (necessaryPoints / totalPoints) * 100;
         standardPercent = (standardPoints / totalPoints) * 100;
         int i = 0;
         ListOfWashablesCollections.ForEach(collation =>
         {
-       
-            collation.TotalPointsWeight = Math.Pow(collation.WashAblesSortedByNecessary[(int)NecessityLevel.critical].Count * (100 - criticalPercent) , 2) +
-            collation.WashAblesSortedByNecessary[(int)NecessityLevel.necessary].Count * (100 - necessaryPoints) +
+
+            collation.TotalPointsWeight = Math.Pow(collation.WashAblesSortedByNecessary[(int)NecessityLevel.critical].Count * (100 - criticalPercent), 2) +
+            CalculateNacessaryPoints(collation.WashAblesSortedByNecessary[(int)NecessityLevel.necessary], necessaryDatesDict) +
             collation.WashAblesSortedByNecessary[(int)NecessityLevel.standard].Count * (100 - standardPoints);
         });
 
     }
-    public static void SortByTotalPointsWeight()
+
+    public double CalculateNacessaryPoints(List<WashAbleDTO> necessaryList, Dictionary<WashAbleDTO, DateTime> necessaryDatesDict)
     {
-        ListOfWashablesCollections.Sort((first ,second) => first.TotalPointsWeight.CompareTo(second.TotalPointsWeight));
+        double points = 0;
+        necessaryList.ForEach(washAble =>
+        {
+            points += (24 - (necessaryDatesDict[washAble] - DateTime.Now).TotalHours) * 0.1 + 1;
+        });
+        return points;
+    }
+    public void SortByTotalPointsWeight()
+    {
+        ListOfWashablesCollections.Sort((first, second) => first.TotalPointsWeight.CompareTo(second.TotalPointsWeight));
     }
 
-    public static Dictionary<string , List<WashAbleDTO>> FlatWashablesCollections()
+    public Dictionary<string, List<WashAbleDTO>> FlatWashablesCollections()
     {
         Dictionary<string, List<WashAbleDTO>> result = new();
         ListOfWashablesCollections.ForEach(collection => result.Add(collection.Type, collection.GetWashAblesSortedByNecessary()));

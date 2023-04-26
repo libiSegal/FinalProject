@@ -14,9 +14,12 @@ namespace UI.Controllers
     public class SchedulerController : ControllerBase
     {
         private readonly IManagerService _managerService;
-        public SchedulerController(IManagerService managerService)
+        private readonly ISchedulerService _schedulerService;
+        public SchedulerController(IManagerService managerService , ISchedulerService schedulerService)
         {
             _managerService = managerService;
+            _schedulerService = schedulerService;
+
         }
         // GET: api/<SchedulerController>
         [HttpGet]
@@ -27,7 +30,7 @@ namespace UI.Controllers
 
         // GET api/<SchedulerController>/5
         [HttpGet("{id}")]
-        public Dictionary<DateTime, Dictionary<string, Category>> Get(string id)
+        public Dictionary<string, List<WashAbleDTO>> Get(string id)
         {
             Dictionary<DateTime, Dictionary<string, Category>> datesDict = new Dictionary<DateTime, Dictionary<string, Category>>()
          {
@@ -36,9 +39,12 @@ namespace UI.Controllers
              {new DateTime(2023,04,26,20,50,0) , new Dictionary<string, Category>(){ {"a", Category.daily }  } },
              {new DateTime(2023,04,24,22,2,0) , new Dictionary<string, Category>(){ {"a", Category.daily }  } }
          };
-           // ManagerDTO m =  _managerService.GetObject(id).Result;
-            CalendarHandler s = new();
-            return s.DatesLessThan24Hours(datesDict);
+           
+          ManagerDTO m =  _managerService.GetObject(id).Result;
+          return  _schedulerService.Scheduler(m);
+
+          /*  CalendarHandler s = new();
+            return s.DatesLessThan24Hours(datesDict);*/
 
         }
     

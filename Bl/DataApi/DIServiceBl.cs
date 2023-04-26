@@ -2,6 +2,7 @@
 using BL.DataImplementation.ServiceClasses;
 using MongoDB.Driver.Core.Connections;
 using Microsoft.Extensions.Configuration;
+using Bl.Algorithm;
 
 namespace Bl.DataApi;
 
@@ -14,6 +15,8 @@ public static class DIServiceBl
         services.AddSingleton<IManagerService, ManagerService>();
         services.AddSingleton<ILaundryService, LaundryService>();
         services.AddSingleton<IWashAbleService, WashAbleService>();
+        services.AddSingleton<ICalendarHandler, CalendarHandler>();
+        services.AddSingleton<ISchedulerService, SchedulerService>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.AddTestDal(configuration);
         return services;

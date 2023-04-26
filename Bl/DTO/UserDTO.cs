@@ -9,6 +9,7 @@ public class UserDTO : IDataObject
     public string Name { get; set; }
     public string Password { get; set; }
     public List<WashAbleDTO> Items { get; set; }
+   
     public ActionPermission ActionPermissions { get; set; }
  
     public UserDTO()

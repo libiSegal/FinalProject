@@ -10,7 +10,6 @@ public class User : IDataBaseObject
     public string Name { get; set; }
     public string Password { get; set; }
 
-
     [BsonRepresentation(BsonType.String)]
     public ActionPermission ActionPermissions { get; set; }
    public User() 
