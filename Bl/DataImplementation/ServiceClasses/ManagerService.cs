@@ -119,7 +119,7 @@ public class ManagerService : IManagerService
             managerDTO.Calendar = new() {
 
                 {
-                    new DateTime(2023, 4, 26, 18, 1, 1),
+                    new DateTime(2023, 5, 01, 18, 1, 1),
                     new Dictionary<string, List<Category>>()
                     {
 

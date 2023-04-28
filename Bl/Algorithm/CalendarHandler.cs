@@ -14,32 +14,31 @@ namespace Bl.Algorithm
             _washAbleService = washAbleService;
         }
 
-        public Dictionary<WashAbleDTO, DateTime> GetNecessaryWasAbles(Dictionary<DateTime, Dictionary<string, List<Category>>> calendar, List<WashAbleDTO> allWashAbles)
+        public Dictionary<WashAbleDTO, DateTime> GetNecessaryWasAbles(Dictionary<DateTime, Dictionary<string, List<Category>>> calendar, int spareDays,
+            List<WashAbleDTO> cleanWashAbles, List<WashAbleDTO> dirtyWashAbles)
         {
             Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> conciseCalendar;
 
-            calendar = GetWashAbleAcordingSoonDates(calendar);
+            calendar = GetWashAbleAcordingSoonDates(calendar, spareDays);
 
-            conciseCalendar = FindWashAbleToWash(calendar, allWashAbles);
+            conciseCalendar = FindWashAbleForUserAccordingCategory(calendar, cleanWashAbles, dirtyWashAbles);
 
-            return FinallyDict(conciseCalendar);
+            return simplifiedDictionary(conciseCalendar);
 
         }
 
-        public Dictionary<DateTime, Dictionary<string, List<Category>>> GetWashAbleAcordingSoonDates(Dictionary<DateTime, Dictionary<string, List<Category>>> datesDict)
+        private Dictionary<DateTime, Dictionary<string, List<Category>>> GetWashAbleAcordingSoonDates(Dictionary<DateTime, Dictionary<string, List<Category>>> datesDict, int spareDays)
 
-             => datesDict.Where(k => (k.Key - DateTime.Now).TotalHours < 24 && (k.Key - DateTime.Now).TotalHours >= 0).ToDictionary(k => k.Key, v => v.Value);
+             => datesDict.Where(k => (k.Key - DateTime.Now).TotalHours < (spareDays * 24) && (k.Key - DateTime.Now).TotalHours >= 0).ToDictionary(k => k.Key, v => v.Value);
 
-        public Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> FindWashAbleToWash(Dictionary<DateTime, Dictionary<string, List<Category>>> specificDateDict,List<WashAbleDTO> allWashAbles)
-            
+        private Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> FindWashAbleForUserAccordingCategory(Dictionary<DateTime,
+            Dictionary<string, List<Category>>> specificDateDict, List<WashAbleDTO> cleanWashAbles, List<WashAbleDTO> dirtyWashAbles)
+
         {
             Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> usersWithWashAble = new();
-
-            List<WashAbleDTO> cleanWashAbles = GetCleanWashables(allWashAbles);
-            List<WashAbleDTO> dirtyWashAbles = GetDirtyWashables(allWashAbles);
             specificDateDict.ToList().ForEach(dict =>
             {
-                usersWithWashAble.Add(dict.Key, new Dictionary<string, List<WashAbleDTO>>()); 
+                usersWithWashAble.Add(dict.Key, new Dictionary<string, List<WashAbleDTO>>());
                 dict.Value.ToList().ForEach(user =>
                 {
                     usersWithWashAble[dict.Key]
@@ -48,11 +47,10 @@ namespace Bl.Algorithm
             });
             return usersWithWashAble;
         }
-        public List<WashAbleDTO> ChangeCategoriesToWashAbles(KeyValuePair<string, List<Category>> userDict, List<WashAbleDTO> cleanWashAbles, List<WashAbleDTO> dirtyWashAbles)
+        private List<WashAbleDTO> ChangeCategoriesToWashAbles(KeyValuePair<string, List<Category>> userDict, List<WashAbleDTO> cleanWashAbles, List<WashAbleDTO> dirtyWashAbles)
         {
-
             List<WashAbleDTO> necessaryWashAble = new();
-            userDict.Value.ForEach(category => 
+            userDict.Value.ForEach(category =>
             {
                 if (!ExistsInClean(userDict.Key, category, cleanWashAbles))
                 {
@@ -62,7 +60,25 @@ namespace Bl.Algorithm
             });
             return necessaryWashAble;
         }
-        public Dictionary<WashAbleDTO, DateTime> FinallyDict(Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> usersWithWashAble)
+
+
+        private bool ExistsInClean(string userID, Category category, List<WashAbleDTO> cleanWashAbles)
+            => cleanWashAbles.Find(w => w.UserId == userID && w.Category == category) != null;
+
+        public async Task<WashAbleDTO> NecessaryWashAble(string userID, Category category, List<WashAbleDTO> dirtyWashAbles)
+        {
+            WashAbleDTO? washAble = dirtyWashAbles.Find(w => w.UserId == userID && w.Category == category);
+            if (washAble != null && (washAble.NecessityLevel != NecessityLevel.necessary || washAble.NecessityLevel != NecessityLevel.critical))
+            {
+                washAble.NecessityLevel = NecessityLevel.necessary;
+                await _washAbleService.UpdateObject(washAble);
+                return washAble;
+            }
+            else 
+                throw new Exception("There is not exists a washable with this user and category");
+
+        }
+        private Dictionary<WashAbleDTO, DateTime> simplifiedDictionary(Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> usersWithWashAble)
         {
             Dictionary<WashAbleDTO, DateTime> finallyDict = new Dictionary<WashAbleDTO, DateTime>();
             usersWithWashAble.ToList().ForEach(dict =>
@@ -74,23 +90,5 @@ namespace Bl.Algorithm
             });
             return finallyDict;
         }
-        public List<WashAbleDTO> GetCleanWashables(List<WashAbleDTO> allWashAbles) => allWashAbles.FindAll(w => w.Status == Status.clean);
-        public List<WashAbleDTO> GetDirtyWashables(List<WashAbleDTO> allWashAbles) => allWashAbles.FindAll(w => w.Status == Status.dirty);
-        public bool ExistsInClean(string userID, Category category, List<WashAbleDTO> cleanWashAbles)
-            => cleanWashAbles.Find(w => w.UserId == userID && w.Category == category) != null;
-
-        public async Task<WashAbleDTO> NecessaryWashAble(string userID, Category category, List<WashAbleDTO> dirtyWashAbles)
-        {
-            WashAbleDTO washAble = dirtyWashAbles.First(w => w.UserId == userID && w.Category == category);
-            if (washAble != null && (washAble.NecessityLevel != NecessityLevel.necessary || washAble.NecessityLevel != NecessityLevel.critical))
-            {
-                washAble.NecessityLevel = NecessityLevel.necessary;
-                await _washAbleService.UpdateObject(washAble);
-                return washAble;
-            }
-            else throw new Exception("There is not exists a washable with this condition");
-
-        }
-
     }
 }

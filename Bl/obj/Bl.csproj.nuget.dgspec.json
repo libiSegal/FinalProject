@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\Bl.csproj": {}
+    "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\Bl.csproj": {
+    "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\Bl.csproj",
+        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj",
         "projectName": "Bl",
-        "projectPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\Bl.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Bl\\obj\\",
+        "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj",
+        "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\צוקרמן אסתר\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,15 +27,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj"
+              "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
+                "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj"
               }
             }
           }
@@ -72,8 +72,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -82,24 +81,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
+    "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
+        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
         "projectName": "Dal",
-        "projectPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\FinalProject\\Dal\\Dal\\obj\\",
+        "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
+        "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\צוקרמן אסתר\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -108,7 +108,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -158,8 +157,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -168,7 +166,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
