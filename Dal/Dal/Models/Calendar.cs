@@ -1,13 +1,16 @@
 ﻿
-/*namespace Dal.Models;
-
+namespace Dal.Models;
 public class Calendar 
 {
-    public List<Dictionary<DateTime , List<WashAble>>> Machines { get; set; }
+    public Dictionary<DateTime, Dictionary<string, List<Category>>> WashAbleCalendar { get; set; }
     public Calendar()
     {
-        Machines = new List<Dictionary<DateTime, List<WashAble>>>();
+        WashAbleCalendar = new();
     }
-}*/
+    public Calendar(Dictionary<DateTime, Dictionary<string, List<Category>>> calendar)
+    {
+        WashAbleCalendar = calendar;
+    }
+}
 
 

@@ -1,8 +1,4 @@
 ﻿
-
-
-
-
 namespace BL.DataImplementation.ServiceClasses;
 
 public class LaundryService : ILaundryService

@@ -6,7 +6,7 @@ public class ManagerDTO : UserDTO
 
     public List<UserDTO> UsersDTO { get; set; }
     public List<LaundryDTO> LaundriesDTO { get; set; }
-    public Dictionary<DateTime, Dictionary<string, List<Category>>> Calendar { get; set; }
+    public CalendarDTO Calendar { get; set; }
     public WashingMachineDTO WashingMachineDTO { get; set; }
     public int SpairDays { get; set; }
     public List<string> WashAblesCollectionTypes { get; set; }
@@ -29,12 +29,12 @@ public class ManagerDTO : UserDTO
         WashAblesCollectionTypes = new();
         Calendar = new();
     }
-    public ManagerDTO(string name, string password, WashingMachineDTO washingMachine, Dictionary<DateTime, Dictionary<string, List<Category>>> calendar, int spareDays = 1) : this(name, password, washingMachine)
+    public ManagerDTO(string name, string password, WashingMachineDTO washingMachine, CalendarDTO calendar, int spareDays = 1) : this(name, password, washingMachine)
     { 
         Calendar = calendar;
         SpairDays = spareDays;
     }
-    public ManagerDTO(string name, string password, WashingMachineDTO washingMachine, Dictionary<DateTime, Dictionary<string,List<Category>>> calendar, int spareDays, List<UserDTO> users, List<LaundryDTO> laundries) : this(name, password, washingMachine, calendar, spareDays)
+    public ManagerDTO(string name, string password, WashingMachineDTO washingMachine, CalendarDTO calendar, int spareDays, List<UserDTO> users, List<LaundryDTO> laundries) : this(name, password, washingMachine, calendar, spareDays)
     {
         UsersDTO = users;
         LaundriesDTO = laundries;  

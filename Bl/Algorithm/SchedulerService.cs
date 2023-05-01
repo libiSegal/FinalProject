@@ -7,11 +7,11 @@ namespace Bl.Algorithm;
 public class SchedulerService : ISchedulerService
 {
     private List<WashAblesCollection> _listOfWashablesCollections { get; set; } = new();
-    ICalendarHandler _calendarHandler;
+    private readonly ICalendarService _calendarService;
     const int AllPrecent = 100;
-    public SchedulerService(ICalendarHandler calendarHandler)
+    public SchedulerService(ICalendarService calendarService)
     {
-        _calendarHandler = calendarHandler;
+       _calendarService = calendarService;
     }
     public Dictionary<string, List<WashAbleDTO>> Scheduler(ManagerDTO manager)
     {
@@ -19,7 +19,7 @@ public class SchedulerService : ISchedulerService
         List<WashAbleDTO> dirtyWashAbles = GetDirtyWashables(allWashAbles);
         List<WashAbleDTO> cleanWashAbles = GetCleanWashables(allWashAbles);
 
-        Dictionary<WashAbleDTO, DateTime> necessaryWashAbles = _calendarHandler.GetNecessaryWasAbles(manager.Calendar, 1, cleanWashAbles, dirtyWashAbles);
+        Dictionary<WashAbleDTO, DateTime> necessaryWashAbles = _calendarService.GetNecessaryWasAbles(manager.Calendar, cleanWashAbles, dirtyWashAbles);
 
         SortToCollections(dirtyWashAbles);
 
@@ -79,19 +79,29 @@ public class SchedulerService : ISchedulerService
         standardPercent = (standardPoints / totalPoints) * AllPrecent;
         _listOfWashablesCollections.ForEach(collation =>
         {
-            collation.TotalPointsWeight = Math.Pow(collation.WashAblesSortedByNecessary[(int)NecessityLevel.critical].Count * (AllPrecent - criticalPercent), 2) +
-            CalculateNacessaryPoints(collation.WashAblesSortedByNecessary[(int)NecessityLevel.necessary], necessaryDatesDict) +
-            collation.WashAblesSortedByNecessary[(int)NecessityLevel.standard].Count * (AllPrecent - standardPoints);
+            collation.TotalPointsWeight = Math.Pow(collation.WashAblesSortedByNecessary[(int)NecessityLevel.critical].Count * (AllPrecent - criticalPercent), 2.5) +
+            Math.Pow(CalculateNacessaryPoints(collation.WashAblesSortedByNecessary[(int)NecessityLevel.necessary], necessaryDatesDict), 2)+
+            CalculateStandardPoints(collation.WashAblesSortedByNecessary[(int)NecessityLevel.standard]);
         });
     }
     //calculte the necessary weightPoints for each collection;
     private double CalculateNacessaryPoints(List<WashAbleDTO> necessaryList, Dictionary<WashAbleDTO, DateTime> necessaryDatesDict)
     {
-        const double PercentagesMultiply = 0.1 ;
+        int oneDay = 24;
         double points = 0;
         necessaryList.ForEach(washAble =>
         {
-            points += (24 - (necessaryDatesDict[washAble] - DateTime.Now).TotalHours) * PercentagesMultiply + 1 ;
+            points += (oneDay - (necessaryDatesDict[washAble] - DateTime.Now).TotalHours);
+        });
+        return points;
+    }
+    private double CalculateStandardPoints(List<WashAbleDTO> standardList)
+    {
+        double relativePercent = 0.01;
+        double points = standardList.Count;
+        standardList.ForEach(washAble =>
+        {
+            points += (DateTime.Now - washAble.EnteryDate).TotalHours * relativePercent;
         });
         return points;
     }
@@ -106,5 +116,4 @@ public class SchedulerService : ISchedulerService
         _listOfWashablesCollections.ForEach(collection => result.Add(collection.Type, collection.GetWashAblesSortedByNecessary()));
         return result;
     }
-
 }

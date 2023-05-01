@@ -11,5 +11,6 @@ global using Dal.DataApi;
 global using Microsoft.Extensions.DependencyInjection;
 global using BL.DataImplementation.ServiceInterfaces;
 global using BL.DTO;
+global using Bl.DataImplementation.ServiceInterfaces;
 
 

@@ -6,9 +6,8 @@ public class Manager : User
 {
     public List<string> WashAblesCollectionTypes { get; set; }
     public WashingMachine WashingMachine { get; set; }
-     //[]
     [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
-    public Dictionary<DateTime, Dictionary<string, List<Category>>> Calendar { get; set; }
+    public Calendar Calendar { get; set; }
 
     [BsonIgnore]
     public override string ManagerID { get; set; }
@@ -27,7 +26,7 @@ public class Manager : User
         ActionPermissions = ActionPermission.a | ActionPermission.b;
         Calendar = new();
     }
-    public Manager(string name, string password, WashingMachine washingMachine, Dictionary<DateTime ,Dictionary<string, List<Category>>> calendar) : this(name, password, washingMachine)
+    public Manager(string name, string password, WashingMachine washingMachine, Calendar calendar) : this(name, password, washingMachine)
     {
         Calendar = calendar;    
     }
