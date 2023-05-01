@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\UI\\UI.csproj": {}
+    "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\UI\\UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj": {
+    "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Bl\\Bl.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj",
+        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Bl\\Bl.csproj",
         "projectName": "Bl",
-        "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj",
+        "projectPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Bl\\Bl.csproj",
         "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\obj\\",
+        "outputPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Bl\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -33,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
-                "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj"
+              "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
+                "projectPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj"
               }
             }
           }
@@ -85,14 +85,14 @@
         }
       }
     },
-    "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
+    "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
+        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
         "projectName": "Dal",
-        "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
+        "projectPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
         "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\obj\\",
+        "outputPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -170,14 +170,14 @@
         }
       }
     },
-    "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\UI\\UI.csproj": {
+    "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\UI\\UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\UI\\UI.csproj",
+        "projectUniqueName": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\UI\\UI.csproj",
         "projectName": "UI",
-        "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\UI\\UI.csproj",
+        "projectPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\UI\\UI.csproj",
         "packagesPath": "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\UI\\obj\\",
+        "outputPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -199,8 +199,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj": {
-                "projectPath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Bl\\Bl.csproj"
+              "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Bl\\Bl.csproj": {
+                "projectPath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Bl\\Bl.csproj"
               }
             }
           }

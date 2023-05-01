@@ -70,9 +70,7 @@ public class WashAbleDTO : IDataObject
         return ID.Equals(w.ID) && Name.Equals(w.Name) && UserId.Equals(w.UserId) && Status.Equals(w.Status)
             && MaxDeg == w.MaxDeg && MaxSqueezing == w.MaxSqueezing && MinDeg == w.MinDeg && MinSqueezing == w.MinSqueezing
             && PrevWash.SequenceEqual(w.PrevWash);
-
     }
-
     public override int GetHashCode()
     {
         return MaxSqueezing ^ MaxDeg;

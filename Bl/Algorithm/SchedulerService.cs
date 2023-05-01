@@ -62,25 +62,24 @@ public class SchedulerService : ISchedulerService
     {
         
         double criticalPoints = 0, necessaryPoints = 0, standardPoints = 0, totalPoints = 0;
-        double criticalPercent = 0, necesseryPercent = 0, standardPercent = 0;
+        double criticalPercent = 0; //, necesseryPercent = 0, standardPercent = 0;
 
         _listOfWashablesCollections.ForEach(collation =>
         {
             criticalPoints += collation.WashAblesSortedByNecessary[(int)NecessityLevel.critical].Count;
             necessaryPoints += collation.WashAblesSortedByNecessary[(int)NecessityLevel.necessary].Count;
             standardPoints += collation.WashAblesSortedByNecessary[(int)NecessityLevel.standard].Count;
-
         });
 
         totalPoints += criticalPoints + necessaryPoints + standardPoints;
 
         criticalPercent = (criticalPoints / totalPoints) * AllPrecent;
-        necesseryPercent = (necessaryPoints / totalPoints) * AllPrecent;
-        standardPercent = (standardPoints / totalPoints) * AllPrecent;
+       // necesseryPercent = (necessaryPoints / totalPoints) * AllPrecent;
+       // standardPercent = (standardPoints / totalPoints) * AllPrecent;
         _listOfWashablesCollections.ForEach(collation =>
         {
-            collation.TotalPointsWeight = Math.Pow(collation.WashAblesSortedByNecessary[(int)NecessityLevel.critical].Count * (AllPrecent - criticalPercent), 2.5) +
-            Math.Pow(CalculateNacessaryPoints(collation.WashAblesSortedByNecessary[(int)NecessityLevel.necessary], necessaryDatesDict), 2)+
+            collation.TotalPointsWeight = Math.Pow(collation.WashAblesSortedByNecessary[(int)NecessityLevel.critical].Count * (AllPrecent - criticalPercent), 2) +
+            CalculateNacessaryPoints(collation.WashAblesSortedByNecessary[(int)NecessityLevel.necessary], necessaryDatesDict)+
             CalculateStandardPoints(collation.WashAblesSortedByNecessary[(int)NecessityLevel.standard]);
         });
     }
@@ -95,6 +94,7 @@ public class SchedulerService : ISchedulerService
         });
         return points;
     }
+    //calculte the standard weightPoints for each collection;
     private double CalculateStandardPoints(List<WashAbleDTO> standardList)
     {
         double relativePercent = 0.01;

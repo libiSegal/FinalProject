@@ -22,29 +22,7 @@ public class ManagerService : IManagerService
         //It is necessary to make sure that mapping work
         try
         {
-            managerDTO.Calendar = new() {
 
-                {
-                    new DateTime(2023, 4, 26, 18, 1, 1),
-                    new Dictionary<string, List<Category>>()
-                    { 
-                         
-                        {"644923c1b30f8f33c91ee0fe", new List<Category>(){Category.daily, Category.daily}},
-                        {"644923f0b30f8f33c91ee0ff", new List<Category>(){Category.daily, Category.festive}},
-                    }
-
-                },
-                {
-                    new DateTime(2023, 4, 27, 18, 1, 1),
-                    new Dictionary<string, List<Category>>()
-                    {
-
-                        {"644923c1b30f8f33c91ee0fe", new List<Category>(){Category.daily, Category.daily}},
-                        {"644923f0b30f8f33c91ee0ff", new List<Category>(){Category.daily, Category.festive}},
-                    }
-
-                }
-            };
             Manager manager = MapManagerDTO_Manager(managerDTO);
             manager.WashingMachine = new(managerDTO.WashingMachineDTO.Company, managerDTO.WashingMachineDTO.Model, managerDTO.WashingMachineDTO.LaundryWeight);
             manager.ID = "";
@@ -116,29 +94,7 @@ public class ManagerService : IManagerService
     {
         try
         {
-            managerDTO.Calendar = new() {
-
-                {
-                    new DateTime(2023, 5, 01, 18, 1, 1),
-                    new Dictionary<string, List<Category>>()
-                    {
-
-                        {"644923c1b30f8f33c91ee0fe", new List<Category>(){Category.daily, Category.daily}},
-                        {"644923f0b30f8f33c91ee0ff", new List<Category>(){Category.daily, Category.festive}},
-                    }
-
-                },
-                {
-                    new DateTime(2023, 4, 28, 18, 1, 1),
-                    new Dictionary<string, List<Category>>()
-                    {
-
-                        {"644923c1b30f8f33c91ee0fe", new List<Category>(){Category.daily, Category.daily}},
-                        {"644923f0b30f8f33c91ee0ff", new List<Category>(){Category.daily, Category.festive}},
-                    }
-
-                }
-            };
+           
             Manager managerFromDB = await _managerCRUD.ReadAsync(managerDTO.ID);
             Manager managerToUpdate = MapManagerDTO_Manager(managerDTO);
             managerToUpdate.ID = managerFromDB.ID;

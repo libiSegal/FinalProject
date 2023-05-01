@@ -6,7 +6,7 @@ public class Manager : User
 {
     public List<string> WashAblesCollectionTypes { get; set; }
     public WashingMachine WashingMachine { get; set; }
-    [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+   // [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
     public Calendar Calendar { get; set; }
 
     [BsonIgnore]

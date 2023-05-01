@@ -10,7 +10,7 @@ public class ManagerDTOProfile : Profile
     //    CreateMap<CalendarDTO, Calendar>().ReverseMap();
         CreateMap<WashingMachineDTO, WashingMachine>().ReverseMap();
 
-
+        CreateMap<CalendarDTO, Calendar>().ReverseMap();
 
     }
 
