@@ -3,6 +3,7 @@ using BL.DataImplementation.ServiceInterfaces;
 using BL.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace UI.Controllers
 {
@@ -11,13 +12,16 @@ namespace UI.Controllers
     public class ManagerController : ControllerBase
     {
         private readonly IManagerService _managerService;
-        public ManagerController(IManagerService managerService)
+        private readonly ILogger<ManagerController> _logger;
+        public ManagerController(IManagerService managerService, ILogger<ManagerController> logger)
         {
             _managerService = managerService;
+            _logger = logger;
         }
         [HttpPost]
         public Task<string> CreateManager(ManagerDTO managerDTO)
         {
+          //  _logger.LogDebug("hghgjh");
             return  _managerService.CreateObject(managerDTO);
         }
         [HttpGet("{id}")]

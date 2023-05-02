@@ -41,7 +41,7 @@ public class ManagerCRUD : IManagerCRUD
         {
             if (manager == null)
             {
-                throw new ArgumentNullException($"in {nameof(CreateAsync)} function. manger did not receive details(null)");
+                throw new ArgumentNullException($"in {nameof(CreateAsync)} function. manager did not receive details(null)");
             }
 
             var createFilter = _filterBuilder.Eq("Name", manager.Name) & _filterBuilder.Eq("Password", manager.Password);

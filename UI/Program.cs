@@ -1,4 +1,6 @@
 using Bl.DataApi;
+using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,10 @@ IConfiguration config = configurationBuilder.Build();
 builder.Services.AddTestBl(config);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+string? m_exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+builder.Logging.AddFile("C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Logger.txt");
 
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();

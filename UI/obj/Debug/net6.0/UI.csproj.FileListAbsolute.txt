@@ -198,3 +198,10 @@ C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Mic
 H:\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 H:\FinalProject\UI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\obj\Debug\net6.0\refint\UI.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Extensions.Logging.File.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Sinks.Async.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Sinks.File.dll
+C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Sinks.RollingFile.dll
