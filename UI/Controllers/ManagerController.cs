@@ -19,10 +19,10 @@ namespace UI.Controllers
             _logger = logger;
         }
         [HttpPost]
-        public Task<string> CreateManager(ManagerDTO managerDTO)
+        public async Task<IActionResult> CreateManager(ManagerDTO managerDTO)
         {
           //  _logger.LogDebug("hghgjh");
-            return  _managerService.CreateObject(managerDTO);
+            return Ok(await _managerService.CreateObject(managerDTO));
         }
         [HttpGet("{id}")]
         public  Task<ManagerDTO> Get(string id)
@@ -31,20 +31,20 @@ namespace UI.Controllers
         }
 
         [HttpGet("{name}/{password}")]
-        public  Task<ManagerDTO> Get(string name, string password)
+        public  async Task<IActionResult> Get(string name, string password)
         {
-            return  _managerService.GetObject(name, password);
+            return Ok(await _managerService.GetObject(name, password));
         }
 
         [HttpDelete("{id}")]
-        public  Task<bool> Delete(string id)
+        public  async Task<IActionResult> Delete(string id)
         {
-            return  _managerService.DeleteObject(id);
+            return  Ok(await _managerService.DeleteObject(id));
         }
         [HttpPut]
-        public  Task<bool> Put(ManagerDTO managerDTO)
+        public  async Task<IActionResult> Put(ManagerDTO managerDTO)
         {
-            return  _managerService.UpdateObject(managerDTO);
+            return  Ok(await _managerService.UpdateObject(managerDTO));
         }
     }
 }

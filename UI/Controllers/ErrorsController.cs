@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 //using System.Web.Http.Results;
 //using System.Web.Http;
 namespace UI.Controllers;
@@ -30,19 +31,57 @@ public class ErrorsController : ControllerBase
     }
     [Route("/error-development")]
     [ApiExplorerSettings(IgnoreApi = true)]
-    public IActionResult DevelopmentError([FromServices] IHostEnvironment hostEnvironment)
+    public IActionResult DevelopmentError(/*[FromServices] IHostEnvironment hostEnvironment*/)
     {
         var exceptionHandlerFeature =
             HttpContext.Features.Get<IExceptionHandlerFeature>();
         _logger.LogError(exceptionHandlerFeature?.Error.ToString());
-        if(exceptionHandlerFeature?.Error is NotExistsDataObjectException)
-        {
-            return BadRequest(exceptionHandlerFeature.Error.Message);
+        //var a = new ProblemDetails();
+        if (exceptionHandlerFeature?.Error is NotExistsDataObjectException)
+        { 
+
+           // return BadRequest(exceptionHandlerFeature.Error.Message);
         }
+        var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
+        var exception = context?.Error; // Your exception
+        var code = 500; // Internal Server Error by default
+
+        if (exception is NotExistsDataObjectException) code = 400; // Not Found
+        //else if (exception is MyUnauthException) code = 401; // Unauthorized
+        //else if (exception is MyException) code = 400; // Bad Request
+
+      //  Response.StatusCode = code; // You can use HttpStatusCode enum instead
+
         return Problem(
             detail: exceptionHandlerFeature?.Error.StackTrace,
-            title: exceptionHandlerFeature?.Error.Message);
+            title: exceptionHandlerFeature?.Error.Message,
+            statusCode: exception.HResult//need to search s solution to use code without using Dal.Exceptions;!!!
+            );
+            
+        
+            
+    }
+}
+public class MyErrorResponse
+{
+    public string Type { get; set; }
+    public string Message { get; set; }
+    public string StackTrace { get; set; }
 
+    public MyErrorResponse(Exception ex)
+    {
+        Type = ex.GetType().Name;
+        Message = ex.Message;
+        StackTrace = ex.ToString();
+    }
+}
+public class HttpStatusException : Exception
+{
+    public HttpStatusCode Status { get; private set; }
+
+    public HttpStatusException(HttpStatusCode status, string msg) : base(msg)
+    {
+        Status = status;
     }
 }
 

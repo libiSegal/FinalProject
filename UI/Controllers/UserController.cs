@@ -1,6 +1,5 @@
 
-using Bl;
-using BL;
+
 using BL.DataImplementation.ServiceInterfaces;
 using BL.DTO;
 using Microsoft.AspNetCore.Mvc;
@@ -17,29 +16,29 @@ namespace Ui.Controllers
             _userService = userService;
         }
         [HttpPost]
-        public Task<string> Post(UserDTO user)
+        public async Task<IActionResult> Post(UserDTO user)
         {
-            return _userService.CreateObject(user);
+            return Ok(await _userService.CreateObject(user));
         }
         [HttpGet("{name}/{password}")]
-        public Task<UserDTO> Get(string name, string password)
+        public async Task<IActionResult> Get(string name, string password)
         {
-            return _userService.GetObject(name, password);
+            return Ok(await _userService.GetObject(name, password));
         }
         [HttpGet]
-        public Task<List<UserDTO>> GetAll(string managerId)
+        public async Task<IActionResult> GetAll(string managerId)
         {
-            return _userService.GetAll(managerId);
+            return Ok(await _userService.GetAll(managerId));
         }
         [HttpPut]
-        public Task<bool> Put([FromBody] UserDTO user)
+        public async Task<IActionResult> Put([FromBody] UserDTO user)
         {
-            return _userService.UpdateObject(user);
+            return Ok(await _userService.UpdateObject(user));
         }
         [HttpDelete("{id}")]
-        public Task<bool> Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
-            return _userService.DeleteObject(id);
+            return Ok(await _userService.DeleteObject(id));
         }
 
     }
