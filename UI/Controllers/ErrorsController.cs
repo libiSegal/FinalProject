@@ -1,7 +1,9 @@
-﻿using Dal.Exceptions;
+﻿using Bl.DataAPI;
+using Dal.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.Net;
 //using System.Web.Http.Results;
 //using System.Web.Http;
@@ -46,16 +48,17 @@ public class ErrorsController : ControllerBase
         var exception = context?.Error; // Your exception
         var code = 500; // Internal Server Error by default
 
-        if (exception is NotExistsDataObjectException) code = 400; // Not Found
+        // if (exception is NotExistsDataObjectException) code = 400; // Not Found
         //else if (exception is MyUnauthException) code = 401; // Unauthorized
         //else if (exception is MyException) code = 400; // Bad Request
 
-      //  Response.StatusCode = code; // You can use HttpStatusCode enum instead
-
+        //  Response.StatusCode = code; // You can use HttpStatusCode enum instead
+        //ServiceResponseException srex = exception.InnerException as ServiceResponseException
+        var a = exception as GlobalException;
         return Problem(
-            detail: exceptionHandlerFeature?.Error.StackTrace,
-            title: exceptionHandlerFeature?.Error.Message,
-            statusCode: exception.HResult//need to search s solution to use code without using Dal.Exceptions;!!!
+            detail: context?.Error.StackTrace,
+            title: context?.Error.Message,
+            statusCode:  a.Status// exception?.HResult//need to search s solution to use code without using Dal.Exceptions;!!!
             );
             
         

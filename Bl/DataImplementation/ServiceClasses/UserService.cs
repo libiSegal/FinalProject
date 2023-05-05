@@ -1,4 +1,6 @@
 ﻿
+using Bl.DataAPI;
+
 namespace BL.DataImplementation.ServiceClasses;
 
 public class UserService : IUserService
@@ -38,11 +40,12 @@ public class UserService : IUserService
             User user = await _userService.ReadAsync(name, password);
             return MapUser_UserDTO(user);
         }
-        catch (TimeoutException ex) { throw ex; }
+        catch(Exception ex) { throw new GlobalException(ex); }
+       /* catch (TimeoutException ex) { throw ex; }
         catch (MongoConnectionException ex) { throw ex; }
         catch (NullReferenceException ex) { throw ex; }
         catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (Exception ex) { throw new Exception(ex.Message); }*/
 
     }
     #endregion

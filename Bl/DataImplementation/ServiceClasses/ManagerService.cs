@@ -1,4 +1,6 @@
 ﻿
+using Bl.DataAPI;
+
 namespace BL.DataImplementation.ServiceClasses;
 
 public class ManagerService : IManagerService
@@ -61,12 +63,13 @@ public class ManagerService : IManagerService
             Manager manager = await _managerCRUD.ReadAsync(name, password);
             return await MapManager_ManagerDTO(manager);
         }
-        catch (TimeoutException ex) { throw ex; }
+        catch(Exception ex) { throw new GlobalException(ex);}
+        /*catch (TimeoutException ex) { throw ex; }
         catch (MongoConnectionException ex) { throw ex; }
         catch (NullReferenceException ex) { throw ex; }
         catch (NotExistsDataObjectException ex) { throw ex; }
         catch (Exception ex) { throw new Exception(ex.Message); }
-
+*/
     }
     #endregion
 
