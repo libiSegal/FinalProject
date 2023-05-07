@@ -1,6 +1,4 @@
 ﻿
-using Bl.DataAPI;
-
 namespace BL.DataImplementation.ServiceClasses;
 
 public class UserService : IUserService
@@ -23,11 +21,8 @@ public class UserService : IUserService
             user.ID = "";
             return _userService.CreateAsync(user);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (ExistsDataObjectExceotion ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
 
     }
     #endregion
@@ -40,13 +35,8 @@ public class UserService : IUserService
             User user = await _userService.ReadAsync(name, password);
             return MapUser_UserDTO(user);
         }
-        catch(Exception ex) { throw new BLException(ex); }
-       /* catch (TimeoutException ex) { throw ex; }
-        catch (MongoConnectionException ex) { throw ex; }
-        catch (NullReferenceException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }*/
-
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -58,11 +48,8 @@ public class UserService : IUserService
             User user = await _userService.ReadAsync(id);
             return MapUser_UserDTO(user);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoConnectionException ex) { throw ex; }
-        catch (NullReferenceException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
 
     }
     #endregion
@@ -75,11 +62,8 @@ public class UserService : IUserService
             _washAbleService.GetAll(id).Result.ForEach(item => _washAbleService.DeleteObject(item.ID));
             return await _userService.DeleteAsync(id);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -91,11 +75,8 @@ public class UserService : IUserService
             User user = MapUserDTO_User(userDTO);
             return await _userService.UpdateAsync(user);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -107,10 +88,8 @@ public class UserService : IUserService
             List<User> users = await _userService.ReadAllAsync(managerId);
             return users.Select(u => MapUser_UserDTO(u)).ToList();
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoConnectionException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 

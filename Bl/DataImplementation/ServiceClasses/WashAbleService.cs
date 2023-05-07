@@ -1,6 +1,5 @@
 ﻿
 namespace BL.DataImplementation.ServiceClasses;
-
 public class WashAbleService : IWashAbleService
 {
     readonly IWashAbleCRUD _washAbleCRUD;
@@ -19,11 +18,8 @@ public class WashAbleService : IWashAbleService
             washAble.ID = "";
             return _washAbleCRUD.CreateAsync(washAble);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (ExistsDataObjectExceotion ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -35,11 +31,8 @@ public class WashAbleService : IWashAbleService
             WashAble washAble = await _washAbleCRUD.ReadAsync(id);
             return MapWashAble_washAbleDTO(washAble);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoConnectionException ex) { throw ex; }
-        catch (NullReferenceException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -50,11 +43,8 @@ public class WashAbleService : IWashAbleService
         {
             return _washAbleCRUD.DeleteAsync(id);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -66,11 +56,8 @@ public class WashAbleService : IWashAbleService
             WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
             return await _washAbleCRUD.UpdateAsync(washAble);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -86,10 +73,8 @@ public class WashAbleService : IWashAbleService
           //  washAblesBl = MapWashAble_washAbleDTO()
             return washAblesBl;
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoConnectionException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 

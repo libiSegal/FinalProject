@@ -30,11 +30,8 @@ public class ManagerService : IManagerService
             manager.ID = "";
             return await _managerCRUD.CreateAsync(manager);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (ExistsDataObjectExceotion ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -46,11 +43,8 @@ public class ManagerService : IManagerService
             Manager manager = await _managerCRUD.ReadAsync(id);
             return await MapManager_ManagerDTO(manager);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoConnectionException ex) { throw ex; }
-        catch (NullReferenceException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
 
     }
     #endregion
@@ -63,11 +57,7 @@ public class ManagerService : IManagerService
             Manager manager = await _managerCRUD.ReadAsync(name, password);
             return await MapManager_ManagerDTO(manager);
         }
-        //catch(Exception ex) { throw new GlobalException(ex);}
-        catch (TimeoutException ex) { throw new BLException(ex); }
-        catch (MongoConnectionException ex) { throw new BLException(ex); }
-        catch (NullReferenceException ex) { throw new BLException(ex); }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400);}
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
         catch (Exception ex) { throw new BLException(ex); }
 
     }
@@ -84,11 +74,8 @@ public class ManagerService : IManagerService
             _laundryService.GetAll(id).Result.ForEach(laundry => _laundryService.DeleteObject(laundry.ID));
             return await _managerCRUD.DeleteAsync(id);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -103,11 +90,8 @@ public class ManagerService : IManagerService
             managerToUpdate.ID = managerFromDB.ID;
             return await _managerCRUD.UpdateAsync(managerToUpdate);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
