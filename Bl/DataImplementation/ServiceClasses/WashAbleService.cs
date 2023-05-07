@@ -1,4 +1,6 @@
 ﻿
+using Bl.DataExtensions;
+
 namespace BL.DataImplementation.ServiceClasses;
 public class WashAbleService : IWashAbleService
 {
@@ -10,10 +12,18 @@ public class WashAbleService : IWashAbleService
         _washAbleCRUD = washAbleCRUD;
     }
     #region Create function
-    public Task<string> CreateObject(WashAbleDTO washAbleDTO)
+    public  Task<string> CreateObject(WashAbleDTO washAbleDTO)
     {
         try
         {
+            if (WashAbleWeight.GetWeight(washAbleDTO.WeightType) != 0) washAbleDTO.Weight = WashAbleWeight.GetWeight(washAbleDTO.WeightType);
+            else
+            {
+                List<WashAbleDTO> allWashAbles = GetAll(washAbleDTO.UserId).Result;
+                double averageWeight = 0;
+                allWashAbles.ForEach(w => { averageWeight += w.Weight;});
+                washAbleDTO.Weight = averageWeight / allWashAbles.Count;
+            }
             WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
             washAble.ID = "";
             return _washAbleCRUD.CreateAsync(washAble);

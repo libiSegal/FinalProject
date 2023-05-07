@@ -12,7 +12,7 @@ var configurationBuilder = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 IConfiguration config = configurationBuilder.Build();
-
+//Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Production");
 builder.Services.AddTestBl(config);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

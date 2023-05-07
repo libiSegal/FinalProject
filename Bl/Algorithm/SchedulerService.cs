@@ -1,6 +1,5 @@
 ﻿
-using System.Collections;
-using System.Diagnostics;
+using System.Linq;
 
 namespace Bl.Algorithm;
 
@@ -22,6 +21,8 @@ public class SchedulerService : ISchedulerService
         Dictionary<WashAbleDTO, DateTime> necessaryWashAbles = _calendarService.GetNecessaryWasAbles(manager.Calendar, cleanWashAbles, dirtyWashAbles);
 
         SortToCollections(dirtyWashAbles);
+
+        ShareCollectionsByWeight(manager.WashingMachineDTO.LaundryWeight);
 
         WeightingCollection(necessaryWashAbles);
 
@@ -115,5 +116,33 @@ public class SchedulerService : ISchedulerService
         Dictionary<string, List<WashAbleDTO>> result = new();
         _listOfWashablesCollections.ForEach(collection => result.Add(collection.Type, collection.GetWashAblesSortedByNecessary()));
         return result;
+    }
+    private void ShareCollectionsByWeight( int washingMachineWeight)
+    {
+        for(int j = 0; j<_listOfWashablesCollections.Count; j++)
+        {
+            if(_listOfWashablesCollections[j].Weight > washingMachineWeight)
+            {
+                double currentWeight = 0;
+                int i = 0;
+                List<WashAbleDTO> washAblesList = _listOfWashablesCollections[j].GetWashAblesSortedByNecessary();
+                WashAblesCollection newCollection = new(_listOfWashablesCollections[j].Type);
+                WashAblesCollection swap = new(_listOfWashablesCollections[j].Type);
+                /*while((currentWeight + washAblesList[i].Weight) < washingMachineWeight) currentWeight += washAblesList[i++].Weight;
+                *//*{
+                    
+                    newCollection.AddWashableToCollection(washAblesList[i]);
+                }*/
+                newCollection.SetWashAblesSortedByNecessaryFromList(washAblesList.TakeWhile(w => (currentWeight += w.Weight) < washingMachineWeight).ToList());
+                _listOfWashablesCollections[j].SetWashAblesSortedByNecessaryFromList(_listOfWashablesCollections[j].
+                    GetWashAblesSortedByNecessary().Except(newCollection.GetWashAblesSortedByNecessary()).ToList());
+                // _listOfWashablesCollections.SkipWhile(w => (currentWeight += w.Weight) < washingMachineWeight);
+                swap = _listOfWashablesCollections[j];
+                _listOfWashablesCollections[j] = newCollection;
+                newCollection = swap;
+                newCollection.Type += "*";
+                _listOfWashablesCollections.Add(_listOfWashablesCollections[j]);
+            }
+        };
     }
 }

@@ -1,9 +1,8 @@
-﻿using BL;
+﻿
 using BL.DataImplementation.ServiceInterfaces;
 using BL.DTO;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+
 
 namespace UI.Controllers
 {
@@ -25,9 +24,9 @@ namespace UI.Controllers
             return Ok(await _managerService.CreateObject(managerDTO));
         }
         [HttpGet("{id}")]
-        public  Task<ManagerDTO> Get(string id)
+        public  async Task<IActionResult> Get(string id)
         {
-            return  _managerService.GetObject(id);
+            return Ok(await _managerService.GetObject(id)) ;
         }
 
         [HttpGet("{name}/{password}")]

@@ -1,8 +1,7 @@
-﻿using BL;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using BL.DataImplementation.ServiceInterfaces;
 using BL.DTO;
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace UI.Controllers
 { 
@@ -18,34 +17,34 @@ namespace UI.Controllers
         }
 
         [HttpGet("user/{userId}/washable/{id}")]
-        public  Task<WashAbleDTO> Get(string userId,string id)
+        public  async Task<IActionResult> Get(string userId,string id)
         {
-            return _washAbleService.GetObject(id) ;
+            return Ok(await _washAbleService.GetObject(id) ) ;
         }
 
         [HttpGet("user/{userId}/washAbles")]
-        public  Task<List<WashAbleDTO>> Get(string userId)
+        public async Task<IActionResult> Get(string userId)
         {
-            return _washAbleService.GetAll(userId);
+            return Ok(await _washAbleService.GetAll(userId));
         }
 
         [HttpPost]
-        public  Task<string> Post([FromBody] WashAbleDTO washAbleDTO)
+        public async Task<IActionResult> Post([FromBody] WashAbleDTO washAbleDTO)
         {
-          return  _washAbleService.CreateObject(washAbleDTO);
+          return Ok(await _washAbleService.CreateObject(washAbleDTO));
         }
 
         [HttpPut()]
-        public  Task<bool> Put([FromBody] WashAbleDTO washAbleDTO)
+        public async Task<IActionResult> Put([FromBody] WashAbleDTO washAbleDTO)
         {
-            return _washAbleService.UpdateObject(washAbleDTO);
+            return Ok(await _washAbleService.UpdateObject(washAbleDTO));
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("user/{userId}/washAble/{id}")]
-        public Task<bool> Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
-            return _washAbleService.DeleteObject(id);
+            return Ok(await _washAbleService.DeleteObject(id));
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Bl;
 using BL.DTO;
 using Bl.Algorithm;
 using BL.DataImplementation.ServiceInterfaces;
@@ -21,16 +20,10 @@ namespace UI.Controllers
             _schedulerService = schedulerService;
 
         }
-        // GET: api/<SchedulerController>
-        [HttpGet]
-       /* public List<WashAbleDTO> Get()
-        {
-            
-        }*/
 
-        // GET api/<SchedulerController>/5
+
         [HttpGet("{id}")]
-        public Dictionary<string, List<WashAbleDTO>> Get(string id)
+        public IActionResult Get(string id)
         {
             Dictionary<DateTime, Dictionary<string, Category>> datesDict = new Dictionary<DateTime, Dictionary<string, Category>>()
          {
@@ -41,7 +34,7 @@ namespace UI.Controllers
          };
            
           ManagerDTO m =  _managerService.GetObject(id).Result;
-          return  _schedulerService.Scheduler(m);
+          return Ok(_schedulerService.Scheduler(m));
 
           /*  CalendarHandler s = new();
             return s.DatesLessThan24Hours(datesDict);*/

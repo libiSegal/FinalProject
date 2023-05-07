@@ -11,6 +11,8 @@ public class WashAbleDTO : IDataObject
     public NecessityLevel NecessityLevel { get; set; }
     public Category Category { get; set; }
     public DateTime EnteryDate { get; set; }
+    public string WeightType { get; set; }
+    public double Weight { get; set; }
     public int MaxDeg { get; set; }
     public int MinDeg { get; set; }
     public int MaxSqueezing { get; set; }
@@ -26,9 +28,9 @@ public class WashAbleDTO : IDataObject
         CollectionType = "";
         NecessityLevel = NecessityLevel.standard;
         PrevWash = new();
-
+        WeightType = string.Empty;
     }
-    public WashAbleDTO(string name, string userId,  Status status,NecessityLevel necessityLevel, Category category,DateTime entrydate, int maxDeg, int maxSqueezing, string collectionType)
+    public WashAbleDTO(string name, string userId,  Status status,NecessityLevel necessityLevel, Category category,DateTime entrydate,double weight, int maxDeg, int maxSqueezing, string collectionType)
     {
         ID = "";
         Name = name;
@@ -41,22 +43,27 @@ public class WashAbleDTO : IDataObject
         MaxSqueezing = maxSqueezing;
         PrevWash = new();
         CollectionType = collectionType;
+        Weight = weight;
+        WeightType = string.Empty;
     }
-    public WashAbleDTO(string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, DateTime entryDate, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) 
-        :this(name, userId, status,necessityLevel, category,entryDate, maxDeg, maxSqueezing, collectionType)
+    public WashAbleDTO(string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, DateTime entryDate, double weight, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) 
+        :this(name, userId, status,necessityLevel, category,entryDate, weight, maxDeg, maxSqueezing, collectionType)
     {
         MinDeg = minDeg;
         MinSqueezing = minSqueezing;
     }
-
-    public WashAbleDTO(string id,string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, DateTime entryDate, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) :
-        this(name, userId, status, necessityLevel, category,entryDate,  maxDeg, maxSqueezing, collectionType)
+    public WashAbleDTO(string id,string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, DateTime entryDate, double weight, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) :
+        this(name, userId, status, necessityLevel, category,entryDate, weight, maxDeg, maxSqueezing, collectionType)
     {
         ID = id;
         MinDeg = minDeg;
         MinSqueezing = minSqueezing;
     }
-
+    public WashAbleDTO(string id, string name, string userId, Status status, NecessityLevel necessityLevel, Category category, DateTime entryDate, string weightType, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) :
+        this(id,name, userId, status, necessityLevel, category, entryDate, 0, maxDeg, maxSqueezing,minSqueezing, maxSqueezing, collectionType)
+    {
+        WeightType = weightType;
+    }
 
     public override bool Equals(object? obj)
     {
