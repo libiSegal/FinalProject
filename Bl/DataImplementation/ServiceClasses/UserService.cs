@@ -40,7 +40,7 @@ public class UserService : IUserService
             User user = await _userService.ReadAsync(name, password);
             return MapUser_UserDTO(user);
         }
-        catch(Exception ex) { throw new GlobalException(ex); }
+        catch(Exception ex) { throw new BLException(ex); }
        /* catch (TimeoutException ex) { throw ex; }
         catch (MongoConnectionException ex) { throw ex; }
         catch (NullReferenceException ex) { throw ex; }

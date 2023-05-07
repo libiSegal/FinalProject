@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Bl.DataAPI;
 
-public class GlobalException : Exception
+public class BLException : Exception
 {
     public int Status { get;  }
     override public string Message { get; }
-    public GlobalException(Exception ex)
+    public BLException(Exception ex, int status = 500)
     {
         Message = ex.Message;
-        Status = ErrorCode(ex);
+        Status = status;
     }
-    private int ErrorCode(Exception ex)
+    /*private int ErrorCode(Exception ex)
     {
         switch(ex)
         {
@@ -24,5 +24,5 @@ public class GlobalException : Exception
             default: 
                 return 500;
         }
-    }
+    }*/
 }

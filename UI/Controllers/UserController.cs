@@ -25,10 +25,10 @@ namespace Ui.Controllers
         {
             return Ok(await _userService.GetObject(name, password));
         }
-        [HttpGet]
-        public async Task<IActionResult> GetAll(string managerId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
         {
-            return Ok(await _userService.GetAll(managerId));
+            return Ok(await _userService.GetObject(id));
         }
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] UserDTO user)

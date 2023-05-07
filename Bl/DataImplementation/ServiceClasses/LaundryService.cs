@@ -1,6 +1,5 @@
 ﻿
 namespace BL.DataImplementation.ServiceClasses;
-
 public class LaundryService : ILaundryService
 {
     readonly IMapper _mapper;
@@ -19,11 +18,8 @@ public class LaundryService : ILaundryService
             Laundry laundry = MapLaundryDTO_Laundry(laundryDTO);
             return _laundryCRUD.CreateAsync(laundry);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (ExistsDataObjectExceotion ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -35,11 +31,8 @@ public class LaundryService : ILaundryService
             Laundry laundry = await _laundryCRUD.ReadAsync(id);
             return MapLaundry_LaundryDTO(laundry);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoConnectionException ex) { throw ex; }
-        catch (NullReferenceException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -50,11 +43,8 @@ public class LaundryService : ILaundryService
         {
             return _laundryCRUD.DeleteAsync(id);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -65,11 +55,8 @@ public class LaundryService : ILaundryService
         {
             return await _laundryCRUD.UpdateAsync(MapLaundryDTO_Laundry(laundryDTO));
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoWriteException ex) { throw ex; }
-        catch (MongoBulkWriteException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 
@@ -81,10 +68,8 @@ public class LaundryService : ILaundryService
             List<Laundry> laundries = await _laundryCRUD.ReadAllAsync(managerId);
             return _mapper.Map<List<LaundryDTO>>(laundries);
         }
-        catch (TimeoutException ex) { throw ex; }
-        catch (MongoConnectionException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
 

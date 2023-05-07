@@ -63,13 +63,13 @@ public class ManagerService : IManagerService
             Manager manager = await _managerCRUD.ReadAsync(name, password);
             return await MapManager_ManagerDTO(manager);
         }
-        catch(Exception ex) { throw new GlobalException(ex);}
-        /*catch (TimeoutException ex) { throw ex; }
-        catch (MongoConnectionException ex) { throw ex; }
-        catch (NullReferenceException ex) { throw ex; }
-        catch (NotExistsDataObjectException ex) { throw ex; }
-        catch (Exception ex) { throw new Exception(ex.Message); }
-*/
+        //catch(Exception ex) { throw new GlobalException(ex);}
+        catch (TimeoutException ex) { throw new BLException(ex); }
+        catch (MongoConnectionException ex) { throw new BLException(ex); }
+        catch (NullReferenceException ex) { throw new BLException(ex); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400);}
+        catch (Exception ex) { throw new BLException(ex); }
+
     }
     #endregion
 
