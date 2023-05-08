@@ -1,14 +1,11 @@
 ﻿
 namespace BL.DTO;
-
 public class ManagerDTO : UserDTO
 {
-
     public List<UserDTO> UsersDTO { get; set; }
     public List<LaundryDTO> LaundriesDTO { get; set; }
     public CalendarDTO Calendar { get; set; }
     public WashingMachineDTO WashingMachineDTO { get; set; }
-    public int SpairDays { get; set; }
     public List<string> WashAblesCollectionTypes { get; set; }
 
     public ManagerDTO() : base()
@@ -19,8 +16,7 @@ public class ManagerDTO : UserDTO
         WashAblesCollectionTypes = new();
         Calendar = new();
     }
-
-    public ManagerDTO(string name, string password, WashingMachineDTO washingMachine) : base(name, password, "")
+   /* public ManagerDTO(string name, string password, Gender gender, WashingMachineDTO washingMachine) : base(name, password, "", gender)
     {
         WashingMachineDTO = washingMachine;
         UsersDTO = new();
@@ -29,14 +25,14 @@ public class ManagerDTO : UserDTO
         WashAblesCollectionTypes = new();
         Calendar = new();
     }
-    public ManagerDTO(string name, string password, WashingMachineDTO washingMachine, CalendarDTO calendar, int spareDays = 1) : this(name, password, washingMachine)
-    { 
-        Calendar = calendar;
-        SpairDays = spareDays;
-    }
-    public ManagerDTO(string name, string password, WashingMachineDTO washingMachine, CalendarDTO calendar, int spareDays, List<UserDTO> users, List<LaundryDTO> laundries) : this(name, password, washingMachine, calendar, spareDays)
+    public ManagerDTO(string name, string password, Gender gender, WashingMachineDTO washingMachine, CalendarDTO calendar) : this(name, password, gender, washingMachine)
     {
-        UsersDTO = users;
-        LaundriesDTO = laundries;  
+        Calendar = calendar;
     }
+    public ManagerDTO(string name, string password, Gender gender, WashingMachineDTO washingMachine, CalendarDTO calendar, List<UserDTO> users, List<LaundryDTO> laundries) : this(name, password, gender, washingMachine, calendar)
+    {
+        Calendar = calendar;
+        UsersDTO = users;
+        LaundriesDTO = laundries;
+    }*/
 }

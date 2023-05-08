@@ -16,8 +16,8 @@ public class WashAbleService : IWashAbleService
     {
         try
         {
-            if (WashAbleWeight.GetWeight(washAbleDTO.WeightType) != 0) washAbleDTO.Weight = WashAbleWeight.GetWeight(washAbleDTO.WeightType);
-            else
+            
+            if(washAbleDTO.Weight == 0)
             {
                 List<WashAbleDTO> allWashAbles = GetAll(washAbleDTO.UserId).Result;
                 double averageWeight = 0;
@@ -63,6 +63,16 @@ public class WashAbleService : IWashAbleService
     {
         try
         {
+           WashAbleDTO lastWashAble = GetObject(washAbleDTO.ID).Result;
+            if (washAbleDTO.Status == Status.clean && lastWashAble.Status == Status.dirty)
+            {
+                washAbleDTO.PrevWash.Add(DateTime.Now);
+                washAbleDTO.EnteryDate = default(DateTime);
+                washAbleDTO.NecessityLevel = NecessityLevel.standard;               
+            }
+            else  if(washAbleDTO.Status == Status.dirty && lastWashAble.Status == Status.clean)
+                washAbleDTO.EnteryDate = DateTime.Now;
+                
             WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
             return await _washAbleCRUD.UpdateAsync(washAble);
         }
@@ -91,20 +101,7 @@ public class WashAbleService : IWashAbleService
 
 
     public WashAbleDTO MapWashAble_washAbleDTO(WashAble washAble) => _mapper.Map<WashAbleDTO>(washAble);
-  /*  {
-        var config = new MapperConfiguration(cfg => cfg.CreateMap<WashAble, WashAbleDTO>());
-        var mapper = config.CreateMapper();
-        return mapper.Map<WashAbleDTO>(washAble);
-    }*/
-
     public WashAble MapWashAbleDTO_washAble(WashAbleDTO washAbleDTO) => _mapper.Map<WashAble>(washAbleDTO);
-/*        {
-        var config = new MapperConfiguration(cfg => cfg.CreateMap<WashAbleDTO, WashAble>());
-        var mapper = config.CreateMapper();
-        return mapper.Map<WashAble>(washAbleDTO);
-    }*/
-  
-
     public List<WashAbleDTO> GetWashAblesItems(List<string> washAbleIDs)
     {
         try
@@ -116,7 +113,7 @@ public class WashAbleService : IWashAbleService
             });
             return washAbles;//exit
         }
-        catch (AggregateException ex) { throw new Exception(ex.Message); }
+        catch (AggregateException ex) { throw new BLException(ex); }
 
     }
 

@@ -1,4 +1,6 @@
 ﻿
+
+
 namespace BL.DTO;
 
 public class UserDTO : IDataObject
@@ -9,7 +11,7 @@ public class UserDTO : IDataObject
     public string Name { get; set; }
     public string Password { get; set; }
     public List<WashAbleDTO> Items { get; set; }
-   
+    public Gender Gender { get; set; }
     public ActionPermission ActionPermissions { get; set; }
  
     public UserDTO()
@@ -20,7 +22,7 @@ public class UserDTO : IDataObject
         ManagerID = "";
         Items = new List<WashAbleDTO>();
     }
-    public UserDTO(string id , string name, string password, string managerId)
+   /* public UserDTO(string id , string name, string password, string managerId)
     {
         ID = id;
         Name = name;
@@ -28,18 +30,20 @@ public class UserDTO : IDataObject
         ManagerID = managerId;
         Items = new List<WashAbleDTO>();
     }
-    public UserDTO(string name, string password, string managerId)
+    public UserDTO(string name, string password, string managerId, Gender gender)
     {
         ID = "";
         Name = name;
         Password = password;
         ManagerID = managerId;
         Items = new List<WashAbleDTO>();
+        Gender = gender;
     }
-    public UserDTO(string id, string name, string password, string managerId, List<WashAbleDTO> items, ActionPermission actionPermissions) : this( id,name,password, managerId)
+    public UserDTO(string id, string name, string password, string managerId, List<WashAbleDTO> items, ActionPermission actionPermissions, Gender gender) : this( id,name,password, managerId)
     {
         Items = items;
+        Gender = gender;
         ActionPermissions = actionPermissions;
-    }
+    }*/
 }
 

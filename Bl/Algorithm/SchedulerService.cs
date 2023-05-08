@@ -117,31 +117,24 @@ public class SchedulerService : ISchedulerService
         _listOfWashablesCollections.ForEach(collection => result.Add(collection.Type, collection.GetWashAblesSortedByNecessary()));
         return result;
     }
-    private void ShareCollectionsByWeight( int washingMachineWeight)
+    private void ShareCollectionsByWeight(int washingMachineWeight)
     {
-        for(int j = 0; j<_listOfWashablesCollections.Count; j++)
+        _listOfWashablesCollections.ForEach(w => w.Type += " ");
+        for(int index = 0; index < _listOfWashablesCollections.Count; index++)
         {
-            if(_listOfWashablesCollections[j].Weight > washingMachineWeight)
+            if(_listOfWashablesCollections[index].Weight > washingMachineWeight)
             {
                 double currentWeight = 0;
-                int i = 0;
-                List<WashAbleDTO> washAblesList = _listOfWashablesCollections[j].GetWashAblesSortedByNecessary();
-                WashAblesCollection newCollection = new(_listOfWashablesCollections[j].Type);
-                WashAblesCollection swap = new(_listOfWashablesCollections[j].Type);
-                /*while((currentWeight + washAblesList[i].Weight) < washingMachineWeight) currentWeight += washAblesList[i++].Weight;
-                *//*{
-                    
-                    newCollection.AddWashableToCollection(washAblesList[i]);
-                }*/
-                newCollection.SetWashAblesSortedByNecessaryFromList(washAblesList.TakeWhile(w => (currentWeight += w.Weight) < washingMachineWeight).ToList());
-                _listOfWashablesCollections[j].SetWashAblesSortedByNecessaryFromList(_listOfWashablesCollections[j].
-                    GetWashAblesSortedByNecessary().Except(newCollection.GetWashAblesSortedByNecessary()).ToList());
-                // _listOfWashablesCollections.SkipWhile(w => (currentWeight += w.Weight) < washingMachineWeight);
-                swap = _listOfWashablesCollections[j];
-                _listOfWashablesCollections[j] = newCollection;
-                newCollection = swap;
-                newCollection.Type += "*";
-                _listOfWashablesCollections.Add(_listOfWashablesCollections[j]);
+                List<WashAbleDTO> washAblesList = _listOfWashablesCollections[index].GetWashAblesSortedByNecessary();
+                WashAblesCollection firstPartOfTheList = new(_listOfWashablesCollections[index].Type);
+                WashAblesCollection secondPartOfTheList = new(_listOfWashablesCollections[index].Type);
+                firstPartOfTheList.SetWashAblesSortedByNecessaryFromList(
+                    washAblesList.TakeWhile(w => (currentWeight += w.Weight) < washingMachineWeight).ToList());
+                secondPartOfTheList.SetWashAblesSortedByNecessaryFromList(_listOfWashablesCollections[index].
+                    GetWashAblesSortedByNecessary().Except(firstPartOfTheList.GetWashAblesSortedByNecessary()).ToList()); 
+                _listOfWashablesCollections[index] = firstPartOfTheList;
+                secondPartOfTheList.Type += "*";
+                _listOfWashablesCollections.Add(secondPartOfTheList);
             }
         };
     }

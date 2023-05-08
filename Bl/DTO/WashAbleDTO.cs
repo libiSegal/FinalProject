@@ -1,6 +1,5 @@
 ﻿
 namespace BL.DTO;
-
 public class WashAbleDTO : IDataObject
 {
     public string ID { get; set; }
@@ -11,13 +10,11 @@ public class WashAbleDTO : IDataObject
     public NecessityLevel NecessityLevel { get; set; }
     public Category Category { get; set; }
     public DateTime EnteryDate { get; set; }
-    public string WeightType { get; set; }
     public double Weight { get; set; }
     public int MaxDeg { get; set; }
     public int MinDeg { get; set; }
     public int MaxSqueezing { get; set; }
     public int MinSqueezing { get; set; }
-
     public List<DateTime> PrevWash { get; set; }
 
     public WashAbleDTO()
@@ -28,9 +25,8 @@ public class WashAbleDTO : IDataObject
         CollectionType = "";
         NecessityLevel = NecessityLevel.standard;
         PrevWash = new();
-        WeightType = string.Empty;
     }
-    public WashAbleDTO(string name, string userId,  Status status,NecessityLevel necessityLevel, Category category,DateTime entrydate,double weight, int maxDeg, int maxSqueezing, string collectionType)
+   /* public WashAbleDTO(string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, DateTime entrydate, double weight, int maxDeg, int maxSqueezing, string collectionType)
     {
         ID = "";
         Name = name;
@@ -45,25 +41,31 @@ public class WashAbleDTO : IDataObject
         CollectionType = collectionType;
         Weight = weight;
         WeightType = string.Empty;
-    }
-    public WashAbleDTO(string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, DateTime entryDate, double weight, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) 
-        :this(name, userId, status,necessityLevel, category,entryDate, weight, maxDeg, maxSqueezing, collectionType)
+    }*/
+    /*public WashAbleDTO(string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, DateTime entryDate, double weight, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) 
+       // :this(name, userId, status,necessityLevel, category,entryDate, weight, maxDeg, maxSqueezing, collectionType)
     {
+        ID = "";
+        Name = name;
+        UserId = userId;
+        Status = status;
+        NecessityLevel = necessityLevel;
+        Category = category;
+        EnteryDate = entryDate;
+        MaxDeg = maxDeg;
+        MaxSqueezing = maxSqueezing;
         MinDeg = minDeg;
         MinSqueezing = minSqueezing;
+        PrevWash = new();
+        CollectionType = collectionType;
+        Weight = weight;
     }
     public WashAbleDTO(string id,string name, string userId,  Status status, NecessityLevel necessityLevel, Category category, DateTime entryDate, double weight, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) :
-        this(name, userId, status, necessityLevel, category,entryDate, weight, maxDeg, maxSqueezing, collectionType)
+        this(name, userId, status, necessityLevel, category,entryDate, weight, maxDeg, maxSqueezing, minDeg, minSqueezing, collectionType)
     {
         ID = id;
-        MinDeg = minDeg;
-        MinSqueezing = minSqueezing;
-    }
-    public WashAbleDTO(string id, string name, string userId, Status status, NecessityLevel necessityLevel, Category category, DateTime entryDate, string weightType, int maxDeg, int maxSqueezing, int minDeg, int minSqueezing, string collectionType) :
-        this(id,name, userId, status, necessityLevel, category, entryDate, 0, maxDeg, maxSqueezing,minSqueezing, maxSqueezing, collectionType)
-    {
-        WeightType = weightType;
-    }
+    }*/
+
 
     public override bool Equals(object? obj)
     {
@@ -74,13 +76,14 @@ public class WashAbleDTO : IDataObject
         }
 
         WashAbleDTO w = (WashAbleDTO)obj;
-        return ID.Equals(w.ID) && Name.Equals(w.Name) && UserId.Equals(w.UserId) && Status.Equals(w.Status)
-            && MaxDeg == w.MaxDeg && MaxSqueezing == w.MaxSqueezing && MinDeg == w.MinDeg && MinSqueezing == w.MinSqueezing
-            && PrevWash.SequenceEqual(w.PrevWash);
+        return ID.Equals(w.ID) && Name.Equals(w.Name) && UserId.Equals(w.UserId) && CollectionType.Equals(w.CollectionType)
+            && Weight == w.Weight && Category == w.Category && MaxDeg == w.MaxDeg && MaxSqueezing == w.MaxSqueezing
+            && MinDeg == w.MinDeg && MinSqueezing == w.MinSqueezing;
+           // && PrevWash.SequenceEqual(w.PrevWash);
     }
     public override int GetHashCode()
     {
-        return MaxSqueezing ^ MaxDeg;
+        return MinDeg * MaxDeg;
     }
 
 }

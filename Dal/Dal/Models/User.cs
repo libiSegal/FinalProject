@@ -20,7 +20,7 @@ public class User : IDataBaseObject
         Name = "";
 
     }
-    public User(string name, string password)
+   /* public User(string name, string password)
     {
         ID = "";
         Name = name;
@@ -37,5 +37,5 @@ public class User : IDataBaseObject
     public User(string name, string password, string managerId, ActionPermission actionPermissions) : this(name, password, managerId)
     {
         ActionPermissions = actionPermissions;
-    }
+    }*/
 }

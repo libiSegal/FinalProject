@@ -39,6 +39,5 @@ namespace Ui.Controllers
         {
             return Ok(await _userService.DeleteObject(id));
         }
-
     }
 }

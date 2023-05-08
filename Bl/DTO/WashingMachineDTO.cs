@@ -16,7 +16,7 @@ public class WashingMachineDTO
         Model = "XXX";
         Programs = new();
     }
-    public WashingMachineDTO(string company, string model, int laundryWeight)
+   /* public WashingMachineDTO(string company, string model, int laundryWeight)
     {
         Company = company;
         Model = model;
@@ -29,5 +29,5 @@ public class WashingMachineDTO
         Model = model;
         LaundryWeight = laundryWeight;
         Programs = new(programs);
-    }
+    }*/
 }

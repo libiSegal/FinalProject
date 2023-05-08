@@ -10,10 +10,10 @@ public class Calendar
     {
         WashAbleCalendar = new();
     }
-    public Calendar(Dictionary<DateTime, Dictionary<string, List<Category>>> calendar)
+   /* public Calendar(Dictionary<DateTime, Dictionary<string, List<Category>>> calendar)
     {
         WashAbleCalendar = calendar;
-    }
+    }*/
 }
 
 

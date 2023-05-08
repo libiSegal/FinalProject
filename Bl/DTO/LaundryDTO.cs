@@ -15,11 +15,11 @@ public class LaundryDTO : IDataObject
         Date = DateTime.Now;
         WashAbles = new();
     }
-    public LaundryDTO(string name, DateTime dateTime, List<WashAble> washAbles)
+ /*   public LaundryDTO(string name, DateTime dateTime, List<WashAble> washAbles)
     {
         ID = "";
         Name = name;
         Date = dateTime;
         WashAbles = new(washAbles);
-    }
+    }*/
 }

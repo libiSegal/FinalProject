@@ -18,7 +18,7 @@ public class Manager : User
         ManagerID = "";
         Calendar = new();
     }
-    public Manager(string name, string password, WashingMachine washingMachine) : base(name, password)
+    /*public Manager(string name, string password, WashingMachine washingMachine) : base(name, password)
     {
         ManagerID = "";
         WashAblesCollectionTypes = new();
@@ -29,6 +29,6 @@ public class Manager : User
     public Manager(string name, string password, WashingMachine washingMachine, Calendar calendar) : this(name, password, washingMachine)
     {
         Calendar = calendar;    
-    }
+    }*/
 
 }

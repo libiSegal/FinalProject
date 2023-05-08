@@ -15,6 +15,11 @@ public class BLException : Exception
         Message = ex.Message;
         Status = status;
     }
+    public BLException(string message, int status = 500)
+    {
+        Message = message;
+        Status = status;
+    }
     /*private int ErrorCode(Exception ex)
     {
         switch(ex)

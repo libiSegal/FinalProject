@@ -36,7 +36,7 @@ public class ErrorsController : ControllerBase
                 detail: "Please try later...",
                 statusCode: blException.Status);
         }
-        else return Problem(
+        return Problem(
             title: "Ooops...",
             detail: "Please try later...");  
     }
@@ -48,10 +48,19 @@ public class ErrorsController : ControllerBase
         var exception = context?.Error;
         _logger.LogError(exception?.ToString());
         var blException = exception as BLException;
+        if(blException != null)
+        {
+            return Problem(
+                title: context?.Error.Message,
+                detail: context?.Error.StackTrace,
+                statusCode:  blException?.Status
+                );
+        }
         return Problem(
-            title: context?.Error.Message,
-            detail: context?.Error.StackTrace,
-            statusCode:  blException?.Status
-            );     
+                title: context?.Error.Message,
+                detail: context?.Error.StackTrace,
+                statusCode: 500
+            );
+             
     }
 }

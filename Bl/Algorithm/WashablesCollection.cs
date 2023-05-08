@@ -10,7 +10,7 @@ public class WashAblesCollection
     public WashAblesCollection(string type)
     {
         int size = Enum.GetNames(typeof(NecessityLevel)).Length;
-        Type = type + " ";
+        Type = type;
         WashAblesSortedByNecessary = new List<WashAbleDTO>[size];
         WashAblesSortedByNecessary = Enumerable.Range(0, size).Select((i) => new List<WashAbleDTO>()).ToArray();
         Weight = 0;
