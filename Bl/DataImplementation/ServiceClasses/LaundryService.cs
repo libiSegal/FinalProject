@@ -4,10 +4,12 @@ public class LaundryService : ILaundryService
 {
     readonly IMapper _mapper;
     readonly ILaundryCRUD _laundryCRUD;
-    public LaundryService(IMapper mapper, ILaundryCRUD laundryCRUD)
+    readonly IWashAbleService _washAbleService;
+    public LaundryService(IMapper mapper, ILaundryCRUD laundryCRUD, IWashAbleService washAbleService)
     {
         _mapper = mapper;
         _laundryCRUD = laundryCRUD;
+        _washAbleService = washAbleService;
     }
 
     #region Create function
@@ -15,6 +17,9 @@ public class LaundryService : ILaundryService
     {
         try
         {
+            laundryDTO.ID = string.Empty;
+            laundryDTO.Date = DateTime.Now;
+            laundryDTO.WashAbles.ForEach(w => { w.Status = Status.clean; _washAbleService.UpdateObject(w); });
             Laundry laundry = MapLaundryDTO_Laundry(laundryDTO);
             return _laundryCRUD.CreateAsync(laundry);
         }
@@ -55,8 +60,7 @@ public class LaundryService : ILaundryService
         {
             return await _laundryCRUD.UpdateAsync(MapLaundryDTO_Laundry(laundryDTO));
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
-        catch (Exception ex) { throw new BLException(ex); }
+        catch (Exception ex) { throw new BLException(ex, 500); }
     }
     #endregion
 
@@ -66,7 +70,7 @@ public class LaundryService : ILaundryService
         try
         {
             List<Laundry> laundries = await _laundryCRUD.ReadAllAsync(managerId);
-            return _mapper.Map<List<LaundryDTO>>(laundries);
+            return laundries.Select(l => MapLaundry_LaundryDTO(l)).ToList();
         }
         catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
         catch (Exception ex) { throw new BLException(ex); }
@@ -74,10 +78,12 @@ public class LaundryService : ILaundryService
     #endregion
 
     #region Mapping function
-    public LaundryDTO MapLaundry_LaundryDTO(Laundry laundry) => _mapper.Map<LaundryDTO>(laundry);
-
-
+    public LaundryDTO MapLaundry_LaundryDTO(Laundry laundry) 
+    {
+        LaundryDTO laundryDTO = _mapper.Map<LaundryDTO>(laundry);
+        laundryDTO.WashAbles = _washAbleService.GetWashAblesItems(laundry.WashAblesIDs);
+        return laundryDTO;
+    }
     public Laundry MapLaundryDTO_Laundry(LaundryDTO laundryDTO) => _mapper.Map<Laundry>(laundryDTO);
     #endregion
-
 }

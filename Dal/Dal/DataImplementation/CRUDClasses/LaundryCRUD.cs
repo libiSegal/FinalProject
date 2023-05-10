@@ -45,6 +45,9 @@ public class LaundryCRUD : ILaundryCRUD
     {
         throw new Exception("laundry don't have an update option");
     }
+    #endregion
+
+    #region Delete function
     public async Task<bool> DeleteAsync(string id)
     {
         try

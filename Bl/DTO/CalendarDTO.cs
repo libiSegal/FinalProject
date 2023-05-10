@@ -7,9 +7,4 @@ public class CalendarDTO
     {
         Calendar = new();
     }
-   /* public CalendarDTO(Dictionary<DateTime, Dictionary<string, List<Category>>> calendar)
-    {
-        Calendar = calendar;
-    }*/
-
 }

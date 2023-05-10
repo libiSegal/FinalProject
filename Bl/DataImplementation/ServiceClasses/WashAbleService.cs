@@ -1,6 +1,4 @@
 ﻿
-using Bl.DataExtensions;
-
 namespace BL.DataImplementation.ServiceClasses;
 public class WashAbleService : IWashAbleService
 {
@@ -88,9 +86,7 @@ public class WashAbleService : IWashAbleService
         {
             List<WashAbleDTO> washAblesBl = new();
             List<WashAble> washAbles = await _washAbleCRUD.ReadAllAsync(userId);
-            //washAbles.ForEach(w => washAblesBl.Add(MapWashAble_washAbleDTO(w)));
             washAblesBl = _mapper.Map<List<WashAble> , List<WashAbleDTO>>(washAbles);
-          //  washAblesBl = MapWashAble_washAbleDTO()
             return washAblesBl;
         }
         catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
@@ -98,10 +94,9 @@ public class WashAbleService : IWashAbleService
     }
     #endregion
 
-
-
     public WashAbleDTO MapWashAble_washAbleDTO(WashAble washAble) => _mapper.Map<WashAbleDTO>(washAble);
     public WashAble MapWashAbleDTO_washAble(WashAbleDTO washAbleDTO) => _mapper.Map<WashAble>(washAbleDTO);
+
     public List<WashAbleDTO> GetWashAblesItems(List<string> washAbleIDs)
     {
         try
@@ -114,18 +109,17 @@ public class WashAbleService : IWashAbleService
             return washAbles;//exit
         }
         catch (AggregateException ex) { throw new BLException(ex); }
-
     }
 
-    public List<string> GetWashAblesId(List<WashAbleDTO> washAbles)
-    {
-        List<string> washAbleIds = new();
-        washAbles.ForEach(washable =>
+    /*    public List<string> GetWashAblesId(List<WashAbleDTO> washAbles)
         {
-            washAbleIds.Add(washable.ID);
-        });
-        return washAbleIds;
-    }
+            List<string> washAbleIds = new();
+            washAbles.ForEach(washable =>
+            {
+                washAbleIds.Add(washable.ID);
+            });
+            return washAbleIds;
+        }*/
 
 }
 

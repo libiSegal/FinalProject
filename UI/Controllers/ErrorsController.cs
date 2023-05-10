@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace UI.Controllers;
 
 [ApiController]
@@ -60,7 +59,6 @@ public class ErrorsController : ControllerBase
                 title: context?.Error.Message,
                 detail: context?.Error.StackTrace,
                 statusCode: 500
-            );
-             
+            );      
     }
 }

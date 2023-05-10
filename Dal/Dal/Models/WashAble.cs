@@ -54,8 +54,4 @@ public class WashAble : IDataBaseObject
         MinDeg = minDeg;
         MinSqueezing = minSqueezing;
     }
-
-
-
-
 }

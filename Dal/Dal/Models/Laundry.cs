@@ -5,19 +5,26 @@ public class Laundry : IDataBaseObject//It doesn't have a set because history ca
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string ID { get; set; }
-
     [BsonRepresentation(BsonType.ObjectId)]
     public string ManagerID { get; set; }
-    public string Name { get; }
-    public DateTime Date { get; }
-    public int WashingTime { get;  }
-    public List<WashAble> WashAbles { get; }
-    public Laundry(string name, DateTime dateTime, List<WashAble> washAbles, string managerID)
+    public string Type { get; set; }
+    public DateTime Date { get; set; }
+    public List<string> WashAblesIDs { get; set; }
+
+    public Laundry()
     {
-        ID = "";
-        Name = name;
+        ID = string.Empty;
+        Type = string.Empty;
+        ManagerID = string.Empty;
+        Type = string.Empty;
+        WashAblesIDs = new();
+    }
+    public Laundry(string name, DateTime dateTime, List<string> washAbles, string managerID)
+    {
+        ID = string.Empty;
+        Type = name;
         Date = dateTime;
-        WashAbles = new(washAbles);
+        WashAblesIDs = new(washAbles);
         ManagerID = managerID;
     }
 

@@ -1,25 +1,26 @@
 ﻿
 namespace BL.DTO;
-
 public class LaundryDTO : IDataObject
 {
-
-    public string ID { get; }
-    public string Name { get; set; }
+    public string ID { get; set; }
+    public string Type { get; set; }
     public DateTime Date { get; set; }
-    public List<WashAble> WashAbles { get; }//It doesn't have a set because there is no laundry without wash ables;
+    public string ManagerID { get; set; }
+    public List<WashAbleDTO> WashAbles { get; set; }//It doesn't have a set because there is no laundry without wash ables;
     public LaundryDTO()
     {
-        ID = "";
-        Name = "";
+        ID = string.Empty;
+        Type = string.Empty;
         Date = DateTime.Now;
         WashAbles = new();
+        ManagerID = string.Empty;
     }
- /*   public LaundryDTO(string name, DateTime dateTime, List<WashAble> washAbles)
+    public LaundryDTO(string type, DateTime dateTime, List<WashAbleDTO> washAbles, string managerId)
     {
-        ID = "";
-        Name = name;
+        ID = string.Empty;
+        Type = type;
         Date = dateTime;
         WashAbles = new(washAbles);
-    }*/
+        ManagerID = managerId;
+    }
 }

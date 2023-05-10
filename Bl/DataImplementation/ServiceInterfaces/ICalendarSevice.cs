@@ -8,7 +8,7 @@ namespace Bl.DataImplementation.ServiceInterfaces
 {
     public interface ICalendarService
     {
-        Dictionary<WashAbleDTO, DateTime> GetNecessaryWasAbles(CalendarDTO calendar,
+        Dictionary<WashAbleDTO, DateTime> GetNecessaryWashAbles(CalendarDTO calendar,
             List<WashAbleDTO> cleanWashAbles, List<WashAbleDTO> dirtyWashAbles);
     }
 }

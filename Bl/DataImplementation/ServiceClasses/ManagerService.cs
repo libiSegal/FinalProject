@@ -24,9 +24,7 @@ public class ManagerService : IManagerService
         //It is necessary to make sure that mapping work
         try
         {
-
             Manager manager = MapManagerDTO_Manager(managerDTO);
-            manager.WashingMachine = new(managerDTO.WashingMachineDTO.Company, managerDTO.WashingMachineDTO.Model, managerDTO.WashingMachineDTO.LaundryWeight);
             manager.ID = "";
             return await _managerCRUD.CreateAsync(manager);
         }
@@ -84,7 +82,6 @@ public class ManagerService : IManagerService
     {
         try
         {
-           
             Manager managerFromDB = await _managerCRUD.ReadAsync(managerDTO.ID);
             Manager managerToUpdate = MapManagerDTO_Manager(managerDTO);
             managerToUpdate.ID = managerFromDB.ID;

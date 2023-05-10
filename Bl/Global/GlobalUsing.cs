@@ -12,7 +12,6 @@ global using BL.DataImplementation.ServiceInterfaces;
 global using BL.DTO;
 global using Bl.DataImplementation.ServiceInterfaces;
 global using Bl.DataAPI;
-global using Bl.DataExtensions;
 
 
 
