@@ -1,4 +1,5 @@
-﻿namespace Dal.DataImplementation.CRUDClasses;
+﻿
+namespace Dal.DataImplementation.CRUDClasses;
 public class WashAbleCRUD : IWashAbleCRUD
 {
     private readonly IMongoCollection<WashAble> _washAblesCollection;

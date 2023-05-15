@@ -1,6 +1,5 @@
 ﻿
 namespace BL.DataImplementation.ServiceClasses;
-
 public class UserService : IUserService
 {
     private readonly IMapper _mapper;
@@ -18,7 +17,7 @@ public class UserService : IUserService
         try
         {
             User user = MapUserDTO_User(userDTO);
-            user.ID = "";
+            user.ID = String.Empty;
             return _userService.CreateAsync(user);
         }
         catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }

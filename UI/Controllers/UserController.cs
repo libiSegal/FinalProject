@@ -1,8 +1,4 @@
 
-using BL.DataImplementation.ServiceInterfaces;
-using BL.DTO;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Ui.Controllers
 {
     [ApiController]

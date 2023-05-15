@@ -9,6 +9,5 @@ public enum Category
     towel,
     general,
     pajamas,
-
 }
 

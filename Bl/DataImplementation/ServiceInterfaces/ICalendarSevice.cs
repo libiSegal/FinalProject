@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bl.DataImplementation.ServiceInterfaces
+﻿
+namespace BL.DataImplementation.ServiceInterfaces;
+public interface ICalendarService
 {
-    public interface ICalendarService
-    {
-        Dictionary<WashAbleDTO, DateTime> GetNecessaryWashAbles(CalendarDTO calendar,
-            List<WashAbleDTO> cleanWashAbles, List<WashAbleDTO> dirtyWashAbles);
-    }
+    Dictionary<WashAbleDTO, DateTime> GetNecessaryWashAbles(CalendarDTO calendar,
+        List<WashAbleDTO> cleanWashAbles, List<WashAbleDTO> dirtyWashAbles);
 }
+

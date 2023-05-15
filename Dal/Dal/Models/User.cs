@@ -1,21 +1,38 @@
-﻿namespace Dal.Models;
+﻿
+namespace Dal.Models;
 public class User : IDataBaseObject
 {
+    /// <summary>
+    /// Gets or sets the ID of the User. 
+    /// </summary>
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string ID { get; set; }
-    public virtual string ManagerID { get; set; }
-    public string Name { get; set; }
-    public string Password { get; set; }
-    public Gender Gender { get; set; }
 
-    [BsonRepresentation(BsonType.String)]
-    public ActionPermission ActionPermissions { get; set; }
+    /// <summary>
+    /// Gets or sets the ManagerID of the User. 
+    /// </summary>
+    public virtual string ManagerID { get; set; }
+
+    /// <summary>
+    /// Gets or sets the Name of the User. 
+    /// </summary>
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Gets or sets the Password of the User.
+    /// </summary>
+    public string Password { get; set; }
+
+    /// <summary>
+    /// Gets or sets the Gender of the User.
+    /// </summary>
+    public Gender Gender { get; set; }
     public User() 
     {
-        ID = "";
-        ManagerID = "";
-        Password = "";
-        Name = "";
+        ID = string.Empty;
+        ManagerID = string.Empty;
+        Password = string.Empty;
+        Name = string.Empty;
     }
 }

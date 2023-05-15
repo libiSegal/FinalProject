@@ -1,5 +1,4 @@
 ﻿
 namespace Dal.DataApi;
-public interface IDataBaseObject
-{
-}
+public interface IDataBaseObject { }
+

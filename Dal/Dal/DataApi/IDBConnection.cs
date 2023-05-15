@@ -1,10 +1,9 @@
-﻿namespace Dal.DataApi
+﻿
+namespace Dal.DataApi;
+public interface IDBConnection
 {
-    public interface IDBConnection
-    {
-        IMongoCollection<Laundry> LaundryCollection { get; }
-        IMongoCollection<Manager> ManagersCollection { get; }
-        IMongoCollection<User> UsersCollection { get; }
-        IMongoCollection<WashAble> WashAblesCollection { get; }
-    }
+    IMongoCollection<Laundry> LaundryCollection { get; }
+    IMongoCollection<Manager> ManagersCollection { get; }
+    IMongoCollection<User> UsersCollection { get; }
+    IMongoCollection<WashAble> WashAblesCollection { get; }
 }

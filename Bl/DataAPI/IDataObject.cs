@@ -1,6 +1,3 @@
-﻿namespace BL.DataApi;
-
-public interface IDataObject
-{
-
-}
+﻿
+namespace BL.DataApi;
+public interface IDataObject { }

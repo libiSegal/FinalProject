@@ -1,0 +1,9 @@
+﻿global using BL.DataImplementation.ServiceInterfaces;
+global using BL.DTO;
+global using Microsoft.AspNetCore.Mvc;
+global using BL.DataAPI;
+global using Microsoft.AspNetCore.Diagnostics;
+global using BL.Algorithm;
+global using Dal.DataExtensions;
+global using BL.DataApi;
+global using System.Reflection;

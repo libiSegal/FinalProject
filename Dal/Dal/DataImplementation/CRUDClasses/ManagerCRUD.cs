@@ -1,5 +1,5 @@
-﻿namespace Dal.DataImplementation.CRUDClasses;
-
+﻿
+namespace Dal.DataImplementation.CRUDClasses;
 public class ManagerCRUD : IManagerCRUD
 {
     private readonly IMongoCollection<Manager> _managersCollection;

@@ -19,10 +19,10 @@ public class WashAbleDTO : IDataObject
 
     public WashAbleDTO()
     {
-        ID = "";
-        Name = "";
-        UserId = "";
-        CollectionType = "";
+        ID = string.Empty;
+        Name = string.Empty;
+        UserId = string.Empty;
+        CollectionType = string.Empty;
         NecessityLevel = NecessityLevel.standard;
         PrevWash = new();
     }
@@ -38,11 +38,11 @@ public class WashAbleDTO : IDataObject
         return ID.Equals(w.ID) && Name.Equals(w.Name) && UserId.Equals(w.UserId) && CollectionType.Equals(w.CollectionType)
             && Weight == w.Weight && Category == w.Category && MaxDeg == w.MaxDeg && MaxSqueezing == w.MaxSqueezing
             && MinDeg == w.MinDeg && MinSqueezing == w.MinSqueezing;
-           // && PrevWash.SequenceEqual(w.PrevWash);
     }
     public override int GetHashCode()
     {
-        return MinDeg * MaxDeg;
+        return (int)(ID.GetHashCode() + UserId.GetHashCode() + CollectionType.GetHashCode() + 
+            (int)Weight + Category + MaxDeg + MaxSqueezing + MinDeg + MinSqueezing);
     }
 
 }

@@ -10,8 +10,7 @@ global using Dal.DataApi;
 global using Microsoft.Extensions.DependencyInjection;
 global using BL.DataImplementation.ServiceInterfaces;
 global using BL.DTO;
-global using Bl.DataImplementation.ServiceInterfaces;
-global using Bl.DataAPI;
-
-
-
+global using BL.DataAPI;
+global using Microsoft.Extensions.Configuration;
+global using BL.Algorithm;
+global using Bl.DataImplementation.ServiceClasses;

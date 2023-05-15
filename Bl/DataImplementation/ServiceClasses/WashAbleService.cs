@@ -23,7 +23,7 @@ public class WashAbleService : IWashAbleService
                 washAbleDTO.Weight = averageWeight / allWashAbles.Count;
             }
             WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
-            washAble.ID = "";
+            washAble.ID = string.Empty;
             return _washAbleCRUD.CreateAsync(washAble);
         }
         catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
@@ -94,33 +94,28 @@ public class WashAbleService : IWashAbleService
     }
     #endregion
 
+    #region Mapping functions
+
     public WashAbleDTO MapWashAble_washAbleDTO(WashAble washAble) => _mapper.Map<WashAbleDTO>(washAble);
     public WashAble MapWashAbleDTO_washAble(WashAbleDTO washAbleDTO) => _mapper.Map<WashAble>(washAbleDTO);
+    #endregion
 
+    #region Get wash able items
     public List<WashAbleDTO> GetWashAblesItems(List<string> washAbleIDs)
     {
         try
         {
-            List<WashAbleDTO> washAbles = new();
-            washAbleIDs.ForEach(async washAble =>
+            List<Task<WashAbleDTO>> washAblesTask = new();
+            washAbleIDs.ForEach(washAble =>
             {
-                washAbles.Add(await GetObject(washAble));
+                washAblesTask.Add(GetObject(washAble));
             });
-            return washAbles;//exit
+            List<WashAbleDTO> washAbles = ( Task.WhenAll(washAblesTask)).Result.ToList();
+            return washAbles;
         }
         catch (AggregateException ex) { throw new BLException(ex); }
     }
-
-    /*    public List<string> GetWashAblesId(List<WashAbleDTO> washAbles)
-        {
-            List<string> washAbleIds = new();
-            washAbles.ForEach(washable =>
-            {
-                washAbleIds.Add(washable.ID);
-            });
-            return washAbleIds;
-        }*/
-
+    #endregion
 }
 
 

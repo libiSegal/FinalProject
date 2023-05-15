@@ -1,6 +1,5 @@
 ﻿
 namespace BL.DataImplementation.ServiceInterfaces;
-
 public interface IUserService :IDataService<UserDTO>
 {
     UserDTO MapUser_UserDTO(User user);

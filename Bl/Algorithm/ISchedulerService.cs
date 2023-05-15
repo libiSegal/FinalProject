@@ -1,7 +1,6 @@
-﻿namespace Bl.Algorithm
+﻿
+namespace BL.Algorithm;
+public interface ISchedulerService
 {
-    public interface ISchedulerService
-    {
-        Dictionary<string, List<WashAbleDTO>> Scheduler(ManagerDTO manager);
-    }
+    Dictionary<string, List<WashAbleDTO>> Scheduler(ManagerDTO manager);
 }

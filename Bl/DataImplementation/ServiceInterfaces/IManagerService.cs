@@ -1,6 +1,5 @@
 ﻿
 namespace BL.DataImplementation.ServiceInterfaces;
-
 public interface IManagerService : IDataService<ManagerDTO>
 {
     Task<ManagerDTO> GetObject(string name, string password);

@@ -1,6 +1,5 @@
 ﻿
-namespace Bl.Profiles;
-
+namespace BL.Profiles;
 public class WashAbleProfile : Profile
 {
     public WashAbleProfile()
@@ -8,4 +7,3 @@ public class WashAbleProfile : Profile
         CreateMap<WashAble, WashAbleDTO>().ReverseMap();
     }
 }
-

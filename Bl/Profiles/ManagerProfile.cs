@@ -1,11 +1,13 @@
 ﻿
-namespace Bl.Profiles;
+namespace BL.Profiles;
 public class ManagerProfile : Profile
 {
     public ManagerProfile()
     {
-        CreateMap<Manager, ManagerDTO>();
-        CreateMap<User, UserDTO>();
-        CreateMap<Laundry, LaundryDTO>();
+        CreateMap<ManagerDTO, Manager>().ReverseMap();  
+        CreateMap<UserDTO, User>().ReverseMap();
+        CreateMap<LaundryDTO, Laundry>().ReverseMap();
+        CreateMap<CalendarDTO, Calendar>().ReverseMap();
     }
 }
+

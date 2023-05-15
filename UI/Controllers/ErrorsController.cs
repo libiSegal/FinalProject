@@ -1,7 +1,4 @@
-﻿using Bl.DataAPI;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-
+﻿
 namespace UI.Controllers;
 
 [ApiController]

@@ -9,3 +9,4 @@ global using MongoDB.Bson.Serialization.Attributes;
 global using Dal.Exceptions;
 global using MongoDB.Bson;
 global using Microsoft.Extensions.Configuration;
+global using MongoDB.Bson.Serialization.Options;

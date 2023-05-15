@@ -1,4 +1,5 @@
-﻿namespace Dal.DataImplementation.CRUDClasses;
+﻿
+namespace Dal.DataImplementation.CRUDClasses;
 public class UserCRUD : IUserCRUD
 {
     private readonly IMongoCollection<User> _usersCollection;
@@ -9,7 +10,7 @@ public class UserCRUD : IUserCRUD
         _usersCollection = db.UsersCollection;
         _filterBuilder = Builders<User>.Filter;
     }
-    #region Read function
+    #region Read by name and password function
     public async Task<User> ReadAsync( string name, string password)
     {
         try
@@ -130,7 +131,7 @@ public class UserCRUD : IUserCRUD
     }
     #endregion
 
-    #region Read function
+    #region Read by id function
     public async Task<User> ReadAsync(string id)
     {
 

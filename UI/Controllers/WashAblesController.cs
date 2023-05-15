@@ -1,13 +1,8 @@
 ﻿
-using Microsoft.AspNetCore.Mvc;
-using BL.DataImplementation.ServiceInterfaces;
-using BL.DTO;
-
 namespace UI.Controllers
 { 
     [ApiController]
     [Route("api/[controller]")]
-   
     public class WashAbleController : ControllerBase
     {
         readonly IWashAbleService _washAbleService;
@@ -40,7 +35,6 @@ namespace UI.Controllers
             return Ok(await _washAbleService.UpdateObject(washAbleDTO));
         }
 
-        // DELETE api/<ValuesController>/5
         [HttpDelete("user/{userId}/washAble/{id}")]
         public async Task<IActionResult> Delete(string id)
         {

@@ -1,7 +1,4 @@
 ﻿
-using BL.DataImplementation.ServiceInterfaces;
-using BL.DTO;
-using Microsoft.AspNetCore.Mvc;
 namespace UI.Controllers;
 
 [Route("api/[controller]")]
@@ -18,11 +15,6 @@ public class LaundryController : ControllerBase
     public async Task<IActionResult> CreateLaundry(LaundryDTO laundryDTO)
     {
         return Ok(await _laundryService.CreateObject(laundryDTO));
-    }
-    [HttpGet]
-    public async Task<IActionResult> GetLaundry(string id)
-    {
-        return Ok(await _laundryService.GetObject(id));
     }
 }
 

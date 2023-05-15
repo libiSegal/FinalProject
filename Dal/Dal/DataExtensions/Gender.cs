@@ -4,6 +4,6 @@ public enum Gender
 {
     male,
     female,
-    children
+    child
 }
 

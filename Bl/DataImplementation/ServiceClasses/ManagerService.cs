@@ -1,8 +1,5 @@
 ﻿
-using Bl.DataAPI;
-
 namespace BL.DataImplementation.ServiceClasses;
-
 public class ManagerService : IManagerService
 {
     private readonly IUserService _userService;
@@ -25,7 +22,7 @@ public class ManagerService : IManagerService
         try
         {
             Manager manager = MapManagerDTO_Manager(managerDTO);
-            manager.ID = "";
+            manager.ID = string.Empty;
             return await _managerCRUD.CreateAsync(manager);
         }
         catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
