@@ -1,5 +1,8 @@
 ﻿
 namespace Dal.Models;
+/// <summary>
+/// Class <c>WashAble</c> models a wash able in a loundry.
+/// </summary>
 public class WashAble : IDataBaseObject
 {
     /// <summary>
@@ -15,7 +18,7 @@ public class WashAble : IDataBaseObject
     public string Name { get; set; }
 
     /// <summary>
-    /// Gets or sets the UserID of the WashAble.
+    /// Gets or sets the UserID of the WashAble. - the user Id the wash able belongs to him.
     /// </summary>
     public string UserID { get; set; }
 
@@ -78,6 +81,9 @@ public class WashAble : IDataBaseObject
     /// Gets or sets the Prevwash of the WashAble.
     /// </summary>
     public List<DateTime>? PrevWash { get; set; }
+    /// <summary>
+    /// This constructor initializes the new WashAble's properties to default value. 
+    /// </summary>
     public WashAble()
     {
         ID = string.Empty;
