@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dal.DataImplementation.CRUDClasses;
 
-public class CommonGroupDataCRUD
+public class CommonGroupDataCRUD : ICommonGroupDataCRUD
 {
     private readonly IMongoCollection<CommonGroupData> _commonGroupDataCollection;
     private FilterDefinitionBuilder<CommonGroupData> _filterBuilder;
