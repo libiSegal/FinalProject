@@ -1,4 +1,6 @@
 ﻿
+using UI.Modules;
+
 namespace UI.Controllers
 {
     [Route("api/[controller]")]
@@ -24,10 +26,10 @@ namespace UI.Controllers
             return Ok(await _managerService.GetObject(id)) ;
         }
 
-        [HttpGet("{name}/{password}")]
-        public  async Task<IActionResult> Get(string name, string password)
+        [HttpPost("signIn")]
+        public  async Task<IActionResult> GetByNameAndPassword(Client client)
         {
-            return Ok(await _managerService.GetObject(name, password));
+            return Ok(await _managerService.GetObject(client.Name, client.Password));
         }
 
         [HttpDelete("{id}")]

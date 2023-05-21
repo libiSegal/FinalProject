@@ -1,4 +1,6 @@
 
+using UI.Modules;
+
 namespace Ui.Controllers
 {
     [ApiController]
@@ -15,10 +17,10 @@ namespace Ui.Controllers
         {
             return Ok(await _userService.CreateObject(user));
         }
-        [HttpGet("{name}/{password}")]
-        public async Task<IActionResult> Get(string name, string password)
+        [HttpPost("signIn")]
+        public async Task<IActionResult> GetByNameAndPassword([FromBody]Client client)
         {
-            return Ok(await _userService.GetObject(name, password));
+            return Ok(await _userService.GetObject(client.Name, client.Password));
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
