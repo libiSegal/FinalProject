@@ -22,9 +22,9 @@ public class LaundryCRUD : ILaundryCRUD
             }
 
             var createFilter = _filterBuilder.Eq("Date", laundry.Date);
-            var createUser = await _laundryCollection.FindAsync(createFilter);
+            var createLaundry = await _laundryCollection.FindAsync(createFilter);
 
-            if (createUser.FirstOrDefault() != null)
+            if (createLaundry.FirstOrDefault() != null)
             {
                 throw new ExistsDataObjectExceotion($" laundry is already exist in {laundry.Date}");
             }

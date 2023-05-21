@@ -23,13 +23,13 @@ public class ErrorsController : ControllerBase
             if (blException.Status > 399 && blException.Status < 500)
             {
                 return Problem(
-                title: "Ooops, You have a wrong...",
-                detail: blException.Message,
+                /*title: "Ooops, You have a wrong...",*/
+                title: blException.Message,
                 statusCode: blException.Status);
             }
             else return Problem(
-                title: "Ooops...",
-                detail: "Please try later...",
+                /*title: "Ooops...",*/
+                title: "Please try later...",
                 statusCode: blException.Status);
         }
         return Problem(
