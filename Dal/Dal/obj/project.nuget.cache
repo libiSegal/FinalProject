@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HT6WX2ESLl7HPxq4NToiGvQJ6swOXJedeJrydoH+cLvhbFpMUoc2Rb1pa8wtW+EUhHJMn+fURNnhWN9lUxD6SQ==",
+  "dgSpecHash": "R5TwAY97SHrG3gM5hc1qGsuwXcXM2vQRKv1214r/tuRTyWKMNVDArV4oIt9OcbFPvtFaLlTfR/RFhanhUJE6OA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\צוקרמן אסתר\\Source\\Repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
+  "projectFilePath": "C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Dal\\Dal\\Dal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\צוקרמן אסתר\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

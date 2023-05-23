@@ -65,7 +65,7 @@ public class WashAbleService : IWashAbleService
             if (washAbleDTO.Status == Status.clean && lastWashAble.Status == Status.dirty)
             {
                 washAbleDTO.PrevWash.Add(DateTime.Now);
-                washAbleDTO.EnteryDate = default(DateTime);
+                washAbleDTO.EnteryDate = default;
                 washAbleDTO.NecessityLevel = NecessityLevel.standard;               
             }
             else  if(washAbleDTO.Status == Status.dirty && lastWashAble.Status == Status.clean)
