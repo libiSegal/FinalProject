@@ -10,4 +10,3 @@ public class ManagerProfile : Profile
         CreateMap<CalendarDTO, Calendar>().ReverseMap();
     }
 }
-

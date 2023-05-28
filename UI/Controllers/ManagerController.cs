@@ -35,12 +35,12 @@ namespace UI.Controllers
         [HttpDelete("{id}")]
         public  async Task<IActionResult> Delete(string id)
         {
-            return  Ok(await _managerService.DeleteObject(id));
+            return Ok(await _managerService.DeleteObject(id));
         }
         [HttpPut]
         public  async Task<IActionResult> Put(ManagerDTO managerDTO)
         {
-            return  Ok(await _managerService.UpdateObject(managerDTO));
+            return Ok(await _managerService.UpdateObject(managerDTO));
         }
     }
 }

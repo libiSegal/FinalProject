@@ -1,5 +1,5 @@
 ﻿
-namespace BL.Profiles;
+/*namespace BL.Profiles;
 public class LaundryProfile : Profile
 {
     public LaundryProfile()
@@ -7,5 +7,5 @@ public class LaundryProfile : Profile
         CreateMap<LaundryDTO, Laundry>().ForMember(dest => dest.WashAblesIDs,
             opt => opt.MapFrom(src => src.WashAbles.Select(w => w.ID)));
     }
-}
+}*/
 

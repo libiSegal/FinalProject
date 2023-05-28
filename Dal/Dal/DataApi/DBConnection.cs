@@ -7,7 +7,7 @@ namespace Dal.DataApi
         
         public IMongoCollection<User> UsersCollection { get; private set; }
         public IMongoCollection<Manager> ManagersCollection { get; private set; }
-        public IMongoCollection<Laundry> LaundryCollection { get; private set; }
+       // public IMongoCollection<Laundry> LaundryCollection { get; private set; }
         public IMongoCollection<WashAble> WashAblesCollection { get; private set; }
         public IMongoCollection<CommonGroupData> CommonGroupDataCollection { get; private set; }
         public DBConnection(LaundrySystemDatabaseSettings laundrySystemDatabaseSettings)
@@ -17,7 +17,7 @@ namespace Dal.DataApi
             ManagersCollection = mongoDatabase.GetCollection<Manager>(laundrySystemDatabaseSettings.ManagersCollectionName);
             UsersCollection = mongoDatabase.GetCollection<User>(laundrySystemDatabaseSettings.UsersCollectionName);
             WashAblesCollection = mongoDatabase.GetCollection<WashAble>(laundrySystemDatabaseSettings.WashAbelsCollectionName);
-            LaundryCollection = mongoDatabase.GetCollection<Laundry>(laundrySystemDatabaseSettings.LaundryCollectionName);
+         //   LaundryCollection = mongoDatabase.GetCollection<Laundry>(laundrySystemDatabaseSettings.LaundryCollectionName);
             CommonGroupDataCollection = mongoDatabase.GetCollection<CommonGroupData>(laundrySystemDatabaseSettings.CommonGroupDataName);
         }
     }

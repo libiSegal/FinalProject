@@ -1,5 +1,5 @@
 ﻿
-namespace UI.Controllers;
+/*namespace UI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -16,8 +16,5 @@ public class LaundryController : ControllerBase
     {
         return Ok(await _laundryService.CreateObject(laundryDTO));
     }
-}
-
-
-
+}*/
 

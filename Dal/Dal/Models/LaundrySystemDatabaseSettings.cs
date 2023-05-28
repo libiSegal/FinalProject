@@ -12,7 +12,7 @@
 
         public string WashAbelsCollectionName { get; set; } = null!;
 
-        public string LaundryCollectionName { get; set; } = null!;
+     //   public string LaundryCollectionName { get; set; } = null!;
         public string CommonGroupDataName { get; set; } = null!;
 
     }

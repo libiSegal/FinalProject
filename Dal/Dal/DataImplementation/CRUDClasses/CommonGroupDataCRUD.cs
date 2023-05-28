@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Dal.DataImplementation.CRUDClasses;
-
 public class CommonGroupDataCRUD : ICommonGroupDataCRUD
 {
     private readonly IMongoCollection<CommonGroupData> _commonGroupDataCollection;
@@ -16,15 +10,18 @@ public class CommonGroupDataCRUD : ICommonGroupDataCRUD
         _commonGroupDataCollection = db.CommonGroupDataCollection;
         _filterBuilder = Builders<CommonGroupData>.Filter;
     }
-    #region Create function
+    #region Create function 
     public async Task<string> CreateAsync(CommonGroupData commonGroupData)
     {
         try
         {
             if (commonGroupData == null)
-            {
+            
                 throw new ArgumentNullException($"in {nameof(CreateAsync)} function. commonGroupData object did not receive details(null)");
-            }
+            
+            var getFilter = _filterBuilder.Eq("ManagerID", commonGroupData.ManagerID);
+            var getCommonGroupDataCollection = await _commonGroupDataCollection.Find(getFilter).FirstOrDefaultAsync();
+            if (getCommonGroupDataCollection != null) throw new ExistsDataObjectExceotion($"There exists commom group data for this manager id - {commonGroupData.ManagerID}");
 
             await _commonGroupDataCollection.InsertOneAsync(commonGroupData);
             return commonGroupData.ID;
@@ -63,16 +60,16 @@ public class CommonGroupDataCRUD : ICommonGroupDataCRUD
     #endregion
 
     #region Delete function
-    public async Task<bool> DeleteAsync(string id)
+    public async Task<bool> DeleteAsync(string managerId)
     {
         try
         {
-            var deleteFilter = _filterBuilder.Eq("_id", new ObjectId(id));
+            var deleteFilter = _filterBuilder.Eq("ManagerID", new ObjectId(managerId));
             var deleteCommonGroupData = await _commonGroupDataCollection.Find(deleteFilter).FirstOrDefaultAsync();
 
             if (deleteCommonGroupData == null)
             {
-                throw new NotExistsDataObjectException($"The item with this id {id} is not defined");
+                throw new NotExistsDataObjectException($"The item with this manager Id {managerId} is not defined");
             }
 
             await _commonGroupDataCollection.DeleteOneAsync(deleteFilter);

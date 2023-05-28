@@ -4,12 +4,14 @@ public class UserService : IUserService
 {
     private readonly IMapper _mapper;
     private readonly IUserCRUD _userService;
+    private readonly ICommonGroupDataService _commonGroupDataService;
     private readonly IWashAbleService _washAbleService;
-    public UserService(IUserCRUD userService, IWashAbleService washAbleService, IMapper mapper)
+    public UserService(IUserCRUD userService, IWashAbleService washAbleService, IMapper mapper, ICommonGroupDataService commonGroupDataService)
     {
         _userService = userService;
         _washAbleService = washAbleService;
         _mapper = mapper;
+        _commonGroupDataService = commonGroupDataService;
     }
     #region Create function
     public Task<string> CreateObject(UserDTO userDTO)
@@ -17,7 +19,7 @@ public class UserService : IUserService
         try
         {
             User user = MapUserDTO_User(userDTO);
-            user.ID = String.Empty;
+            user.ID = string.Empty;
             return _userService.CreateAsync(user);
         }
         catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
@@ -97,6 +99,7 @@ public class UserService : IUserService
     {
         UserDTO userDTO = _mapper.Map<UserDTO>(user);
         userDTO.Items = _washAbleService.GetAll(userDTO.ID).Result;
+        userDTO.CommonData = _commonGroupDataService.GetObject(user.ManagerID).Result;
         return userDTO;
     }
 

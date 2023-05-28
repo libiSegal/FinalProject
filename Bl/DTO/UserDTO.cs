@@ -8,7 +8,7 @@ public class UserDTO : IDataObject
     public string Password { get; set; }
     public List<WashAbleDTO> Items { get; set; }
     public Gender Gender { get; set; }
-    public CommonGroupData CommonData { get; set; }
+    public CommonGroupDataDTO CommonData { get; set; }
     public UserDTO()
     {
         ID = string.Empty;

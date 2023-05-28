@@ -1,5 +1,5 @@
 ﻿
-namespace Dal.DataImplementation.CRUDClasses;
+/*namespace Dal.DataImplementation.CRUDClasses;
 public class LaundryCRUD : ILaundryCRUD
 {
 
@@ -114,4 +114,4 @@ public class LaundryCRUD : ILaundryCRUD
     }
     #endregion
 }
-
+*/

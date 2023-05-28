@@ -1,5 +1,5 @@
 ﻿
-namespace BL.DataImplementation.ServiceClasses;
+/*namespace BL.DataImplementation.ServiceClasses;
 public class LaundryService : ILaundryService
 {
     readonly IMapper _mapper;
@@ -86,4 +86,4 @@ public class LaundryService : ILaundryService
     }
     public Laundry MapLaundryDTO_Laundry(LaundryDTO laundryDTO) => _mapper.Map<Laundry>(laundryDTO);
     #endregion
-}
+}*/
