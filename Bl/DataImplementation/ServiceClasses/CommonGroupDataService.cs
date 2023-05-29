@@ -63,11 +63,8 @@ public class CommonGroupDataService : ICommonGroupDataService
     #endregion
 
     #region Mapping function
-    public CommonGroupDataDTO MapCommonGroupData_CommonGroupDataDTO(CommonGroupData commonGroupData)
-    {
-        CommonGroupDataDTO commonGroupDataDTO = _mapper.Map<CommonGroupDataDTO>(commonGroupData);
-        return commonGroupDataDTO;
-    }
+    public CommonGroupDataDTO MapCommonGroupData_CommonGroupDataDTO(CommonGroupData commonGroupData) => _mapper.Map<CommonGroupDataDTO>(commonGroupData);
+
     public CommonGroupData MapCommonGroupDataDTO_CommonGroupData(CommonGroupDataDTO commonGroupDataDTO) => _mapper.Map<CommonGroupData>(commonGroupDataDTO);
     #endregion
 }
