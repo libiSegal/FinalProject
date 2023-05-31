@@ -83,11 +83,13 @@ public class ManagerService : IManagerService
     {
         try
         {
-           // Manager managerFromDB = await _managerCRUD.ReadAsync(managerDTO.ID);
             Manager managerToUpdate = MapManagerDTO_Manager(managerDTO);
-            //managerToUpdate.ID = managerFromDB.ID;
-            await _commonGroupDataService.UpdateObject(managerDTO.CommonData);
+
+            if (!_commonGroupDataService.UpdateObject(managerDTO.CommonData).Result)
+                throw new Exception("Common data return with error");
+               
             return await _managerCRUD.UpdateAsync(managerToUpdate);
+
         }
         catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
         catch (Exception ex) { throw new BLException(ex); }

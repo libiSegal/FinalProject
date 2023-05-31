@@ -56,9 +56,13 @@ public class CommonGroupDataService : ICommonGroupDataService
     {
         try
         {
-            return await _commonGroupDataCRUD.UpdateAsync(MapCommonGroupDataDTO_CommonGroupData(commonGroupDataDTO));
+            CommonGroupData commonGroupData = MapCommonGroupDataDTO_CommonGroupData(commonGroupDataDTO);
+            return await _commonGroupDataCRUD.UpdateAsync(commonGroupData);
         }
-        catch (Exception ex) { throw new BLException(ex, 500); }
+        catch (Exception ex)
+        {
+            throw new BLException(ex, 500);
+        }
     }
     #endregion
 

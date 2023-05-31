@@ -15,9 +15,9 @@ public class CalendarService : ICalendarService
     {
         Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> conciseCalendar;
 
-        calendar.Calendar = GetWashAbleAcordingSoonDates(calendar.Calendar);
+        calendar.WashAbleCalendar = GetWashAbleAcordingSoonDates(calendar.WashAbleCalendar);
 
-        conciseCalendar = FindWashAbleForUserAccordingCategory(calendar.Calendar, cleanWashAbles, dirtyWashAbles);
+        conciseCalendar = FindWashAbleForUserAccordingCategory(calendar.WashAbleCalendar, cleanWashAbles, dirtyWashAbles);
 
         return FlatDictionary(conciseCalendar);
     }
