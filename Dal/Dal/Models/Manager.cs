@@ -2,10 +2,10 @@
 namespace Dal.Models;
 public class Manager : User
 {
-   // public List<string> WashAblesCollectionTypes { get; set;}
+    [BsonIgnore]
+    readonly int _minimumWashingMachineWeight = 1;
     public List<Laundry> Laundries { get; set; }
 
-    readonly int minimumWashingMachineWeight = 1;
     public int WashingMachineWeight { get; set; }
     public Calendar Calendar { get; set;}
 
@@ -13,10 +13,9 @@ public class Manager : User
     public override string ManagerID { get; set; }
     public Manager() : base()
     {
-       // WashAblesCollectionTypes = new();
-        Laundries = new();
-        WashingMachineWeight = minimumWashingMachineWeight;
+        Laundries = new();     
         ManagerID = string.Empty;
         Calendar = new();
+        WashingMachineWeight = _minimumWashingMachineWeight;
     }
 }

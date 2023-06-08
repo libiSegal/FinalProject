@@ -7,7 +7,7 @@ var configurationBuilder = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 IConfiguration config = configurationBuilder.Build();
-builder.Services.AddTestBl(config);
+builder.Services.ExtensionServiceBl(config);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Logging.ClearProviders();

@@ -1,8 +1,8 @@
 ﻿
 namespace Dal.DataApi;
-public static class DIServiceDal
+public static class ServiceDal
 {
-    public static IServiceCollection AddTestDal(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ExtensionServiceDal(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<IDBConnection, DBConnection>();
         services.AddSingleton<IManagerCRUD, ManagerCRUD>();
