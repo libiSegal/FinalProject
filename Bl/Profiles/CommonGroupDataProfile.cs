@@ -4,8 +4,10 @@ namespace BL.Profiles;
 
 public class CommonGroupDataProfile : Profile
 {
-    public CommonGroupDataProfile()
-    {
+    /// <summary>
+    /// Map the common group data module
+    /// </summary>
+    public CommonGroupDataProfile() =>
         CreateMap<CommonGroupDataDTO, CommonGroupData>().ReverseMap();
-    }
+
 }

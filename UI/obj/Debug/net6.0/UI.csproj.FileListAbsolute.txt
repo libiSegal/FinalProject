@@ -209,3 +209,14 @@ C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Sys
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\צוקרמן אסתר\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\צוקרמן אסתר\source\repos\FinalProject\UI\bin\Debug\net6.0\ref\UI.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\System.Web.Http.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Extensions.Logging.File.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Sinks.Async.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Sinks.File.dll
+C:\Users\User\Source\Repos\FinalProject\UI\bin\Debug\net6.0\Serilog.Sinks.RollingFile.dll

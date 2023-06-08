@@ -2,6 +2,9 @@
 namespace BL.Profiles;
 public class ManagerProfile : Profile
 {
+    /// <summary>
+    /// Map the manager module and the inner objects
+    /// </summary>
     public ManagerProfile()
     {
         CreateMap<ManagerDTO, Manager>().ReverseMap();  

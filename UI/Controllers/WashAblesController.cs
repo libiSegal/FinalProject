@@ -11,14 +11,14 @@ namespace UI.Controllers
             _washAbleService = washAbleService;
         }
 
-        [HttpGet("user/{userId}/washable/{id}")]
-        public  async Task<IActionResult> Get(string userId,string id)
+        [HttpGet("{id}")]
+        public  async Task<IActionResult> Get(string id)
         {
             return Ok(await _washAbleService.GetObject(id) ) ;
         }
 
-        [HttpGet("user/{userId}/washAbles")]
-        public async Task<IActionResult> Get(string userId)
+        [HttpGet()]
+        public async Task<IActionResult> GetAll(string userId)
         {
             return Ok(await _washAbleService.GetAll(userId));
         }
@@ -35,7 +35,7 @@ namespace UI.Controllers
             return Ok(await _washAbleService.UpdateObject(washAbleDTO));
         }
 
-        [HttpDelete("user/{userId}/washAble/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             return Ok(await _washAbleService.DeleteObject(id));

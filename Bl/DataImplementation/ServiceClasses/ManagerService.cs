@@ -42,7 +42,7 @@ public class ManagerService : IManagerService
             Manager manager = await _managerCRUD.ReadAsync(id);
             return await MapManager_ManagerDTO(manager);
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
         catch (Exception ex) { throw new BLException(ex); }
 
     }
@@ -56,7 +56,7 @@ public class ManagerService : IManagerService
             Manager manager = await _managerCRUD.ReadAsync(name, password);
             return await MapManager_ManagerDTO(manager);
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
         catch (Exception ex) { throw new BLException(ex); }
 
     }
@@ -73,7 +73,7 @@ public class ManagerService : IManagerService
           //  _laundryService.GetAll(id).Result.ForEach(laundry => _laundryService.DeleteObject(laundry.ID));
             return await _managerCRUD.DeleteAsync(id);
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
         catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion

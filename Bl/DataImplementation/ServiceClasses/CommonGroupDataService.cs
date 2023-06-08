@@ -16,8 +16,6 @@ public class CommonGroupDataService : ICommonGroupDataService
     {
         try
         {
-            commonGroupDataDTO.ID = string.Empty;
-
             CommonGroupData commonGroupData = MapCommonGroupDataDTO_CommonGroupData(commonGroupDataDTO);
             return _commonGroupDataCRUD.CreateAsync(commonGroupData);
         }

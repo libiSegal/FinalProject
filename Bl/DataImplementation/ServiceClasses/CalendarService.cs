@@ -1,11 +1,15 @@
 ﻿
+using System.Diagnostics;
+
 namespace Bl.DataImplementation.ServiceClasses;
 public class CalendarService : ICalendarService
 {
     private readonly IWashAbleService _washAbleService;
-    public CalendarService(IWashAbleService washAbleService)
+    private readonly IManagerService _managerService;
+    public CalendarService(IWashAbleService washAbleService , IManagerService managerService)
     {
         _washAbleService = washAbleService;
+        _managerService = managerService;
     }
 
     #region Get necessary wash ables
@@ -24,7 +28,7 @@ public class CalendarService : ICalendarService
     #endregion
 
     #region Get wash able acording soon date
-    private Dictionary<DateTime, Dictionary<string, List<Category>>> GetWashAbleAcordingSoonDates(Dictionary<DateTime, Dictionary<string, List<Category>>> datesDict)
+    private static Dictionary<DateTime, Dictionary<string, List<Category>>>  GetWashAbleAcordingSoonDates(Dictionary<DateTime, Dictionary<string, List<Category>>> datesDict)
 
          => datesDict.Where(k => (k.Key - DateTime.Now).TotalHours < (24) && (k.Key - DateTime.Now).TotalHours >= 0).ToDictionary(k => k.Key, v => v.Value);
     #endregion
@@ -64,7 +68,7 @@ public class CalendarService : ICalendarService
 
     #region Exists in clean
     //Check if exist clean wash able with this category
-    private bool ExistsInClean(string userID, Category category, List<WashAbleDTO> cleanWashAbles)
+    private static bool ExistsInClean(string userID, Category category, List<WashAbleDTO> cleanWashAbles)
         => cleanWashAbles.Find(w => w.UserId == userID && w.Category == category) != null;
     #endregion
 
@@ -73,6 +77,7 @@ public class CalendarService : ICalendarService
     public async Task<WashAbleDTO> NecessaryWashAble(string userID, Category category, List<WashAbleDTO> dirtyWashAbles)
     {
         WashAbleDTO? washAble = dirtyWashAbles.Find(w => w.UserId == userID && w.Category == category);
+        Debug.WriteLine(washAble);
         if (washAble != null && (washAble.NecessityLevel != NecessityLevel.necessary || washAble.NecessityLevel != NecessityLevel.critical))
         {
             washAble.NecessityLevel = NecessityLevel.necessary;
@@ -84,10 +89,33 @@ public class CalendarService : ICalendarService
     }
     #endregion
 
-    #region Flat dictionary
-    private Dictionary<WashAbleDTO, DateTime> FlatDictionary(Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> usersWithWashAble)
+    public async void ElapsedDates(ManagerDTO manager, List<WashAbleDTO> allwashables)
     {
-        Dictionary<WashAbleDTO, DateTime> finallyDict = new Dictionary<WashAbleDTO, DateTime>();
+        manager.Calendar.WashAbleCalendar.ToList()
+                .ForEach(date => RemovElapsedDates(manager.Calendar, allwashables, DateTime.Now, date.Key));
+        await _managerService.UpdateObject(manager);
+    }
+    private void RemovElapsedDates(CalendarDTO calendar, List<WashAbleDTO> allwashables, DateTime fromDate, DateTime expireDate)
+    {
+        List<WashAbleDTO> washAblesToUpdate = new();
+        if(fromDate - expireDate > TimeSpan.FromHours(2))
+        {
+            Debug.WriteLine(expireDate);
+            calendar.WashAbleCalendar.Remove(expireDate);
+ 
+        }
+        allwashables.ForEach(washAble =>
+        {
+            if (washAble.NecessityLevel == NecessityLevel.necessary)
+                washAble.NecessityLevel = NecessityLevel.standard;
+            _washAbleService.UpdateObject(washAble);
+        });       
+    }
+
+    #region Flat dictionary
+    private static Dictionary<WashAbleDTO, DateTime> FlatDictionary(Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> usersWithWashAble)
+    {
+        Dictionary<WashAbleDTO, DateTime> finallyDict = new();
         usersWithWashAble.ToList().ForEach(dict =>
         {
             dict.Value.ToList().ForEach(user =>
@@ -98,5 +126,7 @@ public class CalendarService : ICalendarService
         return finallyDict;
     }
     #endregion
+
+
 }
 

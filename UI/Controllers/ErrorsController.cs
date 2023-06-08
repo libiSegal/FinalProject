@@ -27,10 +27,12 @@ public class ErrorsController : ControllerBase
                 title: blException.Message,
                 statusCode: blException.Status);
             }
-            else return Problem(
-                /*title: "Ooops...",*/
-                title: "Please try later...",
+            else
+            {
+                if (blException.Status == 400 || blException.Status == 404)
+                return Problem(
                 statusCode: blException.Status);
+            }
         }
         return Problem(
             title: "Ooops...",

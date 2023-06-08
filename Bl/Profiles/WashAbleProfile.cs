@@ -2,8 +2,10 @@
 namespace BL.Profiles;
 public class WashAbleProfile : Profile
 {
-    public WashAbleProfile()
-    {
+    /// <summary>
+    /// Map the washAble module
+    /// </summary>
+    public WashAbleProfile() => 
         CreateMap<WashAble, WashAbleDTO>().ReverseMap();
-    }
+
 }

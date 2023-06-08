@@ -19,7 +19,6 @@ public class UserService : IUserService
         try
         {
             User user = MapUserDTO_User(userDTO);
-            user.ID = string.Empty;
             return _userService.CreateAsync(user);
         }
         catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
@@ -36,7 +35,7 @@ public class UserService : IUserService
             User user = await _userService.ReadAsync(name, password);
             return MapUser_UserDTO(user);
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
         catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
@@ -63,7 +62,7 @@ public class UserService : IUserService
             _washAbleService.GetAll(id).Result.ForEach(item => _washAbleService.DeleteObject(item.ID));
             return await _userService.DeleteAsync(id);
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
         catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
@@ -89,7 +88,7 @@ public class UserService : IUserService
             List<User> users = await _userService.ReadAllAsync(managerId);
             return users.Select(u => MapUser_UserDTO(u)).ToList();
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
         catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion

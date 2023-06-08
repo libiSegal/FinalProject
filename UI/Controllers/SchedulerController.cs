@@ -1,6 +1,4 @@
 ﻿
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace UI.Controllers
 {
     [Route("api/[controller]")]
@@ -20,20 +18,9 @@ namespace UI.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            Dictionary<DateTime, Dictionary<string, Category>> datesDict = new Dictionary<DateTime, Dictionary<string, Category>>()
-         {
-             {DateTime.Now , new Dictionary<string, Category>(){ {"a", Category.daily }  } },
-             {new DateTime(2023,04,24,20,50,0) , new Dictionary<string, Category>(){ {"a", Category.daily }  } },
-             {new DateTime(2023,04,26,20,50,0) , new Dictionary<string, Category>(){ {"a", Category.daily }  } },
-             {new DateTime(2023,04,24,22,2,0) , new Dictionary<string, Category>(){ {"a", Category.daily }  } }
-         };
-           
-          ManagerDTO m =  _managerService.GetObject(id).Result;
-          return Ok(_schedulerService.Scheduler(m));
 
-          /*  CalendarHandler s = new();
-            return s.DatesLessThan24Hours(datesDict);*/
-
+          ManagerDTO mananger =  _managerService.GetObject(id).Result;
+          return Ok(_schedulerService.Scheduler(mananger));
         }
     
 

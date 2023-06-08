@@ -21,7 +21,7 @@ public class ManagerCRUD : IManagerCRUD
 
             if (getManager == null)
             {
-                throw new NotExistsDataObjectException($"No manger matched : {name} - {password} ");
+                throw new NotExistsDataObjectException($"No manger matched current name and password ");
             }
             return getManager;
         }

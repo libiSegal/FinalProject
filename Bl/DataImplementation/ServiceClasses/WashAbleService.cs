@@ -2,8 +2,8 @@
 namespace BL.DataImplementation.ServiceClasses;
 public class WashAbleService : IWashAbleService
 {
-    readonly IWashAbleCRUD _washAbleCRUD;
     readonly IMapper _mapper;
+    readonly IWashAbleCRUD _washAbleCRUD;   
     public WashAbleService( IMapper mapper , IWashAbleCRUD washAbleCRUD )
     {
         _mapper = mapper;
@@ -13,17 +13,15 @@ public class WashAbleService : IWashAbleService
     public  Task<string> CreateObject(WashAbleDTO washAbleDTO)
     {
         try
-        {
-            
+        {           
             if(washAbleDTO.Weight == 0)
-            {
-                List<WashAbleDTO> allWashAbles = GetAll(washAbleDTO.UserId).Result;
+            {   
                 double averageWeight = 0;
-                allWashAbles.ForEach(w => { averageWeight += w.Weight;});
+                List<WashAbleDTO> allWashAbles = GetAll(washAbleDTO.UserId).Result;               
+                allWashAbles.ForEach(w => averageWeight += w.Weight);
                 washAbleDTO.Weight = averageWeight / allWashAbles.Count;
             }
             WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
-            washAble.ID = string.Empty;
             return _washAbleCRUD.CreateAsync(washAble);
         }
         catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
@@ -33,7 +31,7 @@ public class WashAbleService : IWashAbleService
 
     #region Get function
     public async Task<WashAbleDTO> GetObject(string id)
-    {//id = barcode.data.id
+    {
         try
         {
             WashAble washAble = await _washAbleCRUD.ReadAsync(id);
@@ -47,11 +45,11 @@ public class WashAbleService : IWashAbleService
     #region Delete function
     public Task<bool> DeleteObject(string id)
     {
-        try
+        try 
         {
             return _washAbleCRUD.DeleteAsync(id);
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
         catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
@@ -61,7 +59,7 @@ public class WashAbleService : IWashAbleService
     {
         try
         {
-           WashAbleDTO lastWashAble = GetObject(washAbleDTO.ID).Result;
+            WashAbleDTO lastWashAble = GetObject(washAbleDTO.ID).Result;
             if (washAbleDTO.Status == Status.clean && lastWashAble.Status == Status.dirty)
             {
                 washAbleDTO.PrevWash.Add(DateTime.Now);
@@ -74,7 +72,7 @@ public class WashAbleService : IWashAbleService
             WashAble washAble = MapWashAbleDTO_washAble(washAbleDTO);
             return await _washAbleCRUD.UpdateAsync(washAble);
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
         catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion
@@ -89,7 +87,7 @@ public class WashAbleService : IWashAbleService
             washAblesBl = _mapper.Map<List<WashAble> , List<WashAbleDTO>>(washAbles);
             return washAblesBl;
         }
-        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 400); }
+        catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
         catch (Exception ex) { throw new BLException(ex); }
     }
     #endregion

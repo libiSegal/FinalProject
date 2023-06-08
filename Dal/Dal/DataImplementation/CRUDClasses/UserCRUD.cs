@@ -20,7 +20,7 @@ public class UserCRUD : IUserCRUD
 
             if (getUser == null)
             {
-                throw new NotExistsDataObjectException($"No user matched : {name} - {password} ");
+                throw new NotExistsDataObjectException($"No user matched current name and password");
             }
             return getUser;
         }
