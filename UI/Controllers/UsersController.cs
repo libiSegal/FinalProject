@@ -17,11 +17,7 @@ namespace Ui.Controllers
         {
             return Ok(await _userService.CreateObject(user));
         }
-        [HttpPost("signIn")]
-        public async Task<IActionResult> GetByNameAndPassword([FromBody]Client client)
-        {
-            return Ok(await _userService.GetObject(client.Name, client.Password));
-        }
+       
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {

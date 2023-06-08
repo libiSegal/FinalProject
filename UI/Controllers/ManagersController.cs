@@ -8,11 +8,10 @@ namespace UI.Controllers
     public class ManagersController : ControllerBase
     {
         private readonly IManagerService _managerService;
-        private readonly ILogger<ManagersController> _logger;
-        public ManagersController(IManagerService managerService, ILogger<ManagersController> logger)
+       
+        public ManagersController(IManagerService managerService)
         {
             _managerService = managerService;
-            _logger = logger;
         }
         [HttpPost]
         public async Task<IActionResult> CreateManager(ManagerDTO managerDTO)
@@ -25,12 +24,7 @@ namespace UI.Controllers
         {
             return Ok(await _managerService.GetObject(id)) ;
         }
-
-        [HttpPost("signIn")]
-        public  async Task<IActionResult> GetByNameAndPassword(Client client)
-        {
-            return Ok(await _managerService.GetObject(client.Name, client.Password));
-        }
+        
 
         [HttpDelete("{id}")]
         public  async Task<IActionResult> Delete(string id)

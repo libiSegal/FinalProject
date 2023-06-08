@@ -23,24 +23,5 @@ namespace UI.Controllers
           return Ok(_schedulerService.Scheduler(mananger));
         }
     
-
-        // POST api/<SchedulerController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-
-        }
-
-        // PUT api/<SchedulerController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<SchedulerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
