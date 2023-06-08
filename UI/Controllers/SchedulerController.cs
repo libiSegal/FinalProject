@@ -15,11 +15,11 @@ namespace UI.Controllers
         }
 
 
-        [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        [HttpGet("{managerId}")]
+        public IActionResult Get(string managerId)
         {
 
-          ManagerDTO mananger =  _managerService.GetObject(id).Result;
+          ManagerDTO mananger =  _managerService.GetObject(managerId).Result;
           return Ok(_schedulerService.Scheduler(mananger));
         }
     

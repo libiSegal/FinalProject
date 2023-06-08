@@ -12,17 +12,18 @@ namespace Ui.Controllers
         {
             _userService = userService;
         }
-        [HttpPost]
-        public async Task<IActionResult> Post(UserDTO user)
-        {
-            return Ok(await _userService.CreateObject(user));
-        }
-       
+     
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
             return Ok(await _userService.GetObject(id));
         }
+        [HttpPost]
+        public async Task<IActionResult> Post(UserDTO user)
+        {
+            return Ok(await _userService.CreateObject(user));
+        }
+
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] UserDTO user)
         {

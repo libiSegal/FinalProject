@@ -9,6 +9,7 @@ public class ErrorsController : ControllerBase
     {
         _logger = logger;
     }
+
     [Route("/error")]
     [ApiExplorerSettings(IgnoreApi = true)]
     public IActionResult Error([FromServices] IHostEnvironment hostEnvironment)

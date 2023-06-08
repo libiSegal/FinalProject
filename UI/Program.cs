@@ -1,12 +1,8 @@
 
-
-
-
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 var configurationBuilder = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -16,8 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
-string? m_exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-builder.Logging.AddFile("C:\\Users\\צוקרמן אסתר\\source\\repos\\FinalProject\\Loggers\\Logger.txt");
+builder.Logging.AddFile($"{Directory.GetCurrentDirectory()}\\Loggers\\Logger.txt");
 
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();

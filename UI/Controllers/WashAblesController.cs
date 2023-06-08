@@ -12,9 +12,9 @@ namespace UI.Controllers
         }
 
         [HttpGet("{id}")]
-        public  async Task<IActionResult> Get(string id)
+        public   async Task<IActionResult> Get(string id)
         {
-            return Ok(await _washAbleService.GetObject(id) ) ;
+            return Ok(await _washAbleService.GetObject(id));
         }
 
         [HttpGet()]
