@@ -1,12 +1,14 @@
 ﻿
+using MongoDB.Driver.Linq;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Bl.DataImplementation.ServiceClasses;
 public class CalendarService : ICalendarService
 {
     private readonly IWashAbleService _washAbleService;
     private readonly IManagerService _managerService;
-    public CalendarService(IWashAbleService washAbleService , IManagerService managerService)
+    public CalendarService(IWashAbleService washAbleService, IManagerService managerService)
     {
         _washAbleService = washAbleService;
         _managerService = managerService;
@@ -14,7 +16,7 @@ public class CalendarService : ICalendarService
 
     #region Get necessary wash ables
     //The main function of CalanderService. returns the necessery wash ables acording to the calendar
-    public Dictionary<WashAbleDTO, DateTime> GetNecessaryWashAbles(CalendarDTO calendar, 
+    public Dictionary<WashAbleDTO, DateTime> GetNecessaryWashAbles(CalendarDTO calendar,
             List<WashAbleDTO> cleanWashAbles, List<WashAbleDTO> dirtyWashAbles)
     {
         Dictionary<DateTime, Dictionary<string, List<WashAbleDTO>>> conciseCalendar;
@@ -28,9 +30,10 @@ public class CalendarService : ICalendarService
     #endregion
 
     #region Get wash able acording soon date
-    private static Dictionary<DateTime, Dictionary<string, List<Category>>>  GetWashAbleAcordingSoonDates(Dictionary<DateTime, Dictionary<string, List<Category>>> datesDict)
-
-         => datesDict.Where(k => (k.Key - DateTime.Now).TotalHours < (24) && (k.Key - DateTime.Now).TotalHours >= 0).ToDictionary(k => k.Key, v => v.Value);
+    private static Dictionary<DateTime, Dictionary<string, List<Category>>> GetWashAbleAcordingSoonDates(Dictionary<DateTime, Dictionary<string, List<Category>>> datesDict)
+        => datesDict.Where(k => (k.Key - DateTime.Now).TotalHours <= (24) && (k.Key - DateTime.Now).TotalHours >= 0).ToDictionary(k => k.Key, v => v.Value);
+        
+    
     #endregion
 
     #region Find wash able for user according category
@@ -98,18 +101,18 @@ public class CalendarService : ICalendarService
     private void RemovElapsedDates(CalendarDTO calendar, List<WashAbleDTO> allwashables, DateTime fromDate, DateTime expireDate)
     {
         List<WashAbleDTO> washAblesToUpdate = new();
-        if(fromDate - expireDate > TimeSpan.FromHours(2))
+        if (fromDate - expireDate > TimeSpan.FromHours(2))
         {
             Debug.WriteLine(expireDate);
             calendar.WashAbleCalendar.Remove(expireDate);
- 
+
         }
         allwashables.ForEach(washAble =>
         {
             if (washAble.NecessityLevel == NecessityLevel.necessary)
                 washAble.NecessityLevel = NecessityLevel.standard;
             _washAbleService.UpdateObject(washAble);
-        });       
+        });
     }
 
     #region Flat dictionary

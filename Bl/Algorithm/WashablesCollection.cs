@@ -30,11 +30,4 @@ public class WashAblesCollection
     }
     #endregion
 
-    #region Remove wash able from collection
-  /*  public void RemoveWashableFromCollection(WashAbleDTO washAbleDTO)
-    {
-        WashAblesSortedByNecessary[(int)washAbleDTO.NecessityLevel].Remove(washAbleDTO);
-        Weight -= washAbleDTO.Weight;
-    }*/
-    #endregion
 }

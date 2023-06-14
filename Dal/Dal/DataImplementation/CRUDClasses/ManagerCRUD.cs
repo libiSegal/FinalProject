@@ -101,9 +101,9 @@ public class ManagerCRUD : IManagerCRUD
         try
         {
             var updateFilter = _filterBuilder.Eq("_id", new ObjectId(manager.ID));
-            var updateUser = await _managersCollection.Find(updateFilter).FirstOrDefaultAsync();
+            var updateManager = await _managersCollection.Find(updateFilter).FirstOrDefaultAsync();
 
-            if (updateUser == null)
+            if (updateManager == null)
             {
                 throw new NotExistsDataObjectException($"This user {manager.Name} ,{manager.Password} is not defined");
             }

@@ -64,13 +64,12 @@ public class ManagerService : IManagerService
 
     #region Delete function
     public async Task<bool> DeleteObject(string id)
-    {//must!!!!! to check if users and washAbles delete are delete without wait for them.
+    {
         try
         {
             _washAbleServise.GetAll(id).Result.ForEach(washAble => _washAbleServise.DeleteObject(washAble.ID));
             _userService.GetAll(id).Result.ForEach(user => _userService.DeleteObject(user.ID));
             await _commonGroupDataService.DeleteObject(id);
-          //  _laundryService.GetAll(id).Result.ForEach(laundry => _laundryService.DeleteObject(laundry.ID));
             return await _managerCRUD.DeleteAsync(id);
         }
         catch (NotExistsDataObjectException ex) { throw new BLException(ex, 404); }
@@ -98,13 +97,11 @@ public class ManagerService : IManagerService
 
     #region Mapping functions
     public async Task<ManagerDTO> MapManager_ManagerDTO(Manager manager)
-    {//need to do a list<task> for all this awaits.
-        
+    {
+        //need to do a list<task> for all this awaits. 
         ManagerDTO managerDTO = _mapper.Map<ManagerDTO>(manager);
         managerDTO.UsersDTO = await _userService.GetAll(manager.ID);
         managerDTO.Items = await _washAbleServise.GetAll(manager.ID);
-        managerDTO.CommonData = await _commonGroupDataService.GetObject(manager.ID);
-      //managerDTO.LaundriesDTO = await _laundryService.GetAll(manager.ID);
         return managerDTO;
     }
 
