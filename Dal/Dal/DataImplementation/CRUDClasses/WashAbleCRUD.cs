@@ -2,8 +2,8 @@
 namespace Dal.DataImplementation.CRUDClasses;
 public class WashAbleCRUD : IWashAbleCRUD
 {
-    private readonly IMongoCollection<WashAble> _washAblesCollection;
-    private FilterDefinitionBuilder<WashAble> _filterBuilder;
+    readonly IMongoCollection<WashAble> _washAblesCollection;
+    readonly FilterDefinitionBuilder<WashAble> _filterBuilder;
 
     public WashAbleCRUD(IDBConnection db)
     {

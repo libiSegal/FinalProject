@@ -1,4 +1,7 @@
 ﻿
+using System;
+using InvalidDataException = Dal.Exceptions.InvalidDataException;
+
 namespace BL.DataImplementation.ServiceClasses;
 public class UserService : IUserService
 {
@@ -22,7 +25,14 @@ public class UserService : IUserService
             return _userService.CreateAsync(user);
         }
         catch (ExistsDataObjectExceotion ex) { throw new BLException(ex, 400); }
-        catch (Exception ex) { throw new BLException(ex); }
+        catch (Exception ex) {
+            if (ex.InnerException != null)
+            {
+                if(ex.InnerException is InvalidDataException)
+                    throw new BLException(ex, 400);
+            }
+                throw new BLException(ex); 
+        }
 
     }
     #endregion
@@ -103,5 +113,7 @@ public class UserService : IUserService
     }
 
     public User MapUserDTO_User(UserDTO userDTO) => _mapper.Map<User>(userDTO);
+  
+   
     #endregion
 }

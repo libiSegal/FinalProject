@@ -1,15 +1,17 @@
 ﻿
 namespace Dal.DataImplementation.CRUDClasses;
 public class CommonGroupDataCRUD : ICommonGroupDataCRUD
-{
-    private readonly IMongoCollection<CommonGroupData> _commonGroupDataCollection;
-    private FilterDefinitionBuilder<CommonGroupData> _filterBuilder;
-
+{   
+     readonly FilterDefinitionBuilder<CommonGroupData> _filterBuilder;
+     readonly IMongoCollection<CommonGroupData> _commonGroupDataCollection;
+    
     public CommonGroupDataCRUD(IDBConnection db)
     {
-        _commonGroupDataCollection = db.CommonGroupDataCollection;
         _filterBuilder = Builders<CommonGroupData>.Filter;
+        _commonGroupDataCollection = db.CommonGroupDataCollection;
+        
     }
+
     #region Create function 
     public async Task<string> CreateAsync(CommonGroupData commonGroupData)
     {

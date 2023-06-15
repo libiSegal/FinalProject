@@ -7,7 +7,6 @@ public static class ServiceDal
         services.AddSingleton<IDBConnection, DBConnection>();
         services.AddSingleton<IManagerCRUD, ManagerCRUD>();
         services.AddSingleton<IUserCRUD, UserCRUD>();
-      //  services.AddSingleton<ILaundryCRUD, LaundryCRUD>();
         services.AddSingleton<IWashAbleCRUD, WashAbleCRUD>();
         services.AddSingleton<ICommonGroupDataCRUD, CommonGroupDataCRUD>();
 

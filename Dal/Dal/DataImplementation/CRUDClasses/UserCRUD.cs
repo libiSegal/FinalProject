@@ -2,8 +2,8 @@
 namespace Dal.DataImplementation.CRUDClasses;
 public class UserCRUD : IUserCRUD
 {
-    private readonly IMongoCollection<User> _usersCollection;
-    private FilterDefinitionBuilder<User> _filterBuilder;
+    readonly IMongoCollection<User> _usersCollection;
+    readonly FilterDefinitionBuilder<User> _filterBuilder;
 
     public UserCRUD(IDBConnection db)
     {

@@ -2,8 +2,8 @@
 namespace Dal.DataImplementation.CRUDClasses;
 public class ManagerCRUD : IManagerCRUD
 {
-    private readonly IMongoCollection<Manager> _managersCollection;
-    private FilterDefinitionBuilder<Manager> _filterBuilder;
+     readonly IMongoCollection<Manager> _managersCollection;
+    readonly FilterDefinitionBuilder<Manager> _filterBuilder;
 
     public ManagerCRUD(IDBConnection db)
     {

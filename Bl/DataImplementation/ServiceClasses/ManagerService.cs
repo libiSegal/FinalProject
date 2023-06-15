@@ -7,11 +7,10 @@ public class ManagerService : IManagerService
     private readonly IWashAbleService _washAbleServise;
     private readonly IManagerCRUD _managerCRUD;
     private readonly IMapper _mapper;
-    public ManagerService(IUserService userService, IWashAbleService washAbleServise,/* ILaundryService laundryService,*/ ICommonGroupDataService commonGroupDataService, IManagerCRUD managerServise, IMapper mapper)
+    public ManagerService(IUserService userService, IWashAbleService washAbleServise, ICommonGroupDataService commonGroupDataService, IManagerCRUD managerServise, IMapper mapper)
     {
         _userService = userService;
         _washAbleServise = washAbleServise;
-        //  _laundryService = laundryService;
         _commonGroupDataService = commonGroupDataService;
         _managerCRUD = managerServise;
         _mapper = mapper;
@@ -19,7 +18,6 @@ public class ManagerService : IManagerService
     #region Create function
     public async Task<string> CreateObject(ManagerDTO managerDTO)
     {
-        //It is necessary to make sure that mapping work
         try
         {           
             Manager manager = MapManagerDTO_Manager(managerDTO);
@@ -102,6 +100,7 @@ public class ManagerService : IManagerService
         ManagerDTO managerDTO = _mapper.Map<ManagerDTO>(manager);
         managerDTO.UsersDTO = await _userService.GetAll(manager.ID);
         managerDTO.Items = await _washAbleServise.GetAll(manager.ID);
+        managerDTO.CommonData = await _commonGroupDataService.GetObject(manager.ID);
         return managerDTO;
     }
 
